@@ -1,5 +1,5 @@
 import React from 'react'
-import { FiAperture, FiArrowUpRight, FiCode, FiHeart, FiVideo } from 'react-icons/fi'
+import { FiArrowUpRight, FiCode, FiHeart, FiVideo } from 'react-icons/fi'
 import {
   SiFirebase,
   SiMastercard,
@@ -60,21 +60,9 @@ const LogoTile = ({ logo, index }) => {
   )
 }
 
-const SideBadge = () => (
-  <div className="fixed right-0 top-[55%] z-40 hidden h-[380px] w-[84px] -translate-y-1/2 items-center justify-center rounded-l-2xl bg-[#ff5a14] text-white shadow-[-14px_0_35px_rgba(0,0,0,0.35)] lg:flex">
-    <div className="flex flex-col items-center gap-5">
-      <span className="[writing-mode:vertical-rl] rotate-180 text-[24px] font-bold leading-none">
-        10+ Pre-built websites
-      </span>
-      <FiAperture className="text-[54px]" />
-    </div>
-  </div>
-)
-
 const Trust = () => {
   return (
     <section className="relative overflow-hidden bg-black px-5 text-white md:px-8 lg:px-6">
-      <SideBadge />
       <div
         className="absolute inset-0 opacity-45"
         style={{

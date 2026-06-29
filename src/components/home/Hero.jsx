@@ -3,7 +3,7 @@ import { FiArrowUpRight } from "react-icons/fi";
 
 const Hero = () => {
   return (
-    <section className="relative -mt-20 min-h-screen overflow-hidden bg-black text-white">
+    <section className="relative min-h-screen overflow-hidden bg-black text-white">
       <video
         className="absolute inset-0 h-full w-full object-cover"
         src="/v1.webm"
