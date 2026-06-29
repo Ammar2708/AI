@@ -15,11 +15,12 @@ const Home = () => {
     <div>
         <Hero/>
         <Service/>
-        <Chose/>
+        
         <We/>
         <Process/>
         <Use/>
         <Price/>
+        <Chose/>
         <Testominals/>
         <Stack/>
         <Trust/>

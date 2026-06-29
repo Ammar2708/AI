@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
+  FiAperture,
   FiArrowDown,
   FiBarChart2,
   FiBookOpen,
@@ -84,24 +85,14 @@ const navItems = [
 const Logo = () => (
   <NavLink
     to="/"
-    aria-label="Cypher Lab home"
+    aria-label="OptimAI home"
     className="flex shrink-0 items-center gap-3 text-white"
   >
-    <span className="grid size-12 place-items-center overflow-hidden rounded-xl border border-white/15 bg-black shadow-lg max-sm:size-11">
-      <img
-        src="/1logo.png"
-        alt=""
-        className="h-full w-full object-cover"
-        aria-hidden="true"
-      />
+    <span className="grid size-12 place-items-center rounded-full text-[44px] max-sm:size-11 max-sm:text-[40px]">
+      <FiAperture aria-hidden="true" />
     </span>
-    <span className="grid leading-none">
-      <span className="text-2xl font-bold tracking-tight max-sm:text-xl">
-        Cypher
-      </span>
-      <span className="ml-7 mt-1 font-mono text-[11px] font-bold uppercase tracking-[0.34em] text-white/55 max-sm:text-[10px]">
-        Lab
-      </span>
+    <span className="text-3xl font-bold tracking-tight max-sm:text-2xl">
+      OptimAI
     </span>
   </NavLink>
 );
@@ -251,10 +242,10 @@ const Navbar = () => {
   return (
     <header
       className={`sticky top-0 z-50 text-white transition-colors duration-500 ${
-        isScrolled || menuOpen ? "bg-black" : "bg-transparent"
+        isScrolled || menuOpen ? "bg-[#11141a]" : "bg-[#11141a]/90"
       }`}
     >
-      <nav className="relative flex h-20 items-center justify-between px-4 md:px-8 lg:px-6">
+      <nav className="relative flex h-[105px] items-center justify-between px-4 md:px-8 lg:px-7">
         <Logo />
 
         <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-12 lg:flex">
