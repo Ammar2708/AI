@@ -20,7 +20,6 @@ import {
   FiStar,
   FiTrendingUp,
   FiX,
-  FiUsers,
   FiZap,
 } from "react-icons/fi";
 
@@ -49,7 +48,7 @@ const serviceItems = [
     label: "Web Development",
     icon: FiCode,
     items: [
-      "Website development",
+      { label: "Website development", to: "/services/website-development" },
       "Corporate Website Development",
       "Websites for startups",
       "Landings and promo sites",
@@ -68,17 +67,6 @@ const serviceItems = [
       "Logo design service",
       "Brand Identity",
       "Banner ad design",
-    ],
-  },
-  {
-    label: "Outsourcing Services",
-    icon: FiUsers,
-    items: [
-      "Dedicated team",
-      "Hire Back-End Developer",
-      "Hire Front-End Developer",
-      "Hire Designer",
-      "Hire Project Manager",
     ],
   },
   {
@@ -210,15 +198,20 @@ const ServiceMenu = () => {
 
         {activeItem?.items && (
           <div className="w-[340px] rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
-            {activeItem.items.map((label) => (
+            {activeItem.items.map((item) => {
+              const label = typeof item === "string" ? item : item.label;
+              const to = typeof item === "string" ? "/services" : item.to;
+
+              return (
               <NavLink
                 key={label}
-                to="/services"
+                to={to}
                 className="block rounded-xl px-3 py-2.5 text-base font-semibold tracking-normal text-white/80 transition hover:bg-white/5 hover:text-white"
               >
                 {label}
               </NavLink>
-            ))}
+              );
+            })}
           </div>
         )}
       </div>

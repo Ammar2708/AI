@@ -9,6 +9,7 @@ import Contact from "./components/inner/Contact";
 import Inter from "./components/inner/Inter";
 import Process from "./components/inner/Process";
 import Service from "./components/inner/Service";
+import WebsiteDevelopment from "./components/inner/WebsiteDevelopment";
 import Platform from "./pages/Platform";
 import Pricing from "./pages/Pricing";
 
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
       { path: "/process", element: <Process /> },
       { path: "/Services", element: <Service /> },
       { path: "/services", element: <Service /> },
+      { path: "/services/website-development", element: <WebsiteDevelopment /> },
       { path: "/Platform", element: <Platform /> },
       { path: "/Pricing", element: <Pricing /> },
     
