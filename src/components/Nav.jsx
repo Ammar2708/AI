@@ -6,55 +6,25 @@ import {
   FiBookOpen,
   FiBox,
   FiChevronDown,
+  FiChevronRight,
+  FiCode,
   FiDownload,
   FiFileText,
   FiLayers,
   FiLink,
   FiMenu,
+  FiPenTool,
   FiPhone,
+  FiSearch,
   FiShield,
   FiStar,
+  FiTrendingUp,
   FiX,
+  FiUsers,
   FiZap,
 } from "react-icons/fi";
 
-const companyItems = [
-  {
-    label: "Pricing",
-    text: "Make cool SaaS experiences for your users!",
-    icon: FiStar,
-  },
-  {
-    label: "Team",
-    text: "Increase engagement and growth while reducing churn.",
-    icon: FiLink,
-  },
-  {
-    label: "Process",
-    text: "Unify data, operations, and insights into a single source of truth.",
-    icon: FiBox,
-  },
-  {
-    label: "Press",
-    text: "See what others are saying about us.",
-    icon: FiFileText,
-  },
-  {
-    label: "Analytics",
-    text: "Guide users through seamless setup.",
-    icon: FiBarChart2,
-  },
-  {
-    label: "Security",
-    text: "Automate tasks and boost engagement.",
-    icon: FiShield,
-  },
-  {
-    label: "Whitepaper",
-    text: "Store and manage data securely.",
-    icon: FiBookOpen,
-  },
-];
+
 
 const innerItems = [
   { to: "/about", label: "About", icon: FiBox },
@@ -62,7 +32,7 @@ const innerItems = [
   { to: "/contact", label: "Contact", icon: FiPhone },
   { to: "/integration", label: "Integration", icon: FiLink },
   { to: "/process", label: "Process", icon: FiBarChart2 },
-  { to: "/services", label: "Services", icon: FiLayers },
+  
 ];
 
 const platformLinks = [
@@ -74,11 +44,75 @@ const platformLinks = [
   { label: "Resources", icon: FiBookOpen },
 ];
 
+const serviceItems = [
+  {
+    label: "Web Development",
+    icon: FiCode,
+    items: [
+      "Website development",
+      "Corporate Website Development",
+      "Websites for startups",
+      "Landings and promo sites",
+      "E-commerce development",
+      "Web applications development",
+      "WordPress development",
+    ],
+  },
+  {
+    label: "Design",
+    icon: FiPenTool,
+    items: [
+      "Web design",
+      "Mobile app design",
+      "UX, UI design",
+      "Logo design service",
+      "Brand Identity",
+      "Banner ad design",
+    ],
+  },
+  {
+    label: "Outsourcing Services",
+    icon: FiUsers,
+    items: [
+      "Dedicated team",
+      "Hire Back-End Developer",
+      "Hire Front-End Developer",
+      "Hire Designer",
+      "Hire Project Manager",
+    ],
+  },
+  {
+    label: "Digital Marketing",
+    icon: FiTrendingUp,
+    items: [
+      "Conversion marketing",
+      "Content marketing",
+      "PPC services",
+      "Social media marketing services",
+    ],
+  },
+  {
+    label: "SEO Services",
+    icon: FiSearch,
+    items: [
+      "Tech SEO",
+      "On-page SEO",
+      "Off-page SEO",
+      "SEO copywriting",
+      "SEO Pricing, SEO Packages",
+    ],
+  },
+  {
+    label: "Fixed price web development",
+    icon: FiShield,
+  },
+];
+
 const navItems = [
-  { to: "/Company", label: "Company", dropdown: "company" },
-  { to: "#", label: "Inner pages", dropdown: "inner" },
-  { to: "/Platform", label: "Platform", dropdown: "platform" },
-  { to: "/Pricing", label: "Pricing" },
+  { to: "/services", label: "Services", dropdown: "services" },
+  { to: "/about", label: "About" },
+  { to: "/integration", label: "Integration" },
+  { to: "/process", label: "Process" },
 ];
 
 const Logo = () => (
@@ -122,39 +156,7 @@ const TryButton = () => (
   </NavLink>
 );
 
-const CompanyMenu = () => (
-  <div className="fixed left-6 top-20 z-40 hidden w-[820px] pt-4 group-hover:block group-focus-within:block">
-    <div className="grid grid-cols-[1fr_1fr_1fr] gap-5 rounded-2xl border border-white/10 bg-[#121720] p-4 shadow-2xl">
-      <div className="grid gap-4">
-        {companyItems.slice(0, 4).map((item) => (
-          <MenuDetail key={item.label} {...item} />
-        ))}
-      </div>
-      <div className="grid content-start gap-4">
-        {companyItems.slice(4).map((item) => (
-          <MenuDetail key={item.label} {...item} />
-        ))}
-        <button className="mt-1 inline-flex h-9 w-fit items-center gap-2 rounded-full bg-white px-4 font-mono text-sm text-black transition hover:bg-zinc-200">
-          Build overview
-          <FiArrowDown className="-rotate-90 text-xs" />
-        </button>
-      </div>
-      <div className="grid content-start gap-4">
-        <div className="h-28 rounded-xl bg-[radial-gradient(circle_at_65%_40%,#f48a76_0,#7a3156_24%,#0c1320_55%,#050608_100%)] shadow-inner" />
-        <MenuDetail
-          label="Brandkit"
-          text="Extend workflows with one-click app connections."
-          icon={FiLayers}
-        />
-        <MenuDetail
-          label="Download"
-          text="Scale fast with flexibility and performance combined."
-          icon={FiDownload}
-        />
-      </div>
-    </div>
-  </div>
-);
+
 
 const InnerMenu = () => (
   <div className="absolute left-1/2 top-full z-40 hidden w-[280px] -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
@@ -172,6 +174,57 @@ const InnerMenu = () => (
     </div>
   </div>
 );
+
+const ServiceMenu = () => {
+  const [activeIndex, setActiveIndex] = useState(null);
+  const activeItem = activeIndex === null ? null : serviceItems[activeIndex];
+
+  return (
+    <div className="absolute left-1/2 top-full z-40 hidden -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
+      <div className="flex items-start gap-4" onMouseLeave={() => setActiveIndex(null)}>
+        <div className="w-[315px] rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
+          {serviceItems.map((item, index) => (
+            <NavLink
+              key={item.label}
+              to="/services"
+              onMouseEnter={() => setActiveIndex(index)}
+              onFocus={() => setActiveIndex(index)}
+              className={`flex min-h-[56px] items-center gap-3 rounded-xl px-2 text-white transition ${
+                activeIndex === index ? "text-white" : "text-white/85 hover:text-white"
+              }`}
+            >
+              <IconBox icon={item.icon} />
+              <span className="flex-1 text-base font-bold leading-tight tracking-normal">
+                {item.label}
+              </span>
+              {item.items && (
+                <FiChevronRight
+                  className={`text-base text-white/70 transition ${
+                    activeIndex === index ? "rotate-90 text-white" : ""
+                  }`}
+                />
+              )}
+            </NavLink>
+          ))}
+        </div>
+
+        {activeItem?.items && (
+          <div className="w-[340px] rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
+            {activeItem.items.map((label) => (
+              <NavLink
+                key={label}
+                to="/services"
+                className="block rounded-xl px-3 py-2.5 text-base font-semibold tracking-normal text-white/80 transition hover:bg-white/5 hover:text-white"
+              >
+                {label}
+              </NavLink>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const PlatformMenu = () => (
   <div className="fixed left-1/2 top-20 z-40 hidden w-[900px] -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
@@ -232,6 +285,7 @@ const PreviewCard = ({ title, variant }) => (
 
 const Dropdown = ({ type }) => {
   if (type === "company") return <CompanyMenu />;
+  if (type === "services") return <ServiceMenu />;
   if (type === "inner") return <InnerMenu />;
   if (type === "platform") return <PlatformMenu />;
   return null;
