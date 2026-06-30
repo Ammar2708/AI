@@ -8,7 +8,7 @@ import Use from '../components/home/Use'
 import Price from '../components/home/Price'
 import Testominals from '../components/home/Testominals'
 import Stack from '../components/home/Stack'
-import Trust from '../components/home/Trust'
+
 
 const Home = () => {
   return (
@@ -23,7 +23,7 @@ const Home = () => {
         <Chose/>
         <Testominals/>
         <Stack/>
-        <Trust/>
+       
     </div>
   )
 }

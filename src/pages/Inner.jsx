@@ -1,12 +1,8 @@
-import React from 'react'
-import Hero from '../components/inner/Hero'
+import React from "react";
+import About from "../components/inner/About";
 
 const Inner = () => {
-  return (
-    <div>
-        <Hero/>
-    </div>
-  )
-}
+  return <About />;
+};
 
-export default Inner
+export default Inner;

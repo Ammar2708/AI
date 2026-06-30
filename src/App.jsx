@@ -5,6 +5,10 @@ import RootLayout from "./layout/Rootlayout";
 import Home from "./pages/Home";
 import Company from "./pages/Company";
 import Inner from "./pages/Inner";
+import Contact from "./components/inner/Contact";
+import Inter from "./components/inner/Inter";
+import Process from "./components/inner/Process";
+import Service from "./components/inner/Service";
 import Platform from "./pages/Platform";
 import Pricing from "./pages/Pricing";
 
@@ -19,7 +23,16 @@ const router = createBrowserRouter([
     children: [
       { path: "/", element: <Home /> },
       { path: "/Company", element: <Company /> },
-      { path: "/Inner pages", element: <Inner  /> },
+      { path: "/About", element: <Inner /> },
+      { path: "/about", element: <Inner /> },
+      { path: "/Contact", element: <Contact /> },
+      { path: "/contact", element: <Contact /> },
+      { path: "/Integration", element: <Inter /> },
+      { path: "/integration", element: <Inter /> },
+      { path: "/Process", element: <Process /> },
+      { path: "/process", element: <Process /> },
+      { path: "/Services", element: <Service /> },
+      { path: "/services", element: <Service /> },
       { path: "/Platform", element: <Platform /> },
       { path: "/Pricing", element: <Pricing /> },
     

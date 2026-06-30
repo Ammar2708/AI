@@ -57,12 +57,12 @@ const companyItems = [
 ];
 
 const innerItems = [
-  { label: "About", icon: FiBox },
-  { label: "Blog", icon: FiFileText },
-  { label: "Contact", icon: FiPhone },
-  { label: "Integration", icon: FiLink },
-  { label: "Process", icon: FiBarChart2 },
-  { label: "Services", icon: FiLayers },
+  { to: "/about", label: "About", icon: FiBox },
+  { to: "#", label: "Blog", icon: FiFileText },
+  { to: "/contact", label: "Contact", icon: FiPhone },
+  { to: "/integration", label: "Integration", icon: FiLink },
+  { to: "/process", label: "Process", icon: FiBarChart2 },
+  { to: "/services", label: "Services", icon: FiLayers },
 ];
 
 const platformLinks = [
@@ -76,7 +76,7 @@ const platformLinks = [
 
 const navItems = [
   { to: "/Company", label: "Company", dropdown: "company" },
-  { to: "/Inner pages", label: "Inner pages", dropdown: "inner" },
+  { to: "#", label: "Inner pages", dropdown: "inner" },
   { to: "/Platform", label: "Platform", dropdown: "platform" },
   { to: "/Pricing", label: "Pricing" },
 ];
@@ -160,10 +160,14 @@ const InnerMenu = () => (
   <div className="absolute left-1/2 top-full z-40 hidden w-[280px] -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
     <div className="grid gap-4 rounded-2xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
       {innerItems.map((item) => (
-        <div key={item.label} className="flex items-center gap-3 text-white">
+        <NavLink
+          key={item.label}
+          to={item.to}
+          className="flex items-center gap-3 text-white transition hover:text-white/70"
+        >
           <IconBox icon={item.icon} />
           <span className="text-base font-semibold">{item.label}</span>
-        </div>
+        </NavLink>
       ))}
     </div>
   </div>

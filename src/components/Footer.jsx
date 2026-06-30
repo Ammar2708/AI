@@ -7,6 +7,7 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import Trust from "./home/Trust";
 
 const companyLinks = ["About Us", "Our Team", "Case Studies", "Contact Us", "Careers"];
 
@@ -57,6 +58,8 @@ const LinkList = ({ title, links }) => (
 
 const Footer = () => {
   return (
+    <div>
+       <Trust/>
     <footer className="bg-black px-4 py-8 text-white md:px-8 lg:px-10">
       <div className="relative mx-auto max-w-[1840px] overflow-hidden rounded-[28px] border border-white/10 bg-black">
         <img
@@ -153,6 +156,7 @@ const Footer = () => {
         
       </div>
     </footer>
+    </div>
   );
 };
 
