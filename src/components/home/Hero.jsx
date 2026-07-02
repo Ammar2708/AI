@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { FiArrowUpRight } from "react-icons/fi";
 
 const Hero = () => {
@@ -42,10 +43,13 @@ const Hero = () => {
             AI-driven solutions that solve real business challenges.
           </p>
 
-          <button className="mt-8 inline-flex h-11 items-center gap-3 rounded-full bg-white px-5 font-mono text-sm text-black transition hover:bg-zinc-200">
-            Try now
+          <Link
+            to="/contact"
+            className="mt-8 inline-flex h-11 items-center gap-3 rounded-full bg-white px-5 font-mono text-sm text-black transition hover:bg-zinc-200"
+          >
+            Contact us
             <FiArrowUpRight />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

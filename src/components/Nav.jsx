@@ -49,12 +49,24 @@ const serviceItems = [
     icon: FiCode,
     items: [
       { label: "Website development", to: "/services/website-development" },
-      "Corporate Website Development",
-      "Websites for startups",
-      "Landings and promo sites",
-      "E-commerce development",
+      {
+        label: "Corporate Website Development",
+        to: "/services/corporate-website-development",
+      },
+      {
+        label: "Websites for startups",
+        to: "/services/startup-website-development",
+      },
+      {
+        label: "Landings and promo sites",
+        to: "/services/landing-page-development",
+      },
+      {
+        label: "E-commerce development",
+        to: "/services/ecommerce-development",
+      },
       "Web applications development",
-      "WordPress development",
+      { label: "WordPress development", to: "/services/wordpress-development" },
     ],
   },
   {
@@ -136,10 +148,10 @@ const IconBox = ({ icon }) => (
 
 const TryButton = () => (
   <NavLink
-    to="/Pricing"
+    to="/contact"
     className="inline-flex h-11 items-center gap-3 rounded-full bg-white px-6 font-mono text-lg text-black transition hover:bg-zinc-200"
   >
-    Try now
+    Contact us
     <FiArrowDown className="-rotate-90 text-base" />
   </NavLink>
 );

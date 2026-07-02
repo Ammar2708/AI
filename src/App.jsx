@@ -9,7 +9,12 @@ import Contact from "./components/inner/Contact";
 import Inter from "./components/inner/Inter";
 import Process from "./components/inner/Process";
 import Service from "./components/inner/Service";
+import Corporate from "./components/inner/Corporate";
+import Eco from "./components/inner/Eco";
+import Landing from "./components/inner/Landing";
+import Startup from "./components/inner/Startup";
 import WebsiteDevelopment from "./components/inner/WebsiteDevelopment";
+import WordPressDevelopment from "./components/inner/WordPressDevelopment";
 import Platform from "./pages/Platform";
 import Pricing from "./pages/Pricing";
 
@@ -35,6 +40,11 @@ const router = createBrowserRouter([
       { path: "/Services", element: <Service /> },
       { path: "/services", element: <Service /> },
       { path: "/services/website-development", element: <WebsiteDevelopment /> },
+      { path: "/services/corporate-website-development", element: <Corporate /> },
+      { path: "/services/startup-website-development", element: <Startup /> },
+      { path: "/services/landing-page-development", element: <Landing /> },
+      { path: "/services/ecommerce-development", element: <Eco /> },
+      { path: "/services/wordpress-development", element: <WordPressDevelopment /> },
       { path: "/Platform", element: <Platform /> },
       { path: "/Pricing", element: <Pricing /> },
     
