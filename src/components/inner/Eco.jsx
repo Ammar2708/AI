@@ -14,58 +14,36 @@ import {
   FiMonitor,
   FiPackage,
   FiSearch,
-  FiShield,
   FiShoppingCart,
   FiTarget,
   FiTruck,
-  FiUsers,
   FiZap,
 } from "react-icons/fi";
 
 const GradientText = ({ children }) => (
-  <span className="bg-gradient-to-r from-[#6654ff] via-[#c235d8] to-[#ff2d78] bg-clip-text text-transparent">
+  <span className="bg-[linear-gradient(90deg,#8b5cf6_0%,#d946ef_45%,#ff2d78_100%)] bg-clip-text text-transparent">
     {children}
   </span>
 );
 
-const Badge = ({ children, light = false }) => (
-  <span
-    className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] ${
-      light
-        ? "border-[#dde4f2] bg-white text-[#4a526c]"
-        : "border-white/15 bg-white/[0.04] text-white/70"
-    }`}
-  >
-    <span className="size-2 rounded-full bg-[#ff2d78]" />
+const Badge = ({ children }) => (
+  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/75">
+    <span className="size-2 rounded-full bg-[#6654ff]" />
     {children}
   </span>
 );
 
-const SectionShell = ({ id, label, dark = false, children }) => (
+const SectionShell = ({ id, label, dark = false, children, className = "" }) => (
   <section
-    id={id}
-    className={`relative overflow-hidden ${
-      dark ? "bg-[#071126] text-white" : "bg-white text-[#33384f]"
+    className={`relative overflow-hidden px-4 py-16 text-white md:px-8 lg:px-9 lg:py-20 ${className} ${
+      dark ? "bg-[#050816]" : "bg-black"
     }`}
   >
-    <div className="pointer-events-none absolute inset-0 opacity-80">
-      <div className="absolute left-[7%] top-[18%] size-52 rounded-full bg-[#1dc8ff]/18 blur-3xl" />
-      <div className="absolute right-[8%] top-[12%] size-60 rounded-full bg-[#ff2d78]/16 blur-3xl" />
-      <div className="absolute bottom-[-7rem] left-[40%] size-56 rounded-full bg-[#6654ff]/12 blur-3xl" />
-    </div>
-
-    <div className="relative mx-auto grid max-w-[1180px] grid-cols-[54px_1fr] gap-0 px-4 md:px-8 lg:grid-cols-[72px_1fr] lg:px-9">
-      <div
-        className={`flex items-center justify-center border-r ${
-          dark ? "border-white/10 text-white/38" : "border-[#eef2f8] text-[#8c92aa]"
-        }`}
-      >
-        <span className="rotate-[-90deg] whitespace-nowrap font-mono text-xs uppercase tracking-[0.34em]">
-          {label}
-        </span>
-      </div>
-      <div className="px-5 py-16 md:px-8 lg:px-10 lg:py-20">{children}</div>
-    </div>
+    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_30%,rgba(102,84,255,0.22),transparent_30%),radial-gradient(circle_at_78%_22%,rgba(15,194,255,0.16),transparent_32%),radial-gradient(circle_at_52%_80%,rgba(255,45,120,0.14),transparent_30%)]" />
+    <p className="pointer-events-none absolute left-4 top-1/2 hidden -translate-y-1/2 -rotate-90 font-mono text-xs font-bold uppercase tracking-[0.32em] text-white/18 lg:block">
+      {label}
+    </p>
+    <div id={id} className="relative mx-auto max-w-[1180px]">{children}</div>
   </section>
 );
 
@@ -172,70 +150,74 @@ const relatedServices = [
 ];
 
 const HeroVisual = () => (
-  <div className="relative mx-auto max-w-[470px]">
-    <div className="absolute -left-8 top-10 h-24 w-24 rounded-full bg-[#1dc8ff]/25 blur-3xl" />
-    <div className="absolute -right-6 bottom-8 h-28 w-28 rounded-full bg-[#ff2d78]/25 blur-3xl" />
-    <div className="relative overflow-hidden rounded-[2rem] border border-white/12 bg-white/[0.04] p-3 shadow-2xl shadow-black/30">
-      <img
-        src="/imgi_61_ecommerce-mobile-product-page-optimization.jpg.webp"
-        alt="Mobile e-commerce product page with checkout elements"
-        className="h-[520px] w-full rounded-[1.5rem] object-cover"
-      />
-      <div className="absolute left-7 top-7 rounded-2xl border border-white/15 bg-[#071126]/75 px-4 py-3 backdrop-blur">
-        <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/55">
-          checkout
-        </p>
-        <p className="mt-1 text-2xl font-black text-white">Fewer steps</p>
+  <div className="relative mx-auto max-w-[460px] rounded-xl border border-white/10 bg-[#111827] p-4 shadow-[0_30px_90px_rgba(102,84,255,0.2)]">
+    <div className="flex items-center gap-2 border-b border-white/10 pb-4">
+      <span className="size-3 rounded-full bg-[#ff4d6d]" />
+      <span className="size-3 rounded-full bg-[#facc15]" />
+      <span className="size-3 rounded-full bg-[#22c55e]" />
+      <span className="ml-3 h-6 flex-1 rounded-full bg-white/8" />
+    </div>
+    <div className="grid gap-4 pt-5">
+      <div className="relative overflow-hidden rounded-xl border border-white/10 bg-[#0b1020]">
+        <img
+          src="/imgi_61_ecommerce-mobile-product-page-optimization.jpg.webp"
+          alt="Mobile e-commerce product page with checkout elements"
+          className="h-[260px] w-full object-cover opacity-80 md:h-[320px]"
+        />
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.05),rgba(0,0,0,0.72))]" />
+        <div className="absolute bottom-5 left-5 right-5">
+          <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/55">
+            checkout
+          </p>
+          <p className="mt-2 text-2xl font-semibold text-white">
+            Fewer steps to purchase
+          </p>
+        </div>
       </div>
-      <div className="absolute bottom-7 right-7 rounded-2xl border border-white/15 bg-white/90 px-4 py-3 text-[#33384f] shadow-xl">
-        <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#8c92aa]">
-          store health
-        </p>
-        <p className="mt-1 flex items-center gap-2 text-2xl font-black">
-          98% <FiTrendingIcon />
-        </p>
+      <div className="grid grid-cols-3 gap-3">
+        {["Catalog", "Cart", "Tracking"].map((item) => (
+          <div key={item} className="rounded-xl border border-white/10 bg-white/[0.04] p-3 md:p-4">
+            <div className="mb-4 grid size-9 place-items-center rounded-lg bg-white text-black">
+              <FiCheckCircle />
+            </div>
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white/55">
+              {item}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   </div>
 );
 
-const FiTrendingIcon = () => (
-  <span className="inline-grid size-8 place-items-center rounded-full bg-[#1dc8ff]/15 text-[#0897c9]">
-    <FiArrowUpRight />
-  </span>
-);
-
 const Eco = () => {
   return (
-    <main className="bg-white pt-28">
-      <section className="relative overflow-hidden bg-[#071126] text-white">
-        <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-[-8rem] top-10 h-80 w-80 rounded-full bg-[#1dc8ff]/18 blur-3xl" />
-          <div className="absolute right-[-7rem] top-20 h-96 w-96 rounded-full bg-[#ff2d78]/18 blur-3xl" />
-          <div className="absolute left-[44%] bottom-[-8rem] h-72 w-72 rounded-full bg-[#6654ff]/16 blur-3xl" />
-        </div>
+    <main className="overflow-hidden bg-black text-white">
+      <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(102,84,255,0.32),transparent_34%),radial-gradient(circle_at_82%_25%,rgba(255,45,120,0.22),transparent_32%),linear-gradient(180deg,#040407_0%,#090b12_54%,#000_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.94),transparent)]" />
 
-        <div className="relative mx-auto grid max-w-[1180px] gap-12 px-6 py-20 md:px-10 lg:grid-cols-[1fr_0.86fr] lg:items-center lg:px-12 lg:py-24">
+        <div className="relative mx-auto grid min-h-[520px] max-w-[1180px] items-center gap-10 lg:grid-cols-[1.04fr_0.96fr]">
           <div>
             <Badge>E-commerce development</Badge>
-            <h1 className="mt-8 max-w-[820px] text-5xl font-black leading-[0.95] tracking-tight md:text-7xl">
+            <h1 className="mt-6 max-w-3xl text-[36px] font-semibold leading-[1.08] tracking-normal md:text-5xl lg:text-[58px]">
               Online stores built for <GradientText>confident buying</GradientText>.
             </h1>
-            <p className="mt-7 max-w-[690px] text-xl leading-9 text-white/70">
+            <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-white/50 md:text-base">
               We design and develop e-commerce websites around your catalog,
               checkout, integrations, and day-to-day store management so the
               store is easier to sell from and easier to run.
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="/contact"
-                className="inline-flex items-center gap-3 rounded-full bg-white px-6 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em] text-[#071126] transition hover:bg-white/85"
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
               >
-                Discuss your project <FiArrowUpRight />
+                Hire us <FiArrowDown className="-rotate-90" />
               </a>
               <a
                 href="#how-we-work"
-                className="inline-flex items-center gap-3 rounded-full border border-white/15 px-6 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em] text-white transition hover:bg-white/10"
+                className="inline-flex h-11 items-center gap-2 rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
               >
                 See process <FiArrowDown />
               </a>
@@ -245,30 +227,30 @@ const Eco = () => {
         </div>
       </section>
 
-      <SectionShell id="strategy" label="our expertise" dark>
+      <SectionShell id="strategy" label="our expertise" dark className="pt-10">
         <div className="mx-auto max-w-[860px]">
           <Badge>store strategy</Badge>
-          <h2 className="mt-7 text-4xl font-black leading-tight md:text-6xl">
+          <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
             Strategy-first <GradientText>e-commerce website</GradientText>{" "}
             development
           </h2>
-          <p className="mt-7 text-lg leading-8 text-white/72">
+          <p className="mt-5 text-sm font-semibold leading-7 text-white/45 md:text-base">
             E-commerce website development is not just selecting a theme and
             adding products. We start with your business model, margins,
             operations, traffic sources, and customer objections, then turn them
             into product categories, checkout paths, and UX flows.
           </p>
-          <p className="mt-6 text-lg leading-8 text-white/72">
+          <p className="mt-6 text-sm font-semibold leading-7 text-white/45 md:text-base">
             That lets us choose the right platform and integrations, avoid
             fragile workarounds, and design a store that supports marketing,
             logistics, and customer service instead of slowing them down.
           </p>
         </div>
-        <div className="mx-auto mt-12 max-w-[960px] overflow-hidden rounded-[2rem] border border-white/12">
+        <div className="mx-auto mt-12 max-w-[960px] overflow-hidden rounded-xl border border-white/10 bg-[#121720]">
           <img
             src="/imgi_26_ecommerce-checkout-flow-planning.jpg.webp"
             alt="E-commerce customer journey planning board"
-            className="h-[520px] w-full object-cover"
+            className="h-[320px] w-full object-cover opacity-85 md:h-[420px]"
           />
         </div>
       </SectionShell>
@@ -276,11 +258,11 @@ const Eco = () => {
       <SectionShell id="focus" label="why us">
         <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <Badge light>what matters</Badge>
-            <h2 className="mt-7 text-4xl font-black leading-tight md:text-6xl">
+            <Badge>what matters</Badge>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
               What we focus on in <GradientText>e-commerce development</GradientText>
             </h2>
-            <p className="mt-7 text-lg leading-8 text-[#596176]">
+            <p className="mt-5 max-w-xl text-sm font-semibold leading-7 text-white/45 md:text-base">
               We focus on clear process, practical UX decisions, stable
               implementation, and the technical details that affect how an
               online store works after launch.
@@ -291,14 +273,14 @@ const Eco = () => {
             {focusItems.map((item) => (
               <article
                 key={item.title}
-                className="grid gap-5 rounded-2xl border border-[#e5ebf6] bg-white/80 p-6 shadow-sm sm:grid-cols-[64px_1fr]"
+                className="grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr] md:p-6"
               >
-                <span className="grid size-14 place-items-center rounded-2xl border border-[#dfe6f4] text-2xl text-[#c235d8]">
+                <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   <item.icon />
                 </span>
                 <div>
-                  <h3 className="text-2xl font-black text-[#33384f]">{item.title}</h3>
-                  <p className="mt-3 text-lg leading-8 text-[#596176]">{item.text}</p>
+                  <h3 className="text-lg font-semibold leading-tight">{item.title}</h3>
+                  <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">{item.text}</p>
                 </div>
               </article>
             ))}
@@ -308,19 +290,19 @@ const Eco = () => {
 
       <SectionShell id="platforms" label="how we work">
         <div className="grid gap-12 lg:grid-cols-[0.92fr_1fr] lg:items-center">
-          <div className="overflow-hidden rounded-[2rem] border border-[#e5ebf6]">
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-[#121720]">
             <img
               src="/imgi_62_ecommerce-development-platform-architecture.jpg.webp"
               alt="E-commerce platform and integration architecture"
-              className="h-[620px] w-full object-cover"
+              className="h-[320px] w-full object-cover opacity-85 md:h-[420px]"
             />
           </div>
           <div>
-            <Badge light>platforms</Badge>
-            <h2 className="mt-7 text-4xl font-black leading-tight md:text-6xl">
+            <Badge>platforms</Badge>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
               Platforms and <GradientText>integrations</GradientText>
             </h2>
-            <p className="mt-7 text-lg leading-8 text-[#596176]">
+            <p className="mt-6 text-sm font-semibold leading-7 text-white/48 md:text-base">
               We help you choose a platform and architecture that fit your
               budget, catalog, and roadmap. For many projects this means
               WooCommerce on WordPress; for others, we assess whether another
@@ -328,19 +310,19 @@ const Eco = () => {
             </p>
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
               {[
-                [FiCreditCard, "Payments"],
-                [FiTruck, "Shipping"],
-                [FiPackage, "Inventory"],
-                [FiDatabase, "CRM data"],
-                [FiBarChart2, "Analytics"],
-                [FiLock, "Security basics"],
-              ].map(([IconComponent, label]) => (
+                [<FiCreditCard key="payments" />, "Payments"],
+                [<FiTruck key="shipping" />, "Shipping"],
+                [<FiPackage key="inventory" />, "Inventory"],
+                [<FiDatabase key="crm-data" />, "CRM data"],
+                [<FiBarChart2 key="analytics" />, "Analytics"],
+                [<FiLock key="security-basics" />, "Security basics"],
+              ].map(([icon, label]) => (
                 <div
                   key={label}
-                  className="flex items-center gap-3 rounded-2xl border border-[#e5ebf6] bg-white p-4 font-bold text-[#33384f]"
+                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm font-semibold text-white/70"
                 >
-                  <span className="grid size-10 place-items-center rounded-xl bg-[#f4f7ff] text-[#c235d8]">
-                    <IconComponent />
+                  <span className="text-white">
+                    {icon}
                   </span>
                   {label}
                 </div>
@@ -351,27 +333,30 @@ const Eco = () => {
       </SectionShell>
 
       <SectionShell id="how-we-work" label="process" dark>
-        <div className="grid gap-10 lg:grid-cols-[0.42fr_1fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
             <Badge>workflow</Badge>
-            <h2 className="mt-7 text-4xl font-black leading-tight md:text-6xl">
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
               How we build your <GradientText>e-commerce website</GradientText>
             </h2>
           </div>
-          <div className="border-y border-white/12">
+          <div className="divide-y divide-white/10 border-y border-white/10">
             {process.map((item, index) => (
               <details
                 key={item.title}
-                className="group border-b border-white/12 py-8 last:border-b-0"
+                className="group py-5"
                 open={index === 0}
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-2xl font-black">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold md:text-xl">
                   <span>
-                    {String(index + 1).padStart(2, "0")}. {item.title}
+                    <span className="mr-4 font-mono text-sm text-white/35">
+                      {String(index + 1).padStart(2, "0")}.
+                    </span>
+                    {item.title}
                   </span>
                   <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
                 </summary>
-                <p className="mt-5 max-w-[760px] text-lg leading-8 text-white/72">
+                <p className="mt-4 max-w-3xl pl-0 text-sm font-semibold leading-7 text-white/45 md:pl-12 md:text-base">
                   {item.text}
                 </p>
               </details>
@@ -384,10 +369,10 @@ const Eco = () => {
         <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <Badge>proof points</Badge>
-            <h2 className="mt-7 text-4xl font-black leading-tight md:text-6xl">
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
               Reliable delivery for <GradientText>stores that grow</GradientText>
             </h2>
-            <p className="mt-7 text-lg leading-8 text-white/72">
+            <p className="mt-5 text-sm font-semibold leading-7 text-white/45 md:text-base">
               We bring website strategy, UX/UI, development, technical SEO,
               analytics, and support into one workflow, so your store does not
               launch as a collection of disconnected parts.
@@ -402,11 +387,11 @@ const Eco = () => {
             ].map(([title, text]) => (
               <article
                 key={title}
-                className="rounded-2xl border border-white/12 bg-white/[0.04] p-6"
+                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
               >
-                <FiCheckCircle className="text-3xl text-[#1dc8ff]" />
-                <h3 className="mt-5 text-2xl font-black">{title}</h3>
-                <p className="mt-3 leading-7 text-white/64">{text}</p>
+                <FiCheckCircle className="text-2xl text-white" />
+                <h3 className="mt-5 text-xl font-semibold">{title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-6 text-white/45">{text}</p>
               </article>
             ))}
           </div>
@@ -414,7 +399,7 @@ const Eco = () => {
       </SectionShell>
 
       <SectionShell id="services" label="related services">
-        <h2 className="max-w-[900px] text-4xl font-black leading-tight md:text-6xl">
+        <h2 className="max-w-[900px] text-3xl font-semibold leading-tight md:text-5xl">
           Related <GradientText>web development</GradientText> services
         </h2>
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -422,10 +407,12 @@ const Eco = () => {
             <a
               key={service.title}
               href={service.to}
-              className="group rounded-2xl border border-[#e5ebf6] bg-white/80 p-7 transition hover:-translate-y-1 hover:border-[#c235d8]/50 hover:shadow-xl hover:shadow-[#c235d8]/10"
+              className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
             >
-              <service.icon className="text-3xl text-[#c235d8]" />
-              <h3 className="mt-12 flex items-center justify-between gap-4 text-2xl font-black text-[#33384f]">
+              <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
+                <service.icon />
+              </span>
+              <h3 className="mt-12 flex items-center justify-between gap-4 text-xl font-semibold text-white">
                 {service.title}
                 <FiArrowUpRight className="shrink-0 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
               </h3>
@@ -435,22 +422,22 @@ const Eco = () => {
       </SectionShell>
 
       <SectionShell id="faq" label="FAQ" dark>
-        <div className="grid gap-10 lg:grid-cols-[0.42fr_1fr]">
-          <h2 className="text-4xl font-black leading-tight md:text-6xl">
+        <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+          <h2 className="text-3xl font-semibold leading-tight md:text-5xl">
             E-commerce website development <GradientText>FAQ</GradientText>
           </h2>
-          <div className="border-y border-white/12">
+          <div className="divide-y divide-white/10 border-y border-white/10">
             {faqs.map((item, index) => (
               <details
                 key={item.question}
-                className="group border-b border-white/12 py-8 last:border-b-0"
+                className="group py-5"
                 open={index === 0}
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-2xl font-black">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-semibold leading-tight md:text-xl">
                   <span>{item.question}</span>
                   <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
                 </summary>
-                <p className="mt-5 max-w-[760px] text-lg leading-8 text-white/72">
+                <p className="mt-4 max-w-3xl text-sm font-semibold leading-7 text-white/45 md:text-base">
                   {item.answer}
                 </p>
               </details>
@@ -459,19 +446,24 @@ const Eco = () => {
         </div>
       </SectionShell>
 
-      <SectionShell id="contact" label="contact">
-        <div className="mx-auto max-w-[920px] text-center">
-          <h2 className="text-5xl font-black leading-tight md:text-7xl">
+      <section className="px-4 pb-20 md:px-8 lg:px-9 lg:pb-24">
+        <div className="mx-auto max-w-[1180px] rounded-xl border border-white/10 bg-[radial-gradient(circle_at_18%_20%,rgba(102,84,255,0.24),transparent_34%),radial-gradient(circle_at_78%_32%,rgba(255,45,120,0.18),transparent_30%),#121720] px-6 py-10 text-center md:px-10 md:py-12">
+          <FiShoppingCart className="mx-auto text-3xl text-white/70" />
+          <h2 className="mx-auto mt-6 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl">
             Discuss your <GradientText>e-commerce website</GradientText> project
           </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">
+            Share your catalog, store goals, and operational needs. We will help
+            map the right e-commerce structure and development plan.
+          </p>
           <a
             href="/contact"
-            className="mt-10 inline-flex items-center gap-3 rounded-full border border-[#071126] px-7 py-4 font-mono text-sm font-bold uppercase tracking-[0.18em] text-[#071126] transition hover:bg-[#071126] hover:text-white"
+            className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
-            Discuss your project <FiArrowUpRight />
+            Get in touch <FiArrowDown className="-rotate-90" />
           </a>
         </div>
-      </SectionShell>
+      </section>
     </main>
   );
 };

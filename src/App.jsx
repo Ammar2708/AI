@@ -15,6 +15,7 @@ import Landing from "./components/inner/Landing";
 import Startup from "./components/inner/Startup";
 import WebsiteDevelopment from "./components/inner/WebsiteDevelopment";
 import WordPressDevelopment from "./components/inner/WordPressDevelopment";
+import WebApp from "./components/inner/WebApp";
 import Platform from "./pages/Platform";
 import Pricing from "./pages/Pricing";
 
@@ -44,6 +45,7 @@ const router = createBrowserRouter([
       { path: "/services/startup-website-development", element: <Startup /> },
       { path: "/services/landing-page-development", element: <Landing /> },
       { path: "/services/ecommerce-development", element: <Eco /> },
+      { path: "/services/web-application-development", element: <WebApp /> },
       { path: "/services/wordpress-development", element: <WordPressDevelopment /> },
       { path: "/Platform", element: <Platform /> },
       { path: "/Pricing", element: <Pricing /> },

@@ -65,7 +65,10 @@ const serviceItems = [
         label: "E-commerce development",
         to: "/services/ecommerce-development",
       },
-      "Web applications development",
+      {
+        label: "Web applications development",
+        to: "/services/web-application-development",
+      },
       { label: "WordPress development", to: "/services/wordpress-development" },
     ],
   },
