@@ -1,12 +1,8 @@
-import React from 'react'
-import Hero from '../components/pricing/Hero'
+import React from "react";
+import Content from "../components/pricing/Content";
 
 const Pricing = () => {
-  return (
-    <div>
-        <Hero/>
-    </div>
-  )
-}
+  return <Content />;
+};
 
-export default Pricing
+export default Pricing;

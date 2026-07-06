@@ -1,0 +1,586 @@
+import React from "react";
+import {
+  FiArrowDown,
+  FiArrowUpRight,
+  FiAward,
+  FiCheckCircle,
+  FiChevronDown,
+  FiClipboard,
+  FiCompass,
+  FiEdit3,
+  FiEye,
+  FiFileText,
+  FiGrid,
+  FiLayers,
+  FiPenTool,
+  FiRefreshCw,
+  FiSearch,
+  FiTarget,
+  FiUsers,
+} from "react-icons/fi";
+
+const GradientText = ({ children }) => (
+  <span className="bg-[linear-gradient(90deg,#6654ff_0%,#bd3ee8_48%,#ff2d87_100%)] bg-clip-text text-transparent">
+    {children}
+  </span>
+);
+
+const Badge = ({ children }) => (
+  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white/75">
+    <span className="size-2 rounded-full bg-[#13d6ff]" />
+    {children}
+  </span>
+);
+
+const SectionShell = ({ id, label, dark = false, children, className = "" }) => (
+  <section
+    className={`relative overflow-hidden px-4 py-12 md:px-7 lg:px-8 lg:py-16 ${className} ${
+      dark ? "bg-[#071027] text-white" : "bg-black text-white"
+    }`}
+  >
+    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_16%_32%,rgba(19,214,255,0.18),transparent_30%),radial-gradient(circle_at_82%_26%,rgba(255,45,135,0.18),transparent_30%),radial-gradient(circle_at_50%_86%,rgba(102,84,255,0.18),transparent_32%)]" />
+    <p className="pointer-events-none absolute left-4 top-1/2 hidden -translate-y-1/2 -rotate-90 font-mono text-[11px] font-bold uppercase tracking-[0.26em] text-white/18 lg:block">
+      {label}
+    </p>
+    <div id={id} className="relative mx-auto max-w-[1120px]">
+      {children}
+    </div>
+  </section>
+);
+
+const logoServices = [
+  {
+    icon: FiCompass,
+    title: "Logo strategy",
+    text: "We define the brand direction, audience, personality, usage needs, and competitors before any mark is drawn.",
+  },
+  {
+    icon: FiSearch,
+    title: "Visual research",
+    text: "References, category patterns, naming context, and differentiation points shape a brief that protects the logo from feeling generic.",
+  },
+  {
+    icon: FiPenTool,
+    title: "Custom concepts",
+    text: "Logo routes are created from scratch with clear reasoning, practical lockups, and room for refinement.",
+  },
+  {
+    icon: FiGrid,
+    title: "Logo system",
+    text: "Primary marks, alternate lockups, icons, spacing rules, colors, and responsive use cases are prepared together.",
+  },
+  {
+    icon: FiLayers,
+    title: "Brand applications",
+    text: "We test the logo across websites, social avatars, favicons, documents, packaging, and basic marketing materials.",
+  },
+  {
+    icon: FiClipboard,
+    title: "Final handoff",
+    text: "You receive organized files, usage notes, and practical guidance for digital and print implementation.",
+  },
+];
+
+const benefits = [
+  {
+    icon: FiEye,
+    title: "A logo that works in real places",
+    text: "The mark is checked across small icons, website headers, documents, social profiles, and presentation layouts.",
+  },
+  {
+    icon: FiTarget,
+    title: "Strategy before style",
+    text: "Design decisions are judged against your positioning and audience instead of personal taste alone.",
+  },
+  {
+    icon: FiUsers,
+    title: "Clearer team decisions",
+    text: "Your team gets a shared direction, practical variants, and enough rules to keep future use consistent.",
+  },
+  {
+    icon: FiAward,
+    title: "Professional ownership package",
+    text: "Final deliverables are organized for long-term use, with formats and usage notes confirmed before handover.",
+  },
+];
+
+const process = [
+  {
+    title: "Discovery and creative brief",
+    text: "We learn about your business, audience, competitors, values, tone, and where the logo will appear. This becomes a focused design brief.",
+  },
+  {
+    title: "Concept directions",
+    text: "We explore visual routes and present custom concepts with reasoning, usage context, and practical strengths for each direction.",
+  },
+  {
+    title: "Refinement and system",
+    text: "The strongest direction is refined into a logo system with lockups, icon use, spacing, colors, and typography alignment.",
+  },
+  {
+    title: "Application testing",
+    text: "We test the logo on website sections, social avatars, documents, light and dark backgrounds, and common brand materials.",
+  },
+  {
+    title: "Files and handover",
+    text: "Final files are prepared for digital and print use, with concise guidance so your team can use the mark confidently.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What is included in a logo design service?",
+    answer:
+      "A typical logo design project includes discovery, visual research, custom concept routes, refinement, logo lockups, color guidance, usage rules, and final files for digital and print use.",
+  },
+  {
+    question: "Can you redesign an existing logo?",
+    answer:
+      "Yes. We can modernize a current logo, preserve useful equity, improve readability, and build a cleaner system around it.",
+  },
+  {
+    question: "Do I receive source files and ownership?",
+    answer:
+      "Yes. Final deliverables are prepared in agreed formats, and ownership or usage terms are clarified as part of the project scope.",
+  },
+  {
+    question: "Is this different from brand identity design?",
+    answer:
+      "Logo design focuses on the mark and essential usage system. Brand identity is broader and can include messaging, deeper visual language, templates, and more application rules.",
+  },
+];
+
+const relatedServices = [
+  { icon: FiLayers, title: "Brand identity", to: "/services/brand-identity" },
+  { icon: FiEdit3, title: "Web design", to: "/services/web-design-service" },
+  { icon: FiGrid, title: "UX, UI design", to: "/services/ui-ux-design" },
+  { icon: FiArrowUpRight, title: "Website development", to: "/services/website-development" },
+];
+
+const ProofBadge = ({ title, rating, color = "text-[#ff4d3d]" }) => (
+  <div className="grid aspect-square place-items-center border border-white/55 [clip-path:polygon(25%_6%,75%_6%,100%_50%,75%_94%,25%_94%,0_50%)]">
+    <div className="text-center">
+      <p className="text-2xl font-semibold text-white md:text-3xl">{title}</p>
+      <p className="mt-2 text-sm font-bold text-white md:text-base">
+        {rating} <span className={color}>*****</span>
+      </p>
+    </div>
+  </div>
+);
+
+const HeroVisual = () => (
+  <div className="relative mx-auto max-w-[500px] overflow-hidden rounded-xl border border-white/10 bg-[#111827] p-2.5 shadow-[0_22px_70px_rgba(255,45,135,0.15)]">
+    <img
+      src="/imgi_107_logo-design-final-brand-system-board-1536x864.jpg.webp"
+      alt="Logo design final brand system board"
+      className="h-[260px] w-full rounded-lg object-cover opacity-90 md:h-[330px]"
+    />
+    <div className="absolute inset-3 rounded-lg bg-[linear-gradient(180deg,rgba(5,8,22,0.02),rgba(5,8,22,0.86))]" />
+    <div className="absolute bottom-6 left-6 right-6">
+      <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/58">
+        logo system preview
+      </p>
+      <div className="mt-3 grid grid-cols-3 gap-2">
+        {["Mark", "Lockup", "Guide"].map((item) => (
+          <div
+            key={item}
+            className="rounded-lg border border-white/10 bg-white/[0.08] p-2.5 backdrop-blur"
+          >
+            <span className="block h-2 w-12 rounded-full bg-[#13d6ff]" />
+            <p className="mt-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white/70">
+              {item}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+const Logo = () => {
+  return (
+    <main className="overflow-hidden bg-black text-white">
+      <section className="relative min-h-[600px] px-4 pt-28 md:px-7 lg:px-8 lg:pt-28">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_28%,rgba(19,214,255,0.23),transparent_31%),radial-gradient(circle_at_80%_22%,rgba(255,45,135,0.25),transparent_31%),linear-gradient(180deg,#050506_0%,#071027_54%,#000_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.92),transparent)]" />
+
+        <div className="relative mx-auto grid min-h-[470px] max-w-[1120px] items-center gap-9 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <Badge>Logo design service</Badge>
+            <h1 className="mt-5 max-w-3xl text-[34px] font-semibold leading-[1.06] tracking-normal md:text-[46px] lg:text-[58px]">
+              Logo design built for brands that need to look sharp everywhere.
+            </h1>
+            <p className="mt-5 max-w-2xl text-sm font-semibold leading-6 text-white/52 md:text-base">
+              We create practical logo systems with strategy, custom concepts,
+              polished lockups, and final files ready for web, social, print,
+              and everyday business use.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <a
+                href="/contact"
+                className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-black transition hover:bg-zinc-200"
+              >
+                Discuss your logo
+                <FiArrowDown className="-rotate-90" />
+              </a>
+              <a
+                href="#process"
+                className="inline-flex h-10 items-center gap-2 rounded-full border border-white/15 px-4 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-white/82 transition hover:border-white/35 hover:text-white"
+              >
+                See process
+                <FiArrowDown />
+              </a>
+            </div>
+          </div>
+          <HeroVisual />
+        </div>
+      </section>
+
+      <SectionShell id="scope" label="expertise">
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+          <div>
+            <Badge>What we create</Badge>
+            <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
+              Logo design <GradientText>services built on strategy</GradientText>
+            </h2>
+            <p className="mt-4 max-w-xl text-sm font-semibold leading-6 text-white/45 md:text-base">
+              A logo should do more than look nice in a presentation. It should
+              stay recognizable, usable, and aligned with how your business
+              wants to be understood.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {logoServices.map((card) => (
+              <article
+                key={card.title}
+                className="rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
+              >
+                <span className="grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-lg text-white">
+                  {React.createElement(card.icon)}
+                </span>
+                <h3 className="mt-5 text-lg font-semibold">{card.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
+                  {card.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell label="benefits" dark>
+        <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <Badge>Benefits</Badge>
+            <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
+              What makes our <GradientText>logo design process</GradientText>
+              practical
+            </h2>
+            <p className="mt-4 max-w-xl text-sm font-semibold leading-6 text-white/45 md:text-base">
+              We treat the logo as part of a working brand system, so the final
+              mark is easier to apply, explain, and grow with.
+            </p>
+          </div>
+          <div className="grid gap-5">
+            {benefits.map((item) => (
+              <article
+                key={item.title}
+                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
+              >
+                <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
+                  {React.createElement(item.icon)}
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold leading-tight">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
+                    {item.text}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell label="deliverables">
+        <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+          <div>
+            <Badge>Deliverables</Badge>
+            <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
+              What you get with <GradientText>our logo service</GradientText>
+            </h2>
+            <p className="mt-4 text-sm font-semibold leading-6 text-white/45 md:text-base">
+              Your exact package depends on the scope, but the goal is always a
+              mark that is useful after handover, not just attractive during
+              review.
+            </p>
+            <div className="mt-6 grid gap-3">
+              {[
+                "Primary logo, alternate lockups, and small icon variants.",
+                "Light, dark, color, and single-color usage guidance.",
+                "Final files prepared for website, social, print, and documents.",
+              ].map((item) => (
+                <p
+                  key={item}
+                  className="flex items-center gap-3 text-sm font-semibold text-white/58"
+                >
+                  <FiCheckCircle className="text-[#13d6ff]" />
+                  {item}
+                </p>
+              ))}
+            </div>
+          </div>
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-[#071027] p-3">
+            <img
+              src="/imgi_65_logo-design-brand-guidelines-stationery.jpg.webp"
+              alt="Logo design brand guidelines and stationery"
+              className="h-[320px] w-full rounded-lg object-cover md:h-[420px]"
+            />
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell id="process" label="about us" dark>
+        <div className="grid gap-10 lg:grid-cols-[0.25fr_0.75fr]">
+          <div className="hidden border-r border-white/10 lg:block">
+            <div className="sticky top-28 grid gap-6 pl-5 text-lg font-semibold text-white/35">
+              <span className="text-white">About us</span>
+              <span>Evidence</span>
+              <span>Our Process</span>
+              <span>Testimonials</span>
+            </div>
+          </div>
+          <div className="grid gap-10">
+            <article className="grid items-center gap-8 rounded-xl border border-white/10 bg-white/[0.02] p-5 md:p-7 lg:grid-cols-[1fr_0.9fr]">
+              <div>
+                <Badge>Why us</Badge>
+                <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
+                  Logo design from a <GradientText>web and brand team</GradientText>
+                </h2>
+                <p className="mt-4 text-sm font-semibold leading-6 text-white/48 md:text-base">
+                  We design logos with websites, UI, social assets, documents,
+                  and future brand materials in mind. That digital background
+                  helps prevent marks that look good once and fail everywhere
+                  else.
+                </p>
+              </div>
+              <img
+                src="/imgi_66_logo-design-concept-presentation-workspace.jpg.webp"
+                alt="Logo concept presentation workspace"
+                className="h-[280px] w-full rounded-xl object-cover md:h-[340px]"
+              />
+            </article>
+
+            <article>
+              <Badge>Evidence</Badge>
+              <h2 className="mt-4 max-w-3xl text-[28px] font-semibold leading-tight md:text-4xl">
+                Reliable design work with <GradientText>visible proof</GradientText>
+              </h2>
+              <p className="mt-4 max-w-3xl text-sm font-semibold leading-6 text-white/48 md:text-base">
+                Logo work is collaborative, so process and communication matter
+                as much as taste. We use clear checkpoints, practical rationale,
+                and organized handover so the work keeps moving.
+              </p>
+              <div className="mt-8 grid gap-4 md:grid-cols-3">
+                <ProofBadge title="Clutch" rating="4.9" />
+                <ProofBadge title="Upwork" rating="4.9" color="text-[#62e843]" />
+                <ProofBadge title="Google" rating="5.0" color="text-[#facc15]" />
+              </div>
+            </article>
+
+            <article>
+              <Badge>Our process</Badge>
+              <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
+                How our <GradientText>logo design process</GradientText> works
+              </h2>
+              <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
+                {process.map((item, index) => (
+                  <details
+                    key={item.title}
+                    open={index === 0}
+                    className="group py-5"
+                  >
+                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold md:text-xl">
+                      <span>
+                        {String(index + 1).padStart(2, "0")}. {item.title}
+                      </span>
+                      <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
+                    </summary>
+                    <p className="mt-4 max-w-4xl text-sm font-semibold leading-6 text-white/48 md:text-base">
+                      {item.text}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </article>
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell label="portfolio">
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <Badge>Selected outputs</Badge>
+            <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
+              Recent <GradientText>logo design work</GradientText>
+            </h2>
+          </div>
+          <a
+            href="/services/brand-identity"
+            className="inline-flex h-10 w-fit items-center gap-2 rounded-full border border-white/15 px-4 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-white/82 transition hover:border-white/35 hover:text-white"
+          >
+            Brand identity
+            <FiArrowUpRight />
+          </a>
+        </div>
+        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+          {[
+            {
+              image: "/imgi_107_logo-design-final-brand-system-board-1536x864.jpg.webp",
+              title: "Final logo system board",
+              tag: "Logo system",
+            },
+            {
+              image: "/imgi_65_logo-design-brand-guidelines-stationery.jpg.webp",
+              title: "Stationery and usage set",
+              tag: "Brand assets",
+            },
+            {
+              image: "/imgi_66_logo-design-concept-presentation-workspace.jpg.webp",
+              title: "Concept presentation",
+              tag: "Creative routes",
+            },
+          ].map((item) => (
+            <article
+              key={item.title}
+              className="overflow-hidden rounded-xl border border-white/10 bg-[#121720]"
+            >
+              <div className="relative h-56 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="h-full w-full object-cover opacity-80 transition duration-500 hover:scale-105"
+                />
+                <span className="absolute left-5 top-5 rounded-full bg-[#13d6ff] px-3 py-1 text-xs font-bold text-black">
+                  {item.tag}
+                </span>
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-semibold leading-tight">
+                  {item.title}
+                </h3>
+                <p className="mt-4 font-mono text-xs font-bold uppercase tracking-[0.16em] text-white/35">
+                  // strategy, custom mark, final files
+                </p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </SectionShell>
+
+      <SectionShell label="comparison" dark>
+        <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-[#071027] p-3">
+            <img
+              src="/imgi_53_brand-identity-logo-color-system-tablet.jpg.webp"
+              alt="Logo color system and brand tablet"
+              className="h-[320px] w-full rounded-lg object-cover md:h-[420px]"
+            />
+          </div>
+          <div>
+            <Badge>Agency vs generators</Badge>
+            <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
+              Custom logo design, <GradientText>not template output</GradientText>
+            </h2>
+            <p className="mt-4 text-sm font-semibold leading-6 text-white/48 md:text-base">
+              Logo makers can help with placeholders, but a professional logo
+              should consider positioning, file preparation, small-size use,
+              legal clarity, and how the mark will behave across your future
+              brand system.
+            </p>
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell label="FAQ">
+        <div className="grid gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+          <div>
+            <Badge>FAQ</Badge>
+            <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
+              Logo design <GradientText>questions</GradientText>
+            </h2>
+          </div>
+          <div className="divide-y divide-white/10 border-y border-white/10">
+            {faqs.map((item, index) => (
+              <details key={item.question} open={index === 0} className="py-6">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold md:text-2xl">
+                  <span>{item.question}</span>
+                  <FiChevronDown className="shrink-0" />
+                </summary>
+                <p className="mt-5 text-sm font-semibold leading-7 text-white/45 md:text-base">
+                  {item.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell label="related" dark>
+        <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+          <div>
+            <Badge>Related services</Badge>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
+              Related <GradientText>branding and design services</GradientText>
+            </h2>
+          </div>
+          <a
+            href="/services"
+            className="inline-flex h-11 w-fit items-center gap-2 rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/82 transition hover:border-white/35 hover:text-white"
+          >
+            All services
+            <FiArrowUpRight />
+          </a>
+        </div>
+        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {relatedServices.map((item) => (
+            <a
+              key={item.title}
+              href={item.to}
+              className="group rounded-xl border border-white/10 bg-black/35 p-6 transition hover:-translate-y-1 hover:border-[#13d6ff]/50"
+            >
+              <span className="grid size-10 place-items-center rounded-lg bg-white text-black">
+                {React.createElement(item.icon)}
+              </span>
+              <h3 className="mt-8 text-lg font-semibold leading-tight">
+                {item.title}
+              </h3>
+              <FiArrowUpRight className="mt-5 text-white/45 transition group-hover:text-white" />
+            </a>
+          ))}
+        </div>
+      </SectionShell>
+
+      <section className="relative overflow-hidden bg-black px-4 py-18 text-white md:px-8 lg:px-9 lg:py-24">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_42%,rgba(19,214,255,0.2),transparent_30%),radial-gradient(circle_at_75%_35%,rgba(255,45,135,0.2),transparent_30%)]" />
+        <div className="relative mx-auto max-w-[980px] text-center">
+          <Badge>Contact us</Badge>
+          <h2 className="mt-5 text-[34px] font-semibold leading-[1.08] md:text-5xl lg:text-[64px]">
+            Discuss your <GradientText>logo design project</GradientText>
+          </h2>
+          <a
+            href="/contact"
+            className="mt-9 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
+          >
+            Get in touch
+            <FiArrowDown className="-rotate-90" />
+          </a>
+        </div>
+      </section>
+    </main>
+  );
+};
+
+export default Logo;

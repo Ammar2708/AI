@@ -18,9 +18,18 @@ import WordPressDevelopment from "./components/inner/WordPressDevelopment";
 import WebApp from "./components/inner/WebApp";
 import WebDes from "./components/platform/WebDes";
 import Ui from "./components/platform/Ui";
+import MobApp from "./components/platform/MobApp";
 import Identity from "./components/platform/Identity";
+import Logo from "./components/platform/Logo";
+import Ad from "./components/platform/Ad";
+import OffSeo from "./components/company/OffSeo";
+import Tech from "./components/company/Tech";
+import Copy from "./components/company/Copy";
 
 import Pricing from "./pages/Pricing";
+import ConversionPage from "./pages/Conversion";
+import SocialPage from "./pages/Social";
+import PpcPage from "./pages/Ppc";
 
 
 
@@ -43,6 +52,10 @@ const router = createBrowserRouter([
       { path: "/process", element: <Process /> },
       { path: "/Services", element: <Service /> },
       { path: "/services", element: <Service /> },
+      { path: "/services/tech-seo", element: <Tech /> },
+      { path: "/services/on-page-seo", element: <Company /> },
+      { path: "/services/off-page-seo", element: <OffSeo /> },
+      { path: "/services/seo-copywriting", element: <Copy /> },
       { path: "/services/website-development", element: <WebsiteDevelopment /> },
       { path: "/services/corporate-website-development", element: <Corporate /> },
       { path: "/services/startup-website-development", element: <Startup /> },
@@ -50,11 +63,22 @@ const router = createBrowserRouter([
       { path: "/services/ecommerce-development", element: <Eco /> },
       { path: "/services/web-application-development", element: <WebApp /> },
       { path: "/services/web-design-service", element: <WebDes /> },
+      { path: "/services/mobile-app-design", element: <MobApp /> },
       { path: "/services/ui-ux-design", element: <Ui /> },
+      { path: "/services/logo-design-service", element: <Logo /> },
       { path: "/services/brand-identity", element: <Identity /> },
+      { path: "/services/banner-ad-design", element: <Ad /> },
       { path: "/services/wordpress-development", element: <WordPressDevelopment /> },
+      { path: "/services/content-marketing", element: <Pricing /> },
+      { path: "/services/ppc-services", element: <PpcPage /> },
+      { path: "/ppc-services", element: <PpcPage /> },
+      { path: "/services/conversion-marketing", element: <ConversionPage /> },
+      { path: "/conversion-marketing", element: <ConversionPage /> },
+      { path: "/services/social-media-marketing", element: <SocialPage /> },
+      { path: "/social-media-marketing", element: <SocialPage /> },
       
       { path: "/Pricing", element: <Pricing /> },
+      { path: "/pricing", element: <Pricing /> },
     
      
       

@@ -1,4 +1,5 @@
 import { createElement } from "react";
+import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
 import {
   FaFacebookF,
@@ -9,14 +10,19 @@ import {
 import { FaXTwitter } from "react-icons/fa6";
 import Trust from "./home/Trust";
 
-const companyLinks = ["About Us", "Our Team", "Case Studies", "Contact Us", "Careers"];
+const companyLinks = [
+  { label: "About Us", href: "/about" },
+  { label: "Integration", href: "/integration" },
+  { label: "Process", href: "/process" },
+  { label: "Contact Us", href: "/contact" },
+];
 
 const serviceLinks = [
-  "AI Strategy",
-  "Data Analytics",
-  "Machine Learning",
-  "AI Implementation",
-  "Consulting Services",
+  { label: "Web Development", href: "/services/website-development" },
+  { label: "Design", href: "/services/web-design-service" },
+  { label: "Digital Marketing", href: "/services/social-media-marketing" },
+  { label: "SEO Services", href: "/services/tech-seo" },
+  { label: "Consulting Services", href: "/services" },
 ];
 
 const socialLinks = [
@@ -46,10 +52,10 @@ const LinkList = ({ title, links }) => (
     <h3 className="text-sm font-bold text-white md:text-base">{title}</h3>
     <ul className="mt-5 grid gap-4 text-sm font-semibold text-white/48">
       {links.map((link) => (
-        <li key={link}>
-          <a href="#" className="transition hover:text-white">
-            {link}
-          </a>
+        <li key={link.label}>
+          <Link to={link.href} className="transition hover:text-white">
+            {link.label}
+          </Link>
         </li>
       ))}
     </ul>

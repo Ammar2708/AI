@@ -1,10 +1,10 @@
 import React from 'react'
-import Hero from '../components/company/Hero'
+import OnSeo from '../components/company/OnSeo'
 
 const Company = () => {
   return (
     <div>
-        <Hero/>
+        <OnSeo/>
     </div>
   )
 }
