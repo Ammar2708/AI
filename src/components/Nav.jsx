@@ -105,12 +105,13 @@ const serviceItems = [
       { label: "On-page SEO", to: "/services/on-page-seo" },
       { label: "Off-page SEO", to: "/services/off-page-seo" },
       { label: "SEO copywriting", to: "/services/seo-copywriting" },
-      { label: "SEO Pricing, SEO Packages", to: "/services" },
+      { label: "SEO Pricing, SEO Packages", to: "/services/seo-pricing" },
     ],
   },
   {
     label: "Fixed price web development",
     icon: FiShield,
+    to: "/services/fixed-price-website",
   },
 ];
 
@@ -192,7 +193,7 @@ const ServiceMenu = () => {
           {serviceItems.map((item, index) => (
             <NavLink
               key={item.label}
-              to="/services"
+              to={item.to || "/services"}
               onMouseEnter={() => setActiveIndex(index)}
               onFocus={() => setActiveIndex(index)}
               className={`flex min-h-[56px] items-center gap-3 rounded-xl px-2 text-white transition ${

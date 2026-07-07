@@ -5,7 +5,7 @@ const contactItems = [
   {
     icon: FiMail,
     title: "Email",
-    text: "support@optimai.com",
+    text: "thecypherlab12@gmail.com",
   },
   {
     icon: FiPhone,

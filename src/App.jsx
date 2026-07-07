@@ -25,6 +25,8 @@ import Ad from "./components/platform/Ad";
 import OffSeo from "./components/company/OffSeo";
 import Tech from "./components/company/Tech";
 import Copy from "./components/company/Copy";
+import SeoPrice from "./components/company/SeoPrice";
+import Fixed from "./components/company/Fixed";
 
 import Pricing from "./pages/Pricing";
 import ConversionPage from "./pages/Conversion";
@@ -56,6 +58,9 @@ const router = createBrowserRouter([
       { path: "/services/on-page-seo", element: <Company /> },
       { path: "/services/off-page-seo", element: <OffSeo /> },
       { path: "/services/seo-copywriting", element: <Copy /> },
+      { path: "/services/seo-pricing", element: <SeoPrice /> },
+      { path: "/services/fixed-price-website", element: <Fixed /> },
+      { path: "/services/fixed-price-web-development", element: <Fixed /> },
       { path: "/services/website-development", element: <WebsiteDevelopment /> },
       { path: "/services/corporate-website-development", element: <Corporate /> },
       { path: "/services/startup-website-development", element: <Startup /> },

@@ -22,7 +22,7 @@ const serviceLinks = [
   { label: "Design", href: "/services/web-design-service" },
   { label: "Digital Marketing", href: "/services/social-media-marketing" },
   { label: "SEO Services", href: "/services/tech-seo" },
-  { label: "Consulting Services", href: "/services" },
+  { label: "Fixed price web development", href: "/services" },
 ];
 
 const socialLinks = [
@@ -109,8 +109,8 @@ const Footer = () => {
                 <a href="tel:+12025550130" className="transition hover:text-white">
                   +1(202) 555-0130
                 </a>
-                <a href="mailto:hello@cypherlab.com" className="transition hover:text-white">
-                  hello@cypherlab.com
+                <a href="mailto:thecypherlab12@gmail.com" className="transition hover:text-white">
+                  thecypherlab12@gmail.com
                 </a>
               </div>
 
