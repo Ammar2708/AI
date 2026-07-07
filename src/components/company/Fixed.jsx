@@ -12,7 +12,6 @@ import {
   FiShield,
   FiShoppingBag,
   FiSliders,
-  FiTarget,
   FiZap,
 } from "react-icons/fi";
 
@@ -66,7 +65,7 @@ const serviceCards = [
   {
     icon: FiPackage,
     title: "Fixed WordPress packages",
-    text: "Choose a clear website scope before work starts, with deliverables, assumptions, and timeline visible from day one.",
+    text: "Choose a defined website scope before work starts, with deliverables, assumptions, and timeline visible from day one.",
   },
   {
     icon: FiLayers,
@@ -102,7 +101,7 @@ const benefits = [
     text: "Responsive checks, performance basics, security setup, forms, and SEO foundations are included.",
   },
   {
-    icon: FiTarget,
+    icon: FiZap,
     title: "Clear change control",
     text: "If the project grows beyond the agreed package, the extra work is estimated separately before it is added.",
   },
@@ -156,129 +155,124 @@ const process = [
 
 const faqs = [
   {
-    q: "What is a fixed-price website model?",
-    a: "The scope and price are agreed before the project starts. As long as the scope does not change, the price stays the same.",
+    question: "What is a fixed-price website model?",
+    answer:
+      "The scope and price are agreed before the project starts. As long as the scope does not change, the price stays the same.",
   },
   {
-    q: "Are the prices fixed?",
-    a: "Yes, for the approved scope. If new pages, features, integrations, or content work are added, we quote that work separately first.",
+    question: "Are the prices fixed?",
+    answer:
+      "Yes, for the approved scope. If new pages, features, integrations, or content work are added, we quote that work separately first.",
   },
   {
-    q: "Is website content included?",
-    a: "Final text, images, brand assets, and product content usually come from the client. Copywriting can be added as a separate service.",
+    question: "Is website content included?",
+    answer:
+      "Final text, images, brand assets, and product content usually come from the client. Copywriting can be added as a separate service.",
   },
   {
-    q: "Do you include premium themes and plugins?",
-    a: "Setup is included when it is part of the package, but paid licenses and third-party subscriptions are billed separately.",
+    question: "Do you include premium themes and plugins?",
+    answer:
+      "Setup is included when it is part of the package, but paid licenses and third-party subscriptions are billed separately.",
   },
   {
-    q: "Can I choose between theme-based and custom WordPress development?",
-    a: "Yes. Theme-based packages are faster and more predictable. Custom WordPress development is better when the design, structure, or functionality needs more flexibility.",
+    question: "Can I choose between theme-based and custom WordPress development?",
+    answer:
+      "Yes. Theme-based packages are faster and more predictable. Custom WordPress development is better when the design, structure, or functionality needs more flexibility.",
   },
 ];
-
-const relatedServices = [
-  { icon: FiMonitor, title: "WordPress development", href: "/services/wordpress-development" },
-  { icon: FiCode, title: "Website development", href: "/services/website-development" },
-  { icon: FiTarget, title: "Landing page", href: "/services/landing-page" },
-  { icon: FiShoppingBag, title: "Ecommerce website", href: "/services" },
-];
-
-const GradientText = ({ children }) => (
-  <span className="bg-gradient-to-r from-[#6654ff] via-[#c82bd8] to-[#ff0876] bg-clip-text text-transparent">
-    {children}
-  </span>
-);
 
 const Badge = ({ children }) => (
-  <div className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-5 py-2 text-sm font-semibold uppercase tracking-[0.22em] text-white/70">
-    <span className="h-2 w-2 rounded-full bg-[#6654ff]" />
+  <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-2 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/75">
+    <span className="size-2 rounded-full bg-[#6654ff]" />
     {children}
   </div>
 );
 
-const SectionShell = ({ id, sideLabel, children, className = "", dark = false }) => (
+const GradientText = ({ children }) => (
+  <span className="bg-[linear-gradient(90deg,#8b5cf6_0%,#d946ef_45%,#ff2d78_100%)] bg-clip-text text-transparent">
+    {children}
+  </span>
+);
+
+const SectionShell = ({ id, sideLabel, dark = false, children, className = "" }) => (
   <section
     id={id}
-    className={`relative overflow-hidden px-4 py-24 sm:px-6 lg:px-8 ${
-      dark ? "bg-[#050816]" : "bg-black"
-    } ${className}`}
+    className={`relative overflow-hidden px-4 py-16 md:px-8 lg:px-9 lg:py-20 ${className} ${
+      dark ? "bg-[#050816] text-white" : "bg-black text-white"
+    }`}
   >
-    <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,8,118,0.22),transparent_22%),radial-gradient(circle_at_76%_16%,rgba(0,199,255,0.16),transparent_24%),radial-gradient(circle_at_70%_78%,rgba(102,84,255,0.18),transparent_24%)]" />
-    <div className="relative mx-auto grid max-w-[1180px] grid-cols-1 gap-12 lg:grid-cols-[120px_1fr]">
-      <div className="hidden lg:flex lg:items-start lg:justify-center">
-        <span className="sticky top-32 rotate-180 text-sm font-semibold uppercase tracking-[0.5em] text-white/18 [writing-mode:vertical-rl]">
-          {sideLabel}
-        </span>
-      </div>
-      <div>{children}</div>
-    </div>
+    <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_30%,rgba(102,84,255,0.22),transparent_30%),radial-gradient(circle_at_78%_22%,rgba(15,194,255,0.16),transparent_32%),radial-gradient(circle_at_52%_80%,rgba(255,45,120,0.14),transparent_30%)]" />
+    <p className="pointer-events-none absolute left-4 top-1/2 hidden -translate-y-1/2 -rotate-90 font-mono text-xs font-bold uppercase tracking-[0.32em] text-white/18 lg:block">
+      {sideLabel}
+    </p>
+    <div className="relative mx-auto max-w-[1180px]">{children}</div>
   </section>
 );
 
 const BrowserMock = () => (
-  <div className="relative mx-auto max-w-[460px] rounded-xl border border-white/10 bg-[#111827] p-4 shadow-[0_24px_80px_rgba(0,0,0,0.45)]">
-    <div className="mb-4 flex items-center justify-between rounded-t-lg border-b border-white/10 pb-3">
-      <div className="flex gap-2">
-        <span className="h-3 w-3 rounded-full bg-[#ff6b6b]" />
-        <span className="h-3 w-3 rounded-full bg-[#ffd166]" />
-        <span className="h-3 w-3 rounded-full bg-[#06d6a0]" />
-      </div>
-      <span className="rounded-full bg-white/5 px-3 py-1 text-xs text-white/45">wordpress package</span>
+  <div className="relative mx-auto max-w-[460px] rounded-xl border border-white/10 bg-[#111827] p-4 shadow-[0_30px_90px_rgba(102,84,255,0.2)]">
+    <div className="flex items-center gap-2 border-b border-white/10 pb-4">
+      <span className="size-3 rounded-full bg-[#ff4d6d]" />
+      <span className="size-3 rounded-full bg-[#facc15]" />
+      <span className="size-3 rounded-full bg-[#22c55e]" />
+      <span className="ml-3 h-6 flex-1 rounded-full bg-white/8" />
     </div>
-    <div className="rounded-lg bg-black/45 p-4">
-      <div className="mb-4 h-36 rounded-lg bg-[radial-gradient(circle_at_70%_20%,rgba(255,8,118,0.35),transparent_28%),linear-gradient(135deg,#121720,#050816)] p-5">
-        <div className="mb-3 h-3 w-24 rounded-full bg-white/20" />
-        <div className="mb-2 h-4 w-44 rounded-full bg-white" />
-        <div className="h-4 w-32 rounded-full bg-[#ff0876]" />
+    <div className="grid gap-4 pt-5">
+      <div className="h-28 rounded-xl bg-[radial-gradient(circle_at_22%_28%,rgba(255,45,120,0.42),transparent_34%),radial-gradient(circle_at_78%_24%,rgba(15,194,255,0.32),transparent_34%),linear-gradient(135deg,#060714,#151927)] p-5 md:h-32">
+        <div className="h-5 w-44 rounded-full bg-white/85" />
+        <div className="mt-4 h-3 w-64 max-w-full rounded-full bg-white/30" />
+        <div className="mt-2 h-3 w-48 rounded-full bg-white/20" />
       </div>
       <div className="grid grid-cols-3 gap-3">
-        {["Scope", "Pages", "Launch"].map((item, index) => (
-          <div key={item} className="rounded-lg border border-white/10 bg-white/[0.04] p-3">
-            <div className="mb-3 flex h-8 w-8 items-center justify-center rounded-full bg-[#6654ff]/20 text-[#8d7dff]">
-              {index + 1}
+        {["Scope", "Pages", "SEO"].map((item) => (
+          <div key={item} className="rounded-xl border border-white/10 bg-white/[0.04] p-3 md:p-4">
+            <div className="mb-4 grid size-9 place-items-center rounded-lg bg-white text-black">
+              <FiCheckCircle />
             </div>
-            <p className="text-xs font-semibold text-white">{item}</p>
-            <div className="mt-3 h-2 w-full rounded-full bg-white/10" />
+            <p className="font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white/55">
+              {item}
+            </p>
           </div>
         ))}
       </div>
     </div>
-    <div className="absolute -right-8 -top-8 h-28 w-28 rounded-full bg-[#00c7ff]/20 blur-2xl" />
-    <div className="absolute -bottom-10 left-10 h-28 w-28 rounded-full bg-[#ff0876]/20 blur-2xl" />
   </div>
 );
 
 const PackageCard = ({ item }) => (
   <article
-    className={`relative flex h-full flex-col rounded-xl border p-6 transition duration-300 hover:-translate-y-1 ${
+    className={`rounded-xl border p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 ${
       item.featured
-        ? "border-[#6654ff]/60 bg-[#141b2a] shadow-[0_20px_70px_rgba(102,84,255,0.2)]"
+        ? "border-[#6654ff]/50 bg-[#151b2a]"
         : "border-white/10 bg-[#121720]"
     }`}
   >
     {item.featured && (
-      <span className="mb-5 w-fit rounded-full bg-white px-4 py-1 text-xs font-bold uppercase tracking-[0.18em] text-[#050816]">
+      <span className="mb-5 inline-flex rounded-full bg-white px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-black">
         Popular
       </span>
     )}
-    <p className="text-sm font-semibold uppercase tracking-[0.2em] text-white/45">Starting from</p>
-    <div className="mt-3 text-5xl font-black leading-none text-white sm:text-6xl">{item.price}</div>
-    <h3 className="mt-8 text-3xl font-black text-white">{item.name}</h3>
-    <p className="mt-3 text-lg leading-relaxed text-white/65">
-      <strong className="text-white">Best for:</strong> {item.bestFor}
+    <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white/45">
+      Starting from
+    </p>
+    <p className="mt-3 text-4xl font-semibold leading-none text-white md:text-5xl">
+      {item.price}
+    </p>
+    <h3 className="mt-7 text-xl font-semibold text-white">{item.name}</h3>
+    <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
+      <span className="text-white/75">Best for:</span> {item.bestFor}
     </p>
     <a
       href="/services"
-      className="mt-7 inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm font-bold text-white transition hover:border-[#ff0876] hover:text-[#ff0876]"
+      className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
     >
       Fixed price web development
       <FiArrowDown className="-rotate-90" />
     </a>
-    <ul className="mt-8 space-y-4 text-white/70">
+    <ul className="mt-7 space-y-3">
       {item.features.map((feature) => (
-        <li key={feature} className="flex gap-3">
-          <FiCheckCircle className="mt-1 shrink-0 text-[#8d7dff]" />
+        <li key={feature} className="flex gap-3 text-sm font-semibold leading-6 text-white/50">
+          <FiCheckCircle className="mt-1 shrink-0 text-white/70" />
           <span>{feature}</span>
         </li>
       ))}
@@ -289,31 +283,34 @@ const PackageCard = ({ item }) => (
 const Fixed = () => {
   return (
     <main className="overflow-hidden bg-black text-white">
-      <section className="relative min-h-[640px] overflow-hidden px-4 pt-28 sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(255,8,118,0.28),transparent_22%),radial-gradient(circle_at_82%_26%,rgba(0,199,255,0.2),transparent_24%),radial-gradient(circle_at_55%_80%,rgba(102,84,255,0.18),transparent_26%),linear-gradient(135deg,#050816_0%,#071126_50%,#050816_100%)]" />
-        <div className="relative mx-auto grid max-w-[1180px] items-center gap-12 py-20 lg:grid-cols-[1.05fr_0.95fr]">
+      <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_30%,rgba(102,84,255,0.32),transparent_34%),radial-gradient(circle_at_82%_25%,rgba(255,45,120,0.22),transparent_32%),linear-gradient(180deg,#040407_0%,#090b12_54%,#000_100%)]" />
+        <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.94),transparent)]" />
+
+        <div className="relative mx-auto grid min-h-[520px] max-w-[1180px] items-center gap-10 lg:grid-cols-[1.04fr_0.96fr]">
           <div>
-            <Badge>Fixed price web development</Badge>
-            <h1 className="max-w-4xl text-5xl font-black leading-[0.95] text-white sm:text-6xl lg:text-7xl">
-              Fixed-price <GradientText>WordPress websites</GradientText> with clear scope
+            <Badge>Fixed Price WordPress</Badge>
+            <h1 className="mt-6 max-w-3xl text-[36px] font-semibold leading-[1.08] tracking-normal md:text-5xl lg:text-[58px]">
+              Fixed-price <GradientText>WordPress websites</GradientText> with clear scope.
             </h1>
-            <p className="mt-8 max-w-2xl text-xl leading-9 text-white/68">
-              Build a professional WordPress website with a defined package, predictable budget, and a launch process that keeps pages, features, and responsibilities clear.
+            <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-white/50 md:text-base">
+              Build a professional WordPress website with a defined package,
+              predictable budget, editable content, and a launch process that
+              keeps pages, features, and responsibilities clear.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+            <div className="mt-8 flex flex-wrap gap-3">
               <a
                 href="/services"
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-4 text-base font-bold text-[#050816] transition hover:bg-[#ff0876] hover:text-white"
+                className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
               >
                 Fixed price web development
                 <FiArrowDown className="-rotate-90" />
               </a>
               <a
                 href="#packages"
-                className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 px-7 py-4 text-base font-bold text-white transition hover:border-white/40"
+                className="inline-flex h-11 items-center rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
               >
                 View packages
-                <FiArrowDown />
               </a>
             </div>
           </div>
@@ -321,184 +318,213 @@ const Fixed = () => {
         </div>
       </section>
 
-      <SectionShell id="packages" sideLabel="packages" className="pt-10">
-        <div className="mb-14 max-w-3xl">
-          <Badge>WordPress packages</Badge>
-          <h2 className="text-4xl font-black leading-tight sm:text-5xl">
+      <SectionShell id="services" sideLabel="services" className="pt-10">
+        <div className="grid gap-8 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <Badge>What we build</Badge>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
+              WordPress <GradientText>package services</GradientText>
+            </h2>
+            <p className="mt-5 max-w-xl text-sm font-semibold leading-7 text-white/45 md:text-base">
+              These packages keep WordPress delivery practical: clear scope,
+              editable pages, sensible plugin choices, and a launch checklist
+              that helps avoid budget surprises.
+            </p>
+          </div>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {serviceCards.map((card) => (
+              <article
+                key={card.title}
+                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+              >
+                <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
+                  {React.createElement(card.icon)}
+                </span>
+                <h3 className="mt-6 text-xl font-semibold">{card.title}</h3>
+                <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
+                  {card.text}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell id="packages" sideLabel="packages" dark>
+        <div className="mb-10 max-w-3xl">
+          <Badge>Website packages</Badge>
+          <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
             Choose the fixed scope that matches your <GradientText>website stage</GradientText>
           </h2>
-          <p className="mt-6 text-lg leading-8 text-white/62">
-            These packages are starting points for common WordPress builds. Each proposal confirms the final scope before work begins.
+          <p className="mt-5 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">
+            Each package gives you a starting point. The final proposal confirms
+            pages, features, content responsibilities, and any add-ons before
+            work begins.
           </p>
         </div>
-        <div className="grid gap-6 lg:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-3">
           {packageCards.map((item) => (
             <PackageCard key={item.name} item={item} />
           ))}
         </div>
       </SectionShell>
 
-      <SectionShell id="services" sideLabel="services" dark>
-        <div className="mb-14 grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
-          <h2 className="text-4xl font-black leading-tight sm:text-5xl">
-            Fixed-price web development for <GradientText>WordPress</GradientText>
-          </h2>
-          <p className="text-lg leading-8 text-white/62">
-            The page is designed around WordPress delivery: package clarity, editable content, responsive layouts, and a launch checklist that keeps the project practical.
-          </p>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2">
-          {serviceCards.map((card) => (
-            <article key={card.title} className="rounded-xl border border-white/10 bg-black/35 p-7 transition hover:-translate-y-1 hover:border-[#6654ff]/50">
-              <card.icon className="mb-8 text-4xl text-[#ff0876]" />
-              <h3 className="text-2xl font-black">{card.title}</h3>
-              <p className="mt-4 leading-7 text-white/60">{card.text}</p>
-            </article>
-          ))}
-        </div>
-      </SectionShell>
-
-      <SectionShell id="included" sideLabel="included">
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
-          <div>
-            <Badge>Included in every package</Badge>
-            <h2 className="text-4xl font-black leading-tight sm:text-5xl">
-              The essentials behind a reliable <GradientText>WordPress launch</GradientText>
+      <SectionShell sideLabel="included">
+        <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr]">
+          <div className="lg:sticky lg:top-32 lg:self-start">
+            <Badge>Included</Badge>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
+              Essentials behind a reliable <GradientText>WordPress launch</GradientText>
             </h2>
-            <p className="mt-6 text-lg leading-8 text-white/62">
-              Every package includes the practical setup work a small business website needs before it goes live.
+            <p className="mt-5 max-w-xl text-sm font-semibold leading-7 text-white/45 md:text-base">
+              Every fixed-price package includes the setup work a small business
+              website needs before it goes live.
             </p>
           </div>
-          <div className="grid gap-5 sm:grid-cols-2">
+          <div className="grid gap-5">
             {benefits.map((item) => (
-              <div key={item.title} className="rounded-xl border border-white/10 bg-[#121720] p-6">
-                <item.icon className="mb-6 text-3xl text-[#8d7dff]" />
-                <h3 className="text-xl font-black">{item.title}</h3>
-                <p className="mt-3 leading-7 text-white/60">{item.text}</p>
-              </div>
+              <article
+                key={item.title}
+                className="grid gap-5 rounded-xl border border-white/10 bg-[#121720] p-5 md:grid-cols-[auto_1fr] md:p-6"
+              >
+                <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
+                  {React.createElement(item.icon)}
+                </span>
+                <div>
+                  <h3 className="text-lg font-semibold leading-tight">{item.title}</h3>
+                  <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">
+                    {item.text}
+                  </p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </SectionShell>
 
-      <SectionShell id="scope" sideLabel="scope" dark>
-        <div className="mb-14 max-w-3xl">
+      <SectionShell sideLabel="scope" dark>
+        <div className="mb-10 max-w-3xl">
           <Badge>Scope notes</Badge>
-          <h2 className="text-4xl font-black leading-tight sm:text-5xl">
+          <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
             What is handled <GradientText>outside</GradientText> the fixed package
           </h2>
         </div>
-        <div className="grid gap-5 md:grid-cols-2">
+        <div className="grid gap-4 sm:grid-cols-2">
           {scopeNotes.map((item) => (
-            <article key={item.title} className="rounded-xl border border-white/10 bg-black/35 p-7">
-              <item.icon className="mb-7 text-4xl text-[#ff0876]" />
-              <h3 className="text-2xl font-black">{item.title}</h3>
-              <p className="mt-4 leading-8 text-white/62">{item.text}</p>
+            <article
+              key={item.title}
+              className="rounded-xl border border-white/10 bg-black/40 p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+            >
+              <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
+                {React.createElement(item.icon)}
+              </span>
+              <h3 className="mt-6 text-xl font-semibold">{item.title}</h3>
+              <p className="mt-3 text-sm font-semibold leading-7 text-white/45">
+                {item.text}
+              </p>
             </article>
           ))}
         </div>
       </SectionShell>
 
-      <SectionShell id="process" sideLabel="process">
-        <div className="mb-12 max-w-4xl">
-          <Badge>Our process</Badge>
-          <h2 className="text-4xl font-black leading-tight sm:text-5xl">
-            How the fixed-price <GradientText>WordPress process</GradientText> works
-          </h2>
-        </div>
-        <div className="divide-y divide-white/10 border-y border-white/10">
-          {process.map((item, index) => (
-            <details key={item.title} className="group py-7" open={index === 0}>
-              <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-2xl font-black text-white">
-                <span>
-                  <span className="mr-4 text-white/45">{String(index + 1).padStart(2, "0")}.</span>
-                  {item.title}
-                </span>
-                <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
-              </summary>
-              <p className="mt-5 max-w-4xl pl-0 text-lg leading-8 text-white/62 sm:pl-16">{item.text}</p>
-            </details>
-          ))}
-        </div>
-      </SectionShell>
-
-      <SectionShell id="proof" sideLabel="proof" dark>
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+      <SectionShell sideLabel="process">
+        <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
-            <Badge>Why F5 Studio</Badge>
-            <h2 className="text-4xl font-black leading-tight sm:text-5xl">
-              A practical partner for <GradientText>fixed-price WordPress websites</GradientText>
+            <Badge>Our process</Badge>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
+              How the fixed-price <GradientText>WordPress process</GradientText> works
             </h2>
-            <p className="mt-6 text-lg leading-8 text-white/62">
-              Fixed-price work depends on knowing where a package should end and where custom estimation should begin. We keep that line visible so your budget stays easier to plan.
-            </p>
           </div>
-          <div className="rounded-xl border border-white/10 bg-[#121720] p-8">
-            <div className="mb-8 text-6xl font-black text-white">Clutch</div>
-            <div className="mb-8 text-3xl text-[#ff3b30]">★★★★★</div>
-            <p className="text-xl leading-9 text-white/78">
-              "F5 Studio's portfolio and reviews from prior clients made them stand out as a top choice. They are creative, offer fantastic communication, and consistently deliver high-quality results."
-            </p>
-            <div className="mt-8 border-t border-white/12 pt-6">
-              <p className="text-xl font-bold text-white">Jerome O'Grady</p>
-              <p className="mt-2 text-white/55">President, Samplefye, Inc.</p>
-            </div>
-          </div>
-        </div>
-      </SectionShell>
-
-      <SectionShell id="related" sideLabel="related">
-        <div className="mb-14">
-          <Badge>Related services</Badge>
-          <h2 className="text-4xl font-black leading-tight sm:text-5xl">
-            More <GradientText>WordPress and web development</GradientText> services
-          </h2>
-        </div>
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {relatedServices.map((item) => (
-            <a
-              key={item.title}
-              href={item.href}
-              className="group rounded-xl border border-white/10 bg-[#121720] p-6 transition hover:-translate-y-1 hover:border-[#ff0876]/60"
-            >
-              <item.icon className="mb-10 text-4xl text-[#ff0876]" />
-              <div className="flex items-center justify-between gap-4 text-xl font-black">
-                {item.title}
-                <FiArrowDown className="-rotate-90 transition group-hover:translate-x-1" />
-              </div>
-            </a>
-          ))}
-        </div>
-      </SectionShell>
-
-      <SectionShell id="faq" sideLabel="FAQ" dark>
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr]">
-          <h2 className="text-4xl font-black leading-tight sm:text-5xl">
-            Frequently asked <GradientText>questions</GradientText>
-          </h2>
           <div className="divide-y divide-white/10 border-y border-white/10">
-            {faqs.map((item, index) => (
-              <details key={item.q} className="group py-7" open={index === 0}>
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-2xl font-black">
-                  {item.q}
+            {process.map((item, index) => (
+              <details key={item.title} className="group py-5" open={index === 0}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold md:text-xl">
+                  <span>
+                    <span className="mr-4 font-mono text-sm text-white/35">
+                      {String(index + 1).padStart(2, "0")}.
+                    </span>
+                    {item.title}
+                  </span>
                   <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
                 </summary>
-                <p className="mt-5 text-lg leading-8 text-white/62">{item.a}</p>
+                <p className="mt-4 max-w-3xl pl-0 text-sm font-semibold leading-7 text-white/45 md:pl-12 md:text-base">
+                  {item.text}
+                </p>
               </details>
             ))}
           </div>
         </div>
       </SectionShell>
 
-      <section className="relative overflow-hidden bg-black px-4 py-24 text-center sm:px-6 lg:px-8">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_20%,rgba(0,199,255,0.16),transparent_24%),radial-gradient(circle_at_62%_56%,rgba(255,8,118,0.18),transparent_22%)]" />
-        <div className="relative mx-auto max-w-4xl">
-          <h2 className="text-4xl font-black leading-tight sm:text-6xl">
+      <SectionShell sideLabel="technical" dark>
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-[#121720]">
+            <img
+              src="/imgi_60_opai-36.jpg"
+              alt=""
+              aria-hidden="true"
+              className="h-[280px] w-full object-cover opacity-85 md:h-[380px]"
+            />
+          </div>
+          <div>
+            <Badge>WordPress foundations</Badge>
+            <h2 className="mt-4 text-3xl font-semibold leading-tight md:text-5xl">
+              Built for editing, speed, SEO, and maintenance.
+            </h2>
+            <p className="mt-6 text-sm font-semibold leading-7 text-white/48 md:text-base">
+              Fixed-price does not mean fragile. We still pay attention to
+              responsive setup, caching, image handling, plugin choices,
+              schema-ready page structure, and admin workflows.
+            </p>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              {["Responsive layouts", "Reusable sections", "Core SEO setup", "Launch QA"].map((item) => (
+                <div
+                  key={item}
+                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.035] px-4 py-3 text-sm font-semibold text-white/70"
+                >
+                  <FiCheckCircle className="text-white" />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </SectionShell>
+
+      <SectionShell sideLabel="faq">
+        <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr]">
+          <h2 className="text-3xl font-semibold leading-tight md:text-5xl">
+            Fixed-price WordPress <GradientText>FAQ</GradientText>
+          </h2>
+          <div className="divide-y divide-white/10 border-y border-white/10">
+            {faqs.map((item, index) => (
+              <details key={item.question} className="group py-5" open={index === 0}>
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-5 text-base font-semibold leading-tight md:text-xl">
+                  {item.question}
+                  <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
+                </summary>
+                <p className="mt-4 max-w-3xl text-sm font-semibold leading-7 text-white/45 md:text-base">
+                  {item.answer}
+                </p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </SectionShell>
+
+      <section className="px-4 pb-20 md:px-8 lg:px-9 lg:pb-24">
+        <div className="mx-auto max-w-[1180px] rounded-xl border border-white/10 bg-[radial-gradient(circle_at_18%_20%,rgba(102,84,255,0.24),transparent_34%),radial-gradient(circle_at_78%_32%,rgba(255,45,120,0.18),transparent_30%),#121720] px-6 py-10 text-center md:px-10 md:py-12">
+          <FiMonitor className="mx-auto text-3xl text-white/70" />
+          <h2 className="mx-auto mt-6 max-w-3xl text-3xl font-semibold leading-tight md:text-5xl">
             Discuss your fixed-price <GradientText>WordPress website</GradientText>
           </h2>
+          <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">
+            Share your website goals, content readiness, and must-have features.
+            We will help map the right fixed-price WordPress package.
+          </p>
           <a
             href="/services"
-            className="mt-10 inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-4 text-base font-bold text-[#050816] transition hover:bg-[#ff0876] hover:text-white"
+            className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Fixed price web development
             <FiArrowDown className="-rotate-90" />
