@@ -209,7 +209,7 @@ const SeoPrice = () => {
         <div className="relative mx-auto grid min-h-[540px] max-w-[1180px] items-center gap-10 lg:grid-cols-[1.02fr_0.98fr]">
           <div>
             <Badge>Transparent SEO pricing</Badge>
-            <h1 className="mt-6 max-w-4xl text-[38px] font-semibold leading-[1.05] tracking-normal md:text-6xl lg:text-[74px]">
+            <h1 className="mt-6 max-w-4xl text-[38px] font-semibold leading-[1.05] tracking-normal md:text-4xl lg:text-[54px]">
               Clear{" "}
               <a href="/services" className="transition hover:opacity-80">
                 <GradientText>SEO Pricing, SEO Packages</GradientText>
