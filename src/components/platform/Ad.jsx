@@ -14,6 +14,7 @@ import {
   FiUsers,
   FiZap,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const serviceCards = [
   {
@@ -162,6 +163,8 @@ const BannerMock = () => (
 );
 
 const Ad = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
@@ -188,7 +191,7 @@ const Ad = () => {
                 <FiArrowDown className="-rotate-90" />
               </a>
               <a
-                href="#services"
+                href="/services"
                 className="inline-flex h-11 items-center rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
               >
                 View scope
@@ -359,13 +362,14 @@ const Ad = () => {
             Share your campaign goals, placements, and landing page. We will
             help shape the right creative set and production plan.
           </p>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

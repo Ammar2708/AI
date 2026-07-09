@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -18,6 +19,7 @@ import {
   FiTarget,
   FiUsers,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const GradientText = ({ children }) => (
   <span className="bg-[linear-gradient(90deg,#6654ff_0%,#bd3ee8_48%,#ff2d87_100%)] bg-clip-text text-transparent">
@@ -53,31 +55,37 @@ const logoServices = [
     icon: FiCompass,
     title: "Logo strategy",
     text: "We define the brand direction, audience, personality, usage needs, and competitors before any mark is drawn.",
+    to: "/services/brand-identity",
   },
   {
     icon: FiSearch,
     title: "Visual research",
     text: "References, category patterns, naming context, and differentiation points shape a brief that protects the logo from feeling generic.",
+    to: "/process",
   },
   {
     icon: FiPenTool,
     title: "Custom concepts",
     text: "Logo routes are created from scratch with clear reasoning, practical lockups, and room for refinement.",
+    to: "/services/logo-design-service",
   },
   {
     icon: FiGrid,
     title: "Logo system",
     text: "Primary marks, alternate lockups, icons, spacing rules, colors, and responsive use cases are prepared together.",
+    to: "/services/brand-identity",
   },
   {
     icon: FiLayers,
     title: "Brand applications",
     text: "We test the logo across websites, social avatars, favicons, documents, packaging, and basic marketing materials.",
+    to: "/services/brand-identity",
   },
   {
     icon: FiClipboard,
     title: "Final handoff",
     text: "You receive organized files, usage notes, and practical guidance for digital and print implementation.",
+    to: "/process",
   },
 ];
 
@@ -86,21 +94,25 @@ const benefits = [
     icon: FiEye,
     title: "A logo that works in real places",
     text: "The mark is checked across small icons, website headers, documents, social profiles, and presentation layouts.",
+    to: "/services/web-design-service",
   },
   {
     icon: FiTarget,
     title: "Strategy before style",
     text: "Design decisions are judged against your positioning and audience instead of personal taste alone.",
+    to: "/services/brand-identity",
   },
   {
     icon: FiUsers,
     title: "Clearer team decisions",
     text: "Your team gets a shared direction, practical variants, and enough rules to keep future use consistent.",
+    to: "/process",
   },
   {
     icon: FiAward,
     title: "Professional ownership package",
     text: "Final deliverables are organized for long-term use, with formats and usage notes confirmed before handover.",
+    to: "/services/logo-design-service",
   },
 ];
 
@@ -198,6 +210,8 @@ const HeroVisual = () => (
 );
 
 const Logo = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[600px] px-4 pt-28 md:px-7 lg:px-8 lg:pt-28">
@@ -251,18 +265,22 @@ const Logo = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {logoServices.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
               >
                 <span className="grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-lg text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-5 text-lg font-semibold">{card.title}</h3>
+                <h3 className="mt-5 flex items-center justify-between gap-4 text-lg font-semibold">
+                  {card.title}
+                  <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -283,22 +301,24 @@ const Logo = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
+                to={item.to}
+                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
                     {item.title}
+                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -570,13 +590,14 @@ const Logo = () => {
           <h2 className="mt-5 text-[34px] font-semibold leading-[1.08] md:text-5xl lg:text-[64px]">
             Discuss your <GradientText>logo design project</GradientText>
           </h2>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-9 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

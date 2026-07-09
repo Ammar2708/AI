@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiCheckCircle,
@@ -11,36 +12,43 @@ import {
   FiSmartphone,
   FiZap,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const offerCards = [
   {
     icon: FiMonitor,
     title: "Corporate Websites",
+    to: "/services/corporate-website-development",
     text: "Polished business websites with clear messaging, strong structure, and pages built around conversion.",
   },
   {
     icon: FiZap,
     title: "Startup Launches",
+    to: "/services/startup-website-development",
     text: "Fast, focused launch sites for new brands, offers, campaigns, and early-stage product validation.",
   },
   {
     icon: FiLayers,
     title: "Landing Pages",
+    to: "/services/landing-page-development",
     text: "High-performing promo pages with sharp sections, responsive layouts, and persuasive calls to action.",
   },
   {
     icon: FiCode,
     title: "Web Applications",
+    to: "/services/web-application-development",
     text: "Interactive product experiences, dashboards, forms, and custom workflows designed for real users.",
   },
   {
     icon: FiCpu,
     title: "WordPress Builds",
+    to: "/services/wordpress-development",
     text: "Maintainable WordPress websites with flexible content editing and clean front-end execution.",
   },
   {
     icon: FiShield,
     title: "E-commerce",
+    to: "/services/ecommerce-development",
     text: "Online stores that are easy to browse, simple to manage, and built to support confident purchases.",
   },
 ];
@@ -49,21 +57,25 @@ const expertise = [
   {
     icon: FiLayers,
     title: "Custom UI/UX",
+    to: "/services/ui-ux-design",
     text: "We shape user journeys, page hierarchy, and interface details before development begins.",
   },
   {
     icon: FiSmartphone,
     title: "Responsive Build",
+    to: "/services/website-development",
     text: "Every layout is tuned for desktop, tablet, and mobile so the experience stays smooth everywhere.",
   },
   {
     icon: FiSearch,
     title: "Built-in SEO",
+    to: "/services/tech-seo",
     text: "Clean structure, fast pages, readable content, and technical foundations that support search visibility.",
   },
   {
     icon: FiCheckCircle,
     title: "QA & Launch",
+    to: "/process",
     text: "We test forms, responsiveness, performance, and page behavior before your website goes live.",
   },
 ];
@@ -77,6 +89,8 @@ const process = [
 ];
 
 const WebsiteDevelopment = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
@@ -102,19 +116,19 @@ const WebsiteDevelopment = () => {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
               >
                 Start Project
                 <FiArrowDown className="-rotate-90" />
-              </a>
-              <a
-                href="#services"
+              </Link>
+              <Link
+                to="/services"
                 className="inline-flex h-11 items-center rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/85 transition hover:border-white/35 hover:text-white"
               >
                 View Services
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -160,20 +174,22 @@ const WebsiteDevelopment = () => {
 
           <div className="mt-10 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {offerCards.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition hover:-translate-y-1 hover:border-white/20"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition hover:-translate-y-1 hover:border-white/20"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-6 text-xl font-semibold text-white">
-                  {card.title}
+                <h3 className="mt-6 flex items-center justify-between gap-4 text-xl font-semibold text-white">
+                  <span>{card.title}</span>
+                  <FiArrowDown className="-rotate-90 text-base text-white/45 transition group-hover:translate-x-1 group-hover:text-white" />
                 </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/48">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -198,18 +214,22 @@ const WebsiteDevelopment = () => {
 
           <div className="grid gap-5 sm:grid-cols-2">
             {expertise.map((item) => (
-              <div
+              <Link
                 key={item.title}
-                className="rounded-xl border border-white/10 bg-black/45 p-5"
+                to={item.to}
+                className="group rounded-xl border border-white/10 bg-black/45 p-5 transition hover:-translate-y-1 hover:border-white/20"
               >
                 <span className="grid size-10 place-items-center rounded-lg bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
-                <h3 className="mt-6 text-lg font-semibold">{item.title}</h3>
+                <h3 className="mt-6 flex items-center justify-between gap-4 text-lg font-semibold">
+                  <span>{item.title}</span>
+                  <FiArrowDown className="-rotate-90 text-sm text-white/35 transition group-hover:translate-x-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {item.text}
                 </p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
@@ -252,12 +272,13 @@ const WebsiteDevelopment = () => {
             Tell us what you want to build and we will help shape the right
             structure, design direction, and development plan.
           </p>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-8 inline-flex h-11 items-center rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch
-          </a>
+          </button>
         </div>
       </section>
     </main>

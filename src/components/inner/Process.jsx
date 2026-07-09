@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiActivity,
   FiAperture,
@@ -98,13 +99,13 @@ const Process = () => (
       </div>
 
       <div className="flex justify-center pb-2 pt-20">
-        <button
-          type="button"
+        <Link
+          to="/services"
           className="group inline-flex h-[52px] items-center gap-4 rounded-full bg-white py-1.5 pl-6 pr-1.5 font-mono text-xs font-bold text-black transition duration-300 hover:bg-zinc-200 md:h-14 md:pl-8 md:text-sm"
         >
-          View all solutions
+          View all services
           <ButtonIcon />
-        </button>
+        </Link>
       </div>
     </section>
   </main>

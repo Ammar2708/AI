@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -19,6 +20,7 @@ import {
   FiTruck,
   FiZap,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const GradientText = ({ children }) => (
   <span className="bg-[linear-gradient(90deg,#8b5cf6_0%,#d946ef_45%,#ff2d78_100%)] bg-clip-text text-transparent">
@@ -51,31 +53,37 @@ const focusItems = [
   {
     icon: FiTarget,
     title: "Business model alignment",
+    to: "/process",
     text: "We translate your catalog, pricing, fulfillment, margins, and marketing plans into practical store requirements.",
   },
   {
     icon: FiShoppingCart,
     title: "Store UX and content",
+    to: "/services/ecommerce-development",
     text: "Product pages, filters, comparison paths, trust cues, and cart flows are planned so shoppers can decide quickly.",
   },
   {
     icon: FiCreditCard,
     title: "Checkout and payments",
+    to: "/services/ecommerce-development",
     text: "We reduce avoidable checkout friction and prepare payment, tax, shipping, and confirmation flows with care.",
   },
   {
     icon: FiCode,
     title: "Maintainable setup",
+    to: "/services/wordpress-development",
     text: "Platforms, plugins, and custom components are chosen around the way your team will manage the store after launch.",
   },
   {
     icon: FiSearch,
     title: "SEO-aware build",
+    to: "/services/tech-seo",
     text: "Navigation, metadata, schema basics, product structure, and performance targets are considered during development.",
   },
   {
     icon: FiBarChart2,
     title: "Reporting and iteration",
+    to: "/services/conversion-marketing",
     text: "Analytics, conversion events, and support workflows help you understand what is working and what should improve.",
   },
 ];
@@ -191,6 +199,8 @@ const HeroVisual = () => (
 );
 
 const Eco = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
@@ -271,18 +281,22 @@ const Eco = () => {
 
           <div className="grid gap-6">
             {focusItems.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr] md:p-6"
+                to={item.to}
+                className="group grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50 md:grid-cols-[auto_1fr] md:p-6"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   <item.icon />
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">{item.title}</h3>
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                    <span>{item.title}</span>
+                    <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                  </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">{item.text}</p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -380,19 +394,23 @@ const Eco = () => {
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
             {[
-              ["Catalog", "Clear categories, templates, filters, and product content."],
-              ["Checkout", "Payment, shipping, trust, and cart details planned early."],
-              ["Tracking", "Events and analytics configured around useful decisions."],
-              ["Support", "Post-launch improvements and handover built into the plan."],
-            ].map(([title, text]) => (
-              <article
+              ["Catalog", "Clear categories, templates, filters, and product content.", "/services/ecommerce-development"],
+              ["Checkout", "Payment, shipping, trust, and cart details planned early.", "/services/ecommerce-development"],
+              ["Tracking", "Events and analytics configured around useful decisions.", "/services/conversion-marketing"],
+              ["Support", "Post-launch improvements and handover built into the plan.", "/process"],
+            ].map(([title, text, to]) => (
+              <Link
                 key={title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+                to={to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
               >
                 <FiCheckCircle className="text-2xl text-white" />
-                <h3 className="mt-5 text-xl font-semibold">{title}</h3>
+                <h3 className="mt-5 flex items-center justify-between gap-4 text-xl font-semibold">
+                  <span>{title}</span>
+                  <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">{text}</p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -404,9 +422,9 @@ const Eco = () => {
         </h2>
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
           {relatedServices.map((service) => (
-            <a
+            <Link
               key={service.title}
-              href={service.to}
+              to={service.to}
               className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
             >
               <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
@@ -416,7 +434,7 @@ const Eco = () => {
                 {service.title}
                 <FiArrowUpRight className="shrink-0 transition group-hover:translate-x-1 group-hover:-translate-y-1" />
               </h3>
-            </a>
+            </Link>
           ))}
         </div>
       </SectionShell>
@@ -456,12 +474,13 @@ const Eco = () => {
             Share your catalog, store goals, and operational needs. We will help
             map the right e-commerce structure and development plan.
           </p>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

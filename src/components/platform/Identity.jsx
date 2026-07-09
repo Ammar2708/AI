@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -53,31 +54,37 @@ const identityServices = [
     icon: FiCompass,
     title: "Brand positioning",
     text: "We clarify what you stand for, who you serve, how you differ, and what your audience should remember.",
+    to: "/services/brand-identity",
   },
   {
     icon: FiSearch,
     title: "Audience research",
     text: "Competitors, customer expectations, visual references, and market signals are reviewed before design decisions begin.",
+    to: "/process",
   },
   {
     icon: FiPenTool,
     title: "Logo direction",
     text: "Logo concepts, marks, lockups, and usage rules are developed to support a recognizable identity system.",
+    to: "/services/logo-design-service",
   },
   {
     icon: FiGrid,
     title: "Color and typography",
     text: "We define palettes, type hierarchy, spacing rhythm, and visual rules your team can use consistently.",
+    to: "/services/brand-identity",
   },
   {
     icon: FiLayers,
     title: "Brand applications",
     text: "Identity elements are tested across websites, pitch decks, social posts, print basics, and product touchpoints.",
+    to: "/services/web-design-service",
   },
   {
     icon: FiClipboard,
     title: "Style guide handoff",
     text: "You receive practical guidelines, asset rules, and notes that keep future brand work aligned.",
+    to: "/process",
   },
 ];
 
@@ -86,21 +93,25 @@ const benefits = [
     icon: FiEye,
     title: "Clarity from day one",
     text: "A defined identity makes naming, messaging, visuals, and campaign decisions easier for everyone involved.",
+    to: "/services/brand-identity",
   },
   {
     icon: FiBox,
     title: "A usable brand toolkit",
     text: "Instead of scattered files, your team gets logo variants, color rules, type direction, and clear usage notes.",
+    to: "/services/logo-design-service",
   },
   {
     icon: FiUsers,
     title: "Shared internal language",
     text: "Sales, marketing, hiring, and product teams can describe the company with the same visual and verbal foundation.",
+    to: "/process",
   },
   {
     icon: FiTrendingUp,
     title: "Confidence across touchpoints",
     text: "Your brand feels consistent in proposals, social content, landing pages, product screens, and presentations.",
+    to: "/services/web-design-service",
   },
 ];
 
@@ -250,18 +261,22 @@ const Identity = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {identityServices.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
               >
                 <span className="grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-lg text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-5 text-lg font-semibold">{card.title}</h3>
+                <h3 className="mt-5 flex items-center justify-between gap-4 text-lg font-semibold">
+                  {card.title}
+                  <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -281,22 +296,24 @@ const Identity = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
+                to={item.to}
+                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
                     {item.title}
+                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

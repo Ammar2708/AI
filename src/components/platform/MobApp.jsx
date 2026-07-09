@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -19,6 +20,7 @@ import {
   FiUsers,
   FiZap,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const GradientText = ({ children }) => (
   <span className="bg-[linear-gradient(90deg,#6654ff_0%,#bd3ee8_48%,#ff2d87_100%)] bg-clip-text text-transparent">
@@ -54,31 +56,37 @@ const appServices = [
     icon: FiCompass,
     title: "Product discovery",
     text: "We clarify the product idea, users, platforms, core flows, business goals, and first-release priorities before screens are designed.",
+    to: "/process",
   },
   {
     icon: FiSearch,
     title: "UX flows and IA",
     text: "User journeys, information architecture, and task flows give your team a clear map for onboarding, accounts, dashboards, booking, checkout, or custom features.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiSmartphone,
     title: "Mobile UI design",
     text: "We design polished app screens with mobile-first spacing, navigation, states, empty views, and interaction patterns.",
+    to: "/services/mobile-app-design",
   },
   {
     icon: FiGrid,
     title: "Component systems",
     text: "Reusable components, variants, and usage rules help Android, iOS, and web experiences feel aligned without becoming rigid.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiRefreshCw,
     title: "Prototype review",
     text: "Clickable prototypes expose friction early, so stakeholders can test the logic before development effort is committed.",
+    to: "/process",
   },
   {
     icon: FiClipboard,
     title: "Developer handoff",
     text: "Organized files, component notes, edge cases, and state details make implementation easier for your internal or external dev team.",
+    to: "/services/web-application-development",
   },
 ];
 
@@ -87,21 +95,25 @@ const benefits = [
     icon: FiTarget,
     title: "Clarity on what to build first",
     text: "We help define the MVP scope and strongest user journeys, so design energy goes into the flows that matter most.",
+    to: "/process",
   },
   {
     icon: FiEye,
     title: "UX that feels natural",
     text: "Navigation, feedback, forms, filters, and task completion are shaped around real user behavior instead of isolated screens.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiLayers,
     title: "Consistent UI across platforms",
     text: "Components and visual rules keep Android, iOS, and responsive web interfaces coherent while respecting each platform.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiZap,
     title: "Smoother development handoff",
     text: "Developers get practical specs, states, and behavior notes that reduce questions, delays, and design drift.",
+    to: "/services/web-application-development",
   },
 ];
 
@@ -204,6 +216,8 @@ const HeroVisual = () => (
 );
 
 const MobApp = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[600px] px-4 pt-28 md:px-7 lg:px-8 lg:pt-28">
@@ -258,18 +272,22 @@ const MobApp = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {appServices.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#13d6ff]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#13d6ff]/50"
               >
                 <span className="grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-lg text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-5 text-lg font-semibold">{card.title}</h3>
+                <h3 className="mt-5 flex items-center justify-between gap-4 text-lg font-semibold">
+                  {card.title}
+                  <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -289,22 +307,24 @@ const MobApp = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
+                to={item.to}
+                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
                     {item.title}
+                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -580,13 +600,14 @@ const MobApp = () => {
             Discuss your{" "}
             <GradientText>mobile app design project</GradientText>
           </h2>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-9 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

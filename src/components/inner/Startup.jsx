@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -16,26 +17,31 @@ import {
   FiUsers,
   FiZap,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const serviceCards = [
   {
     icon: FiZap,
     title: "Launch websites",
+    to: "/services/startup-website-development",
     text: "Lean, credible startup websites for MVPs, early-stage brands, product launches, and founder-led offers.",
   },
   {
     icon: FiTarget,
     title: "Positioning and CTAs",
+    to: "/services/landing-page-development",
     text: "Messaging, page hierarchy, proof points, and calls to action shaped around early traction goals.",
   },
   {
     icon: FiGrid,
     title: "Flexible page systems",
+    to: "/services/website-development",
     text: "Reusable sections for home pages, product pages, pricing, demo paths, FAQs, and campaign content.",
   },
   {
     icon: FiTrendingUp,
     title: "Growth foundations",
+    to: "/services/conversion-marketing",
     text: "Analytics, SEO basics, forms, campaign pages, and performance checks considered from the first release.",
   },
 ];
@@ -44,21 +50,25 @@ const benefits = [
   {
     icon: FiZap,
     title: "Launch-ready positioning",
+    to: "/services/landing-page-development",
     text: "We help shape the offer, audience, promise, and first conversion path before design begins.",
   },
   {
     icon: FiGrid,
     title: "Lean website structure",
+    to: "/services/website-development",
     text: "Home, product, pricing, demo, case study, and contact paths are planned around early traction.",
   },
   {
     icon: FiTrendingUp,
     title: "Campaign-ready base",
+    to: "/services/conversion-marketing",
     text: "Your website can support demo requests, waitlists, paid traffic, early SEO, and investor conversations.",
   },
   {
     icon: FiShield,
     title: "Built to evolve",
+    to: "/services/wordpress-development",
     text: "Reusable sections and clean components make it easier to adjust messaging as your startup learns.",
   },
 ];
@@ -185,6 +195,8 @@ const BrowserMock = () => (
 );
 
 const Startup = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
@@ -210,7 +222,7 @@ const Startup = () => {
                 <FiArrowDown className="-rotate-90" />
               </a>
               <a
-                href="#services"
+                href="/services"
                 className="inline-flex h-11 items-center rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
               >
                 View scope
@@ -235,18 +247,22 @@ const Startup = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {serviceCards.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-6 text-xl font-semibold">{card.title}</h3>
+                <h3 className="mt-6 flex items-center justify-between gap-4 text-xl font-semibold">
+                  <span>{card.title}</span>
+                  <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -266,22 +282,24 @@ const Startup = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr] md:p-6"
+                to={item.to}
+                className="group grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50 md:grid-cols-[auto_1fr] md:p-6"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
-                    {item.title}
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                    <span>{item.title}</span>
+                    <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -427,9 +445,9 @@ const Startup = () => {
         </h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {relatedServices.map(({ icon: ServiceIcon, title, to }) => (
-            <a
+            <Link
               key={title}
-              href={to}
+              to={to}
               className="group flex min-h-[170px] flex-col justify-between rounded-xl border border-white/10 bg-[#121720] p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50"
             >
               {React.createElement(ServiceIcon, {
@@ -439,7 +457,7 @@ const Startup = () => {
                 {title}
                 <FiArrowUpRight className="transition group-hover:translate-x-1 group-hover:-translate-y-1" />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </SectionShell>
@@ -455,13 +473,14 @@ const Startup = () => {
             We will help map the right first website structure and development
             plan.
           </p>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

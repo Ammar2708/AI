@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -14,26 +15,31 @@ import {
   FiTrendingUp,
   FiZap,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const serviceCards = [
   {
     icon: FiTarget,
     title: "Campaign landing pages",
+    to: "/services/landing-page-development",
     text: "Focused pages for paid ads, lead magnets, launches, events, and single-offer campaigns.",
   },
   {
     icon: FiGrid,
     title: "Conversion structure",
+    to: "/services/conversion-marketing",
     text: "Hero, proof, benefits, objections, forms, and FAQs arranged around one clear visitor action.",
   },
   {
     icon: FiTrendingUp,
     title: "Tracking-ready builds",
+    to: "/services/conversion-marketing",
     text: "Analytics events, pixels, form paths, and handoff points planned around campaign measurement.",
   },
   {
     icon: FiZap,
     title: "Fast responsive pages",
+    to: "/services/website-development",
     text: "Lightweight layouts, optimized media, clear states, and mobile-first checks for smoother launches.",
   },
 ];
@@ -42,21 +48,25 @@ const benefits = [
   {
     icon: FiTarget,
     title: "Campaign-first strategy",
+    to: "/services/conversion-marketing",
     text: "We align the audience, offer, traffic source, page message, and CTA before visual design starts.",
   },
   {
     icon: FiLayers,
     title: "Focused page sections",
+    to: "/services/landing-page-development",
     text: "Every section has a job, so visitors can understand the offer quickly and move toward action.",
   },
   {
     icon: FiCode,
     title: "Clean front-end build",
+    to: "/services/website-development",
     text: "Reusable sections, responsive spacing, and practical code keep the page easier to change after launch.",
   },
   {
     icon: FiBarChart2,
     title: "Built for iteration",
+    to: "/services/conversion-marketing",
     text: "Headlines, CTAs, proof points, imagery, and form details can be adjusted as campaigns evolve.",
   },
 ];
@@ -111,7 +121,7 @@ const relatedServices = [
   { icon: FiMonitor, title: "Website development", to: "/services/website-development" },
   { icon: FiLayers, title: "Web applications development", to: "/services/web-application-development" },
   { icon: FiCode, title: "WordPress development", to: "/services/wordpress-development" },
-  { icon: FiBarChart2, title: "Conversion marketing", to: "/services" },
+  { icon: FiBarChart2, title: "Conversion marketing", to: "/services/conversion-marketing" },
 ];
 
 const Badge = ({ children }) => (
@@ -183,6 +193,8 @@ const BrowserMock = () => (
 );
 
 const Landing = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
@@ -209,7 +221,7 @@ const Landing = () => {
                 <FiArrowDown className="-rotate-90" />
               </a>
               <a
-                href="#services"
+                href="/services"
                 className="inline-flex h-11 items-center rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
               >
                 View scope
@@ -234,18 +246,22 @@ const Landing = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {serviceCards.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-6 text-xl font-semibold">{card.title}</h3>
+                <h3 className="mt-6 flex items-center justify-between gap-4 text-xl font-semibold">
+                  <span>{card.title}</span>
+                  <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -266,22 +282,24 @@ const Landing = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr] md:p-6"
+                to={item.to}
+                className="group grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50 md:grid-cols-[auto_1fr] md:p-6"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
-                    {item.title}
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                    <span>{item.title}</span>
+                    <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -400,9 +418,9 @@ const Landing = () => {
         </h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {relatedServices.map(({ icon: ServiceIcon, title, to }) => (
-            <a
+            <Link
               key={title}
-              href={to}
+              to={to}
               className="group flex min-h-[170px] flex-col justify-between rounded-xl border border-white/10 bg-[#121720] p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50"
             >
               {React.createElement(ServiceIcon, {
@@ -412,7 +430,7 @@ const Landing = () => {
                 {title}
                 <FiArrowUpRight className="transition group-hover:translate-x-1 group-hover:-translate-y-1" />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </SectionShell>
@@ -427,13 +445,14 @@ const Landing = () => {
             Share your offer, audience, traffic source, and campaign goal. We
             will help map the right landing page structure and development plan.
           </p>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

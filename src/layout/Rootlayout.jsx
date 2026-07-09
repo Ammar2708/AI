@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import Navbar from "../components/Nav";
 import Footer from "../components/Footer";
+import { QuoteModalProvider } from "../components/QuoteModal";
 
 const RootLayout = () => {
   const { pathname } = useLocation();
@@ -12,14 +13,14 @@ const RootLayout = () => {
   }, [pathname]);
 
   return (
-    <div>
+    <QuoteModalProvider>
       <Navbar />
       <main className="">
         {/* Outlet renders the active page */}
         <Outlet />
       </main>
       <Footer />
-    </div>
+    </QuoteModalProvider>
   );
 };
 

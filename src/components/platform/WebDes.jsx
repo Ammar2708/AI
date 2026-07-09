@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -17,6 +18,7 @@ import {
   FiTrendingUp,
   FiUsers,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const GradientText = ({ children }) => (
   <span className="bg-[linear-gradient(90deg,#7c5cff_0%,#c23be7_48%,#ff2d87_100%)] bg-clip-text text-transparent">
@@ -52,31 +54,37 @@ const designServices = [
     icon: FiTarget,
     title: "Website strategy",
     text: "We define goals, audiences, user paths, page priorities, and conversion points before visual design begins.",
+    to: "/process",
   },
   {
     icon: FiGrid,
     title: "UX and wireframes",
     text: "Core pages are planned around real content, clear hierarchy, navigation, calls to action, and responsive behavior.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiPenTool,
     title: "UI design systems",
     text: "Typography, color, spacing, cards, buttons, forms, and reusable states are designed as one coherent system.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiClipboard,
     title: "Developer handoff",
     text: "Layouts are prepared with component logic, states, content notes, and practical guidance for implementation.",
+    to: "/services/website-development",
   },
   {
     icon: FiSearch,
     title: "SEO-aware layouts",
     text: "Page sections support readable content, keyword intent, internal links, headings, and future content growth.",
+    to: "/services/tech-seo",
   },
   {
     icon: FiTrendingUp,
     title: "Redesign planning",
     text: "We review what exists, keep what works, remove friction, and redesign around stronger customer journeys.",
+    to: "/services/website-development",
   },
 ];
 
@@ -85,21 +93,25 @@ const benefits = [
     icon: FiEye,
     title: "Clear first impression",
     text: "Visitors should understand what you offer, why it matters, and where to go next without decoding the page.",
+    to: "/services/landing-page-development",
   },
   {
     icon: FiUsers,
     title: "User journeys with purpose",
     text: "We map the paths different visitors need to take, then design pages and calls to action around those decisions.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiLayers,
     title: "Consistent visual language",
     text: "Reusable sections, component styles, and responsive states keep the brand consistent across the whole website.",
+    to: "/services/brand-identity",
   },
   {
     icon: FiSmartphone,
     title: "Responsive by default",
     text: "Mobile, tablet, and desktop layouts are considered from the start, with attention to readability and tap targets.",
+    to: "/services/website-development",
   },
 ];
 
@@ -213,6 +225,8 @@ const ProofBadge = ({ title, rating, color = "text-[#ff4d3d]" }) => (
 );
 
 const WebDes = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[560px] px-4 pt-24 md:px-7 lg:px-8 lg:pt-24">
@@ -266,18 +280,22 @@ const WebDes = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {designServices.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
               >
                 <span className="grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-lg text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-5 text-lg font-semibold">{card.title}</h3>
+                <h3 className="mt-5 flex items-center justify-between gap-4 text-lg font-semibold">
+                  {card.title}
+                  <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -298,22 +316,24 @@ const WebDes = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-              className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
+                to={item.to}
+                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
                     {item.title}
+                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -597,13 +617,14 @@ const WebDes = () => {
             Discuss your next <GradientText>website design</GradientText> or
             redesign with our team
           </h2>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-9 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Request a quote
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

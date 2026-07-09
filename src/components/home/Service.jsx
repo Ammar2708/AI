@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { FiAperture, FiCpu, FiGrid, FiLink2, FiZap } from 'react-icons/fi'
 
 const services = [
@@ -7,23 +8,27 @@ const services = [
     text: 'Align AI with your long-term goals',
     image: '/imgi_16_opai-img-277.webp',
     imageClass: 'h-72 w-72 object-contain',
+    to: '/services',
   },
   {
     title: 'Data audit & readiness',
     text: 'Evaluate data quality and gaps',
     image: '/imgi_28_vector-18.webp',
     imageClass: 'h-64 w-80 object-contain',
+    to: '/services',
   },
   {
     title: 'Model development',
     text: 'Build predictive, prescriptive, and generative models',
     image: '/imgi_18_opai-img-279.webp',
     imageClass: 'h-80 w-64 object-contain',
+    to: '/services',
   },
   {
     title: 'AI integration',
     text: 'Seamless deployment into your existing systems',
     custom: 'orbit',
+    to: '/integration',
   },
 ]
 
@@ -60,8 +65,12 @@ const OrbitGraphic = () => (
   </div>
 )
 
-const ServiceCard = ({ title, text, image, imageClass, custom }) => (
-  <article className="group relative flex min-h-[460px] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[#030305] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_34px_rgba(102,84,255,0.08)] transition duration-300 hover:border-[#6654ff]/35 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_42px_rgba(102,84,255,0.16)]">
+const ServiceCard = ({ title, text, image, imageClass, custom, to }) => (
+  <Link
+    to={to}
+    aria-label={`View ${title}`}
+    className="group relative flex min-h-[460px] flex-col overflow-hidden rounded-[2rem] border border-white/10 bg-[#030305] shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_0_34px_rgba(102,84,255,0.08)] transition duration-300 hover:border-[#6654ff]/35 hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_42px_rgba(102,84,255,0.16)] focus:outline-none focus:ring-2 focus:ring-[#6654ff]/70"
+  >
     <div className="pointer-events-none absolute inset-0 rounded-[2rem] bg-[radial-gradient(circle_at_50%_0%,rgba(102,84,255,0.14),transparent_34%),linear-gradient(180deg,rgba(255,255,255,0.035),transparent_24%)]" />
     <div className="relative grid min-h-[275px] place-items-center overflow-hidden bg-[radial-gradient(circle_at_center,rgba(102,84,255,0.08),transparent_42%),linear-gradient(180deg,rgba(8,7,14,0.96),rgba(0,0,0,0.98))]">
       <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[#6654ff]/55 to-transparent" />
@@ -83,7 +92,7 @@ const ServiceCard = ({ title, text, image, imageClass, custom }) => (
         {text}
       </p>
     </div>
-  </article>
+  </Link>
 )
 
 const Service = () => {

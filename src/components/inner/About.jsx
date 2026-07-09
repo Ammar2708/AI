@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowUpRight,
   FiGlobe,
@@ -27,21 +28,25 @@ const services = [
     icon: FiTarget,
     title: "AI strategy and roadmap",
     text: "Define goals, use cases, and a clear roadmap to adopt AI with confidence.",
+    to: "/services",
   },
   {
     icon: FiZap,
     title: "Custom AI development",
     text: "Build tailored models and tools that fit your industry and operations.",
+    to: "/services/web-application-development",
   },
   {
     icon: FiSmile,
     title: "Integration and deployment",
     text: "Seamlessly integrate AI into your existing systems and workflows.",
+    to: "/integration",
   },
   {
     icon: FiLayers,
     title: "Scaling and optimization",
     text: "Improve performance, reliability, and impact as your AI initiatives grow.",
+    to: "/process",
   },
 ];
 
@@ -117,8 +122,12 @@ const FeatureCard = ({ icon, title, text }) => (
   </article>
 );
 
-const ServiceCard = ({ icon, title, text }) => (
-  <article className="grid min-h-[270px] place-items-center rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_0%,rgba(35,25,96,0.48),rgba(0,0,0,0.86)_46%,#000_100%)] p-8 text-center shadow-[inset_0_1px_0_rgba(102,84,255,0.55)] md:min-h-[330px]">
+const ServiceCard = ({ icon, title, text, to }) => (
+  <Link
+    to={to}
+    aria-label={`View ${title}`}
+    className="grid min-h-[270px] place-items-center rounded-[2rem] border border-white/10 bg-[radial-gradient(circle_at_50%_0%,rgba(35,25,96,0.48),rgba(0,0,0,0.86)_46%,#000_100%)] p-8 text-center shadow-[inset_0_1px_0_rgba(102,84,255,0.55)] transition hover:-translate-y-1 hover:border-[#6654ff]/50 focus:outline-none focus:ring-2 focus:ring-[#6654ff]/70 md:min-h-[330px]"
+  >
     <div>
       {React.createElement(icon, {
         className: "mx-auto text-4xl text-white/70",
@@ -130,7 +139,7 @@ const ServiceCard = ({ icon, title, text }) => (
         {text}
       </p>
     </div>
-  </article>
+  </Link>
 );
 
 const TeamCard = ({ member }) => (
@@ -306,13 +315,13 @@ const About = () => {
         </div>
 
         <div className="flex justify-center pb-2 pt-20">
-          <button
-            type="button"
+          <Link
+            to="/services"
             className="group inline-flex h-14 items-center gap-5 rounded-full bg-white py-1.5 pl-7 pr-1.5 font-mono text-sm font-bold text-black transition duration-300 hover:bg-zinc-200 md:h-16 md:pl-9 md:text-base"
           >
-            View all team members
+            View all services
             <ButtonIcon />
-          </button>
+          </Link>
         </div>
       </div>
 

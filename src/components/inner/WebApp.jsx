@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -15,6 +16,7 @@ import {
   FiServer,
   FiUsers,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const GradientText = ({ children }) => (
   <span className="bg-[linear-gradient(90deg,#7c5cff_0%,#c23be7_48%,#ff2d87_100%)] bg-clip-text text-transparent">
@@ -50,31 +52,37 @@ const capabilities = [
     icon: FiMonitor,
     title: "Customer portals",
     text: "Secure spaces for accounts, requests, documents, payments, dashboards, and self-service support.",
+    to: "/services/web-application-development",
   },
   {
     icon: FiBarChart2,
     title: "Internal dashboards",
     text: "Operational views that bring tasks, reports, metrics, approvals, and team workflows into one place.",
+    to: "/services/web-application-development",
   },
   {
     icon: FiDatabase,
     title: "Data-heavy tools",
     text: "Search, filters, tables, permissions, imports, exports, and admin controls designed for daily use.",
+    to: "/services/web-application-development",
   },
   {
     icon: FiGitBranch,
     title: "System integrations",
     text: "Practical connections with CRMs, payment tools, booking systems, APIs, and existing business software.",
+    to: "/integration",
   },
   {
     icon: FiLock,
     title: "Reliable foundations",
     text: "Authentication, role access, validation, logging, and maintainable architecture from the first release.",
+    to: "/process",
   },
   {
     icon: FiRefreshCw,
     title: "Post-launch evolution",
     text: "Analytics, feedback loops, support fixes, and feature improvements after the first version is live.",
+    to: "/process",
   },
 ];
 
@@ -83,21 +91,25 @@ const benefits = [
     icon: FiUsers,
     title: "Built around real users",
     text: "We map roles, jobs, screens, states, and handoffs before build work starts, so the product supports actual workflows.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiLayers,
     title: "Clear product structure",
     text: "Features are grouped into sensible releases with transparent scope, priorities, and decision points.",
+    to: "/process",
   },
   {
     icon: FiCode,
     title: "Maintainable development",
     text: "Code, naming, reusable components, and technical boundaries are kept readable for future developers.",
+    to: "/services/web-application-development",
   },
   {
     icon: FiCheckCircle,
     title: "Launch confidence",
     text: "Responsive QA, form checks, integration checks, security basics, and handover notes reduce avoidable surprises.",
+    to: "/process",
   },
 ];
 
@@ -186,6 +198,8 @@ const MetricCard = ({ value, label }) => (
 );
 
 const WebApp = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[660px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
@@ -261,18 +275,22 @@ const WebApp = () => {
         </div>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((item) => (
-            <article
+            <Link
               key={item.title}
-              className="rounded-lg border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition hover:-translate-y-1 hover:border-[#13d6ff]/45"
+              to={item.to}
+              className="group rounded-lg border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition hover:-translate-y-1 hover:border-[#13d6ff]/45"
             >
               <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
                 {React.createElement(item.icon)}
               </span>
-              <h3 className="mt-6 text-xl font-semibold">{item.title}</h3>
+              <h3 className="mt-6 flex items-center justify-between gap-4 text-xl font-semibold">
+                {item.title}
+                <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+              </h3>
               <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                 {item.text}
               </p>
-            </article>
+            </Link>
           ))}
         </div>
       </SectionShell>
@@ -322,22 +340,24 @@ const WebApp = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-5 rounded-lg border border-white/10 bg-[#121720] p-5 md:grid-cols-[auto_1fr] md:p-6"
+                to={item.to}
+                className="group grid gap-5 rounded-lg border border-white/10 bg-[#121720] p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/45 md:grid-cols-[auto_1fr] md:p-6"
               >
                 <span className="grid size-10 place-items-center rounded-lg bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
                     {item.title}
+                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 text-sm font-semibold leading-7 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -412,13 +432,14 @@ const WebApp = () => {
             Bring the workflow, idea, or current system. We will help shape a
             practical first release and the path after launch.
           </p>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-8 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Request a quote
             <FiArrowUpRight />
-          </a>
+          </button>
         </div>
       </section>
     </main>

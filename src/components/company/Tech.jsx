@@ -208,14 +208,14 @@ const Tech = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="/services"
+                href="/contact"
                 className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
               >
                 Tech SEO
                 <FiArrowDown className="-rotate-90" />
               </a>
               <a
-                href="#techseo-scope"
+                href="/services"
                 className="inline-flex h-11 items-center rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
               >
                 View scope
@@ -462,7 +462,7 @@ const Tech = () => {
             help shape a practical audit and implementation roadmap.
           </p>
           <a
-            href="/services"
+            href="/contact"
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Tech SEO

@@ -41,7 +41,7 @@ const packages = [
   },
   {
     name: "Growth SEO Plan",
-    price: "$3,500+",
+    price: "$3,500",
     note: "Best for: competitive or ecommerce SEO",
     features: [
       "Full SEO roadmap and monthly priorities",
@@ -154,7 +154,7 @@ const SectionShell = ({ id, sideLabel, dark = false, children, className = "" })
 
 const PackageCard = ({ item, featured = false }) => (
   <article
-    className={`relative flex h-full flex-col rounded-xl border p-6 transition hover:-translate-y-1 md:p-7 ${
+    className={`relative flex h-full min-w-0 flex-col overflow-hidden rounded-xl border p-6 transition hover:-translate-y-1 md:p-7 ${
       featured
         ? "border-[#ff2d78]/55 bg-white text-black shadow-[0_28px_80px_rgba(255,45,120,0.18)]"
         : "border-white/10 bg-[#111827] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
@@ -168,10 +168,12 @@ const PackageCard = ({ item, featured = false }) => (
     <p className={`text-sm font-semibold ${featured ? "text-black/55" : "text-white/45"}`}>
       Starting from
     </p>
-    <div className="mt-2 flex items-end gap-2">
-      <span className="text-5xl font-semibold leading-none md:text-6xl">{item.price}</span>
-      <span className={`pb-2 text-sm font-bold ${featured ? "text-black/45" : "text-white/35"}`}>
-        project
+    <div className="mt-3">
+      <span className="block text-5xl font-semibold leading-none tracking-normal md:text-[56px] xl:text-[60px]">
+        {item.price}
+      </span>
+      <span className={`mt-2 block font-mono text-[10px] font-bold uppercase tracking-[0.14em] ${featured ? "text-black/45" : "text-white/35"}`}>
+        per project
       </span>
     </div>
     <h3 className="mt-8 text-2xl font-semibold">{item.name}</h3>
@@ -179,7 +181,7 @@ const PackageCard = ({ item, featured = false }) => (
       {item.note}
     </p>
     <a
-      href="/services"
+      href="/contact"
       className={`mt-7 inline-flex h-11 items-center justify-center gap-2 rounded-full px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] transition ${
         featured
           ? "bg-black text-white hover:bg-zinc-800"
@@ -223,7 +225,7 @@ const SeoPrice = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href="/services"
+                href="/contact"
                 className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
               >
                 SEO Pricing
@@ -425,7 +427,7 @@ const SeoPrice = () => {
             will recommend a package scope that is clear before work begins.
           </p>
           <a
-            href="/services"
+            href="/contact"
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             SEO Pricing, SEO Packages

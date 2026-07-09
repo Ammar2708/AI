@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -51,31 +52,37 @@ const uiServices = [
     icon: FiSearch,
     title: "UX discovery",
     text: "We clarify users, goals, friction points, product constraints, and success signals before visual design starts.",
+    to: "/process",
   },
   {
     icon: FiGrid,
     title: "Information architecture",
     text: "Navigation, page structure, feature groups, and user paths are organized so the interface feels obvious.",
+    to: "/services/web-application-development",
   },
   {
     icon: FiMousePointer,
     title: "Flows and prototypes",
     text: "Key journeys are mapped, tested, and refined with wireframes or clickable prototypes before build decisions lock in.",
+    to: "/services/mobile-app-design",
   },
   {
     icon: FiPenTool,
     title: "Visual UI design",
     text: "Screens are designed with strong hierarchy, polished details, responsive states, and brand consistency.",
+    to: "/services/web-design-service",
   },
   {
     icon: FiLayers,
     title: "Design systems",
     text: "Reusable components, spacing, type, colors, and interaction states make future pages faster and more consistent.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiClipboard,
     title: "Developer handoff",
     text: "We document decisions, states, behavior, and edge cases so implementation stays clear for your team.",
+    to: "/services/web-application-development",
   },
 ];
 
@@ -84,21 +91,25 @@ const benefits = [
     icon: FiEye,
     title: "Clearer paths to action",
     text: "Users understand what to do next because screens are structured around decisions, not decoration.",
+    to: "/services/conversion-marketing",
   },
   {
     icon: FiTrendingUp,
     title: "Faster product adoption",
     text: "Cleaner onboarding, dashboards, forms, and flows reduce confusion and help people reach value sooner.",
+    to: "/services/web-application-development",
   },
   {
     icon: FiUsers,
     title: "Aligned teams",
     text: "Product, marketing, and engineering get shared flows, design decisions, and reusable UI patterns.",
+    to: "/process",
   },
   {
     icon: FiSmartphone,
     title: "Responsive experience",
     text: "Mobile and desktop states are planned together so the experience stays readable, usable, and consistent.",
+    to: "/services/mobile-app-design",
   },
 ];
 
@@ -236,18 +247,22 @@ const Ui = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {uiServices.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
               >
                 <span className="grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-lg text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-5 text-lg font-semibold">{card.title}</h3>
+                <h3 className="mt-5 flex items-center justify-between gap-4 text-lg font-semibold">
+                  {card.title}
+                  <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -267,22 +282,24 @@ const Ui = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
+                to={item.to}
+                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
                     {item.title}
+                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>

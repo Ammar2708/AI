@@ -1,5 +1,6 @@
 import React from 'react'
 import { FiArrowUpRight, FiCode, FiHeart, FiVideo } from 'react-icons/fi'
+import { useQuoteModal } from '../QuoteModalContext'
 import {
   SiFirebase,
   SiMastercard,
@@ -61,6 +62,8 @@ const LogoTile = ({ logo, index }) => {
 }
 
 const Trust = () => {
+  const { openQuoteModal } = useQuoteModal()
+
   return (
     <section className="relative overflow-hidden bg-black px-5 text-white md:px-8 lg:px-6">
       <div
@@ -118,6 +121,7 @@ const Trust = () => {
 
           <button
             type="button"
+            onClick={openQuoteModal}
             className="group mt-20 inline-flex h-14 items-center gap-5 rounded-full bg-white py-1.5 pl-7 pr-1.5 font-mono text-sm font-bold text-black transition duration-300 hover:bg-zinc-200 md:h-16 md:pl-9 md:text-base"
           >
             Let's accelerate

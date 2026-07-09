@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FiArrowUpRight, FiHeart } from 'react-icons/fi'
 import {
   SiFirebase,
@@ -208,13 +209,13 @@ const Stack = () => {
         </div>
 
         <div className="flex justify-center pb-2 pt-20">
-          <button
-            type="button"
+          <Link
+            to="/integration"
             className="group inline-flex h-14 items-center gap-5 rounded-full bg-white py-1.5 pl-7 pr-1.5 font-mono text-sm font-bold text-black transition duration-300 hover:bg-zinc-200 md:h-16 md:pl-9 md:text-base"
           >
             View full stack
             <ButtonIcon />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,6 +1,8 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
+  FiArrowUpRight,
   FiCheckCircle,
   FiChevronDown,
   FiCode,
@@ -13,27 +15,32 @@ import {
   FiShoppingBag,
   FiZap,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const serviceCards = [
   {
     icon: FiMonitor,
     title: "Business websites",
     text: "Corporate sites, service pages, landing pages, and resource hubs built around clear user journeys.",
+    to: "/services/corporate-website-development",
   },
   {
     icon: FiShoppingBag,
     title: "WooCommerce stores",
     text: "Product pages, checkout flows, and store foundations that are easier to manage after launch.",
+    to: "/services/ecommerce-development",
   },
   {
     icon: FiEdit3,
     title: "Editable content systems",
     text: "Reusable sections and content models so your team can publish without fighting the layout.",
+    to: "/services/wordpress-development",
   },
   {
     icon: FiSearch,
     title: "Technical SEO setup",
     text: "Clean markup, sensible page structure, performance basics, and launch checks that support visibility.",
+    to: "/services/tech-seo",
   },
 ];
 
@@ -42,21 +49,25 @@ const benefits = [
     icon: FiLayers,
     title: "Structured for growth",
     text: "We plan pages, templates, and reusable blocks before code begins, so new content does not become a maintenance burden.",
+    to: "/services/website-development",
   },
   {
     icon: FiCode,
     title: "Clean WordPress code",
     text: "Custom theme work, careful plugin choices, and front-end execution that keeps the site lighter and easier to extend.",
+    to: "/services/wordpress-development",
   },
   {
     icon: FiZap,
     title: "Performance foundations",
     text: "Caching, image handling, lean components, and responsive layouts are treated as core build requirements.",
+    to: "/services/tech-seo",
   },
   {
     icon: FiLock,
     title: "Security and reliability",
     text: "Update routines, access control, backups, and sensible hardening help reduce avoidable risk after launch.",
+    to: "/process",
   },
 ];
 
@@ -159,6 +170,8 @@ const BrowserMock = () => (
 );
 
 const WordPressDevelopment = () => {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
@@ -185,7 +198,7 @@ const WordPressDevelopment = () => {
                 <FiArrowDown className="-rotate-90" />
               </a>
               <a
-                href="#services"
+                href="/services"
                 className="inline-flex h-11 items-center rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
               >
                 View scope
@@ -210,18 +223,22 @@ const WordPressDevelopment = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {serviceCards.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-6 text-xl font-semibold">{card.title}</h3>
+                <h3 className="mt-6 flex items-center justify-between gap-4 text-xl font-semibold">
+                  {card.title}
+                  <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -241,22 +258,24 @@ const WordPressDevelopment = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr] md:p-6"
+                to={item.to}
+                className="group grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50 md:grid-cols-[auto_1fr] md:p-6"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
                     {item.title}
+                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -355,13 +374,14 @@ const WordPressDevelopment = () => {
             Share your current site, goals, and content needs. We will help map
             the right WordPress structure and development plan.
           </p>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

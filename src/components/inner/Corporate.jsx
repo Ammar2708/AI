@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiArrowUpRight,
@@ -15,26 +16,31 @@ import {
   FiShield,
   FiUsers,
 } from "react-icons/fi";
+import { useQuoteModal } from "../QuoteModalContext";
 
 const serviceCards = [
   {
     icon: FiMonitor,
     title: "Corporate websites",
+    to: "/services/corporate-website-development",
     text: "Company websites, service pages, careers pages, resource hubs, and contact paths built around clear user journeys.",
   },
   {
     icon: FiGrid,
     title: "Information architecture",
+    to: "/services/website-development",
     text: "Complex services, departments, proof points, and stakeholder needs organized into a cleaner sitemap.",
   },
   {
     icon: FiEdit3,
     title: "CMS-ready content",
+    to: "/services/wordpress-development",
     text: "Reusable sections and page models that help your team publish without fighting the structure.",
   },
   {
     icon: FiSearch,
     title: "SEO and launch setup",
+    to: "/services/tech-seo",
     text: "Technical SEO basics, analytics, responsive checks, performance-minded frontend code, and handover.",
   },
 ];
@@ -43,21 +49,25 @@ const benefits = [
   {
     icon: FiSearch,
     title: "Discovery before design",
+    to: "/process",
     text: "We map business goals, audience needs, buyer objections, and current site gaps before layouts begin.",
   },
   {
     icon: FiGrid,
     title: "Clear site structure",
+    to: "/services/website-development",
     text: "Service pages, case studies, careers, resources, and contact paths are arranged so visitors find the next step fast.",
   },
   {
     icon: FiLayers,
     title: "Brand-led UX/UI",
+    to: "/services/ui-ux-design",
     text: "Your interface feels polished, readable, credible, and shaped around content your team can maintain.",
   },
   {
     icon: FiShield,
     title: "Reliable launch base",
+    to: "/process",
     text: "Responsive QA, SEO basics, analytics, security checks, performance, and handover are planned into the build.",
   },
 ];
@@ -112,7 +122,7 @@ const relatedServices = [
   { icon: FiMonitor, title: "Website development", to: "/services/website-development" },
   { icon: FiLayers, title: "Web applications development", to: "/services/web-application-development" },
   { icon: FiCode, title: "WordPress development", to: "/services/wordpress-development" },
-  { icon: FiBarChart2, title: "SEO and performance", to: "/services" },
+  { icon: FiBarChart2, title: "SEO and performance", to: "/services/tech-seo" },
 ];
 
 const Badge = ({ children }) => (
@@ -184,6 +194,8 @@ const BrowserMock = () => (
 );
 
 function Corporate() {
+  const { openQuoteModal } = useQuoteModal();
+
   return (
     <main className="overflow-hidden bg-black text-white">
       <section className="relative min-h-[640px] px-4 pt-28 md:px-8 lg:px-9 lg:pt-30">
@@ -201,19 +213,19 @@ function Corporate() {
               offer, support sales and hiring, and stay manageable after launch.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href="/contact"
+              <Link
+                to="/contact"
                 className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
               >
                 Hire us
                 <FiArrowDown className="-rotate-90" />
-              </a>
-              <a
-                href="#services"
+              </Link>
+              <Link
+                to="/services"
                 className="inline-flex h-11 items-center rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
               >
                 View scope
-              </a>
+              </Link>
             </div>
           </div>
           <BrowserMock />
@@ -234,18 +246,22 @@ function Corporate() {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {serviceCards.map((card) => (
-              <article
+              <Link
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+                to={card.to}
+                className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-6 text-xl font-semibold">{card.title}</h3>
+                <h3 className="mt-6 flex items-center justify-between gap-4 text-xl font-semibold">
+                  <span>{card.title}</span>
+                  <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -265,22 +281,24 @@ function Corporate() {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <Link
                 key={item.title}
-                className="grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr] md:p-6"
+                to={item.to}
+                className="group grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50 md:grid-cols-[auto_1fr] md:p-6"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="text-lg font-semibold leading-tight">
-                    {item.title}
+                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                    <span>{item.title}</span>
+                    <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-7 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -429,9 +447,9 @@ function Corporate() {
         </h2>
         <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
           {relatedServices.map(({ icon: ServiceIcon, title, to }) => (
-            <a
+            <Link
               key={title}
-              href={to}
+              to={to}
               className="group flex min-h-[170px] flex-col justify-between rounded-xl border border-white/10 bg-[#121720] p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50"
             >
               {React.createElement(ServiceIcon, {
@@ -441,7 +459,7 @@ function Corporate() {
                 {title}
                 <FiArrowUpRight className="transition group-hover:translate-x-1 group-hover:-translate-y-1" />
               </span>
-            </a>
+            </Link>
           ))}
         </div>
       </SectionShell>
@@ -456,13 +474,14 @@ function Corporate() {
             Share your current site, business goals, priority pages, and content
             needs. We will help map the right structure and development plan.
           </p>
-          <a
-            href="/contact"
+          <button
+            type="button"
+            onClick={openQuoteModal}
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Get in touch
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </button>
         </div>
       </section>
     </main>

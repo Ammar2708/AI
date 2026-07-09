@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import {
   FiArrowDown,
   FiBarChart2,
@@ -22,21 +23,25 @@ const scopeItems = [
     icon: FiBarChart2,
     title: "Analytics and funnel audit",
     text: "We review traffic, events, funnels, forms, checkout paths, and reporting gaps so decisions start with cleaner data.",
+    to: "#cro-scope",
   },
   {
     icon: FiMousePointer,
     title: "Journey and friction mapping",
     text: "We look at the moments where visitors hesitate, miss key information, leave the page, or choose the wrong next step.",
+    to: "/services/ui-ux-design",
   },
   {
     icon: FiTarget,
     title: "Experiment roadmap",
     text: "We turn findings into focused hypotheses, success metrics, priorities, and test plans your team can actually ship.",
+    to: "#cro-process",
   },
   {
     icon: FiMonitor,
     title: "Landing page improvement",
     text: "We improve layout, messaging, calls to action, trust signals, and page flow so high-intent visitors have a clearer path.",
+    to: "/services/landing-page-development",
   },
 ];
 
@@ -45,21 +50,25 @@ const benefits = [
     icon: FiTrendingUp,
     title: "More value from existing traffic",
     text: "Conversion marketing helps SEO, content, and paid campaigns work harder by improving what happens after the click.",
+    to: "/services/content-marketing",
   },
   {
     icon: FiEye,
     title: "Evidence over opinions",
     text: "Instead of debating button colors in isolation, we use analytics, behavior signals, and tests to show what improves action.",
+    to: "#cro-scope",
   },
   {
     icon: FiZap,
     title: "Faster learning, lower risk",
     text: "Controlled tests and scoped improvements let your team learn without betting everything on one large redesign.",
+    to: "#cro-process",
   },
   {
     icon: FiUsers,
     title: "Aligned marketing, product, and dev",
     text: "Recommendations come with context, priority, and measurement notes so everyone understands why a change matters.",
+    to: "/process",
   },
 ];
 
@@ -207,6 +216,24 @@ const HeroVisual = () => (
   </div>
 );
 
+const CardLink = ({ to, className, children }) => {
+  const isHash = to?.startsWith("#");
+
+  if (isHash) {
+    return (
+      <a href={to} className={className}>
+        {children}
+      </a>
+    );
+  }
+
+  return (
+    <Link to={to} className={className}>
+      {children}
+    </Link>
+  );
+};
+
 const Conversion = () => {
   return (
     <main className="overflow-hidden bg-black text-white">
@@ -227,7 +254,7 @@ const Conversion = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="/services"
+                href="/contact"
                 className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
               >
                 Conversion marketing
@@ -260,9 +287,10 @@ const Conversion = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {scopeItems.map((item) => (
-              <article
+              <CardLink
                 key={item.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+                to={item.to}
+                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50 focus:outline-none focus:ring-2 focus:ring-[#6654ff]/70"
               >
                 <span className="grid size-11 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
                   {React.createElement(item.icon)}
@@ -271,7 +299,7 @@ const Conversion = () => {
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {item.text}
                 </p>
-              </article>
+              </CardLink>
             ))}
           </div>
         </div>
@@ -306,7 +334,7 @@ const Conversion = () => {
         </div>
       </SectionShell>
 
-      <SectionShell sideLabel="benefits">
+      <SectionShell sideLabel="benefits" id="cro-benefits">
         <div className="grid gap-12 lg:grid-cols-[0.82fr_1.18fr]">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <Badge>Benefits</Badge>
@@ -320,9 +348,10 @@ const Conversion = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <article
+              <CardLink
                 key={item.title}
-                className="grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr] md:p-6"
+                to={item.to}
+                className="grid gap-5 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#6654ff]/50 focus:outline-none focus:ring-2 focus:ring-[#6654ff]/70 md:grid-cols-[auto_1fr] md:p-6"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
@@ -335,7 +364,7 @@ const Conversion = () => {
                     {item.text}
                   </p>
                 </div>
-              </article>
+              </CardLink>
             ))}
           </div>
         </div>
@@ -380,7 +409,7 @@ const Conversion = () => {
         </div>
       </SectionShell>
 
-      <SectionShell sideLabel="process" dark>
+      <SectionShell sideLabel="process" dark id="cro-process">
         <div className="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
           <div>
             <Badge>Our process</Badge>
@@ -440,9 +469,9 @@ const Conversion = () => {
           </h2>
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {relatedServices.map((item) => (
-              <a
+              <Link
                 key={item.title}
-                href={item.to}
+                to={item.to}
                 className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
@@ -452,7 +481,7 @@ const Conversion = () => {
                   {item.title}
                   <FiArrowDown className="-rotate-90 transition group-hover:translate-x-1" />
                 </h3>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
@@ -489,13 +518,13 @@ const Conversion = () => {
             Share the pages, funnels, or campaigns you want to improve. We will
             help you find the clearest next step for conversion marketing.
           </p>
-          <a
-            href="/services"
+          <Link
+            to="/contact"
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
-            Conversion marketing
+            Contact us
             <FiArrowDown className="-rotate-90" />
-          </a>
+          </Link>
         </div>
       </section>
     </main>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FiArrowUpRight } from 'react-icons/fi'
 
 const industries = [
@@ -12,11 +13,11 @@ const industries = [
   },
   {
     title: 'Healthcare',
-    image: '/imgi_23_opai-img-283.webp',
+    image: '/imgi_24_opai-img-284.webp',
   },
   {
     title: 'Manufacturing',
-    image: '/imgi_24_opai-img-284.webp',
+    image: '/imgi_23_opai-img-283.webp',
   },
   {
     title: 'Logistics',
@@ -24,11 +25,11 @@ const industries = [
   },
   {
     title: 'Automotive',
-    image: '/imgi_21_opai-img-281.webp',
+    image: '/imgi_26_opai-img-286.webp',
   },
   {
     title: 'Legal',
-    image: '/imgi_26_opai-img-286.webp',
+    image: '/imgi_21_opai-img-281.webp',
   },
   {
     title: 'Real Estate',
@@ -141,13 +142,13 @@ const We = () => {
         </div>
 
         <div className="flex justify-center pb-4 pt-10 md:pt-12">
-          <button
-            type="button"
+          <Link
+            to="/about"
             className="group inline-flex h-14 items-center gap-5 rounded-full bg-white py-1.5 pl-7 pr-1.5 font-mono text-sm font-bold text-black transition duration-300 hover:bg-zinc-200 md:h-16 md:pl-9 md:text-base"
           >
             Explore our blogs
             <ButtonIcon />
-          </button>
+          </Link>
         </div>
       </div>
     </section>

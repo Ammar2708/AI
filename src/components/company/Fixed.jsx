@@ -66,21 +66,25 @@ const serviceCards = [
     icon: FiPackage,
     title: "Fixed WordPress packages",
     text: "Choose a defined website scope before work starts, with deliverables, assumptions, and timeline visible from day one.",
+    href: "#packages",
   },
   {
     icon: FiLayers,
     title: "Theme-based builds",
     text: "A practical route for businesses that want a reliable WordPress website without a fully custom product build.",
+    href: "/services/wordpress-development",
   },
   {
     icon: FiCode,
     title: "Custom page structure",
     text: "We shape page sections, templates, menus, and conversion paths around the package you choose.",
+    href: "/services/website-development",
   },
   {
     icon: FiShoppingBag,
     title: "WooCommerce starts",
     text: "Launch a small online store with the core commerce pages, product setup, and checkout essentials in place.",
+    href: "/services/ecommerce-development",
   },
 ];
 
@@ -263,7 +267,7 @@ const PackageCard = ({ item }) => (
       <span className="text-white/75">Best for:</span> {item.bestFor}
     </p>
     <a
-      href="/services"
+      href="/contact"
       className="mt-6 inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/15 px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-white/80 transition hover:border-white/35 hover:text-white"
     >
       Fixed price web development
@@ -300,7 +304,7 @@ const Fixed = () => {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a
-                href="/services"
+                href="/contact"
                 className="inline-flex h-11 items-center gap-2 rounded-full bg-white px-5 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
               >
                 Fixed price web development
@@ -333,9 +337,10 @@ const Fixed = () => {
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
             {serviceCards.map((card) => (
-              <article
+              <a
                 key={card.title}
-                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+                href={card.href}
+                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50 focus:outline-none focus:ring-2 focus:ring-[#6654ff]/70"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">
                   {React.createElement(card.icon)}
@@ -344,7 +349,7 @@ const Fixed = () => {
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
                   {card.text}
                 </p>
-              </article>
+              </a>
             ))}
           </div>
         </div>
@@ -523,7 +528,7 @@ const Fixed = () => {
             We will help map the right fixed-price WordPress package.
           </p>
           <a
-            href="/services"
+            href="/contact"
             className="mt-8 inline-flex h-11 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
           >
             Fixed price web development
