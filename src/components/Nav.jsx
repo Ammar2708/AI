@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FiArrowDown,
@@ -184,17 +184,40 @@ const InnerMenu = () => (
 
 const ServiceMenu = () => {
   const [activeIndex, setActiveIndex] = useState(null);
+  const closeTimer = useRef(null);
   const activeItem = activeIndex === null ? null : serviceItems[activeIndex];
+
+  const keepSubmenuOpen = () => {
+    if (closeTimer.current) {
+      window.clearTimeout(closeTimer.current);
+      closeTimer.current = null;
+    }
+  };
+
+  const closeSubmenuSoon = () => {
+    keepSubmenuOpen();
+    closeTimer.current = window.setTimeout(() => {
+      setActiveIndex(null);
+      closeTimer.current = null;
+    }, 180);
+  };
 
   return (
     <div className="absolute left-1/2 top-full z-40 hidden w-[315px] -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
-      <div className="relative" onMouseLeave={() => setActiveIndex(null)}>
+      <div
+        className="relative"
+        onMouseEnter={keepSubmenuOpen}
+        onMouseLeave={closeSubmenuSoon}
+      >
         <div className="w-full rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
           {serviceItems.map((item, index) => (
             <NavLink
               key={item.label}
               to={item.to || "/services"}
-              onMouseEnter={() => setActiveIndex(index)}
+              onMouseEnter={() => {
+                keepSubmenuOpen();
+                setActiveIndex(index);
+              }}
               onFocus={() => setActiveIndex(index)}
               className={`flex min-h-[56px] items-center gap-3 rounded-xl px-2 text-white transition ${
                 activeIndex === index ? "text-white" : "text-white/85 hover:text-white"
@@ -216,7 +239,16 @@ const ServiceMenu = () => {
         </div>
 
         {activeItem?.items && (
-          <div className="absolute left-[calc(100%+1rem)] top-0 w-[340px] rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
+          <>
+          <div
+            className="absolute left-full top-0 h-full w-4"
+            aria-hidden="true"
+            onMouseEnter={keepSubmenuOpen}
+          />
+          <div
+            className="absolute left-[calc(100%+1rem)] top-0 w-[340px] rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl"
+            onMouseEnter={keepSubmenuOpen}
+          >
             {activeItem.items.map((item) => {
               const label = typeof item === "string" ? item : item.label;
               const to = typeof item === "string" ? "/services" : item.to;
@@ -232,6 +264,7 @@ const ServiceMenu = () => {
               );
             })}
           </div>
+          </>
         )}
       </div>
     </div>

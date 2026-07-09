@@ -127,9 +127,9 @@ const relatedServices = [
   {
     title: "Conversion rate optimization",
     icon: FiMousePointer,
-    to: "/services/conversion-rate-optimization",
+    to: "/services/conversion-marketing",
   },
-  { title: "SEO", icon: FiSearch, to: "/services/seo" },
+  { title: "SEO", icon: FiSearch, to: "/services/tech-seo" },
 ];
 
 const Badge = ({ children }) => (

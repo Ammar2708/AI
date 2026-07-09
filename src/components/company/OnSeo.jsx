@@ -118,10 +118,10 @@ const faqs = [
 ];
 
 const relatedServices = [
-  { title: "Content marketing", icon: FiClipboard },
-  { title: "Web design services", icon: FiShield },
-  { title: "Website development", icon: FiCode },
-  { title: "Conversion marketing", icon: FiBarChart2 },
+  { title: "Content marketing", icon: FiClipboard, href: "/services/content-marketing" },
+  { title: "Web design services", icon: FiShield, href: "/services/web-design-service" },
+  { title: "Website development", icon: FiCode, href: "/services/website-development" },
+  { title: "Conversion marketing", icon: FiBarChart2, href: "/services/conversion-marketing" },
 ];
 
 const Badge = ({ children }) => (
@@ -390,7 +390,7 @@ const OnSeo = () => {
           {relatedServices.map((item) => (
             <a
               key={item.title}
-              href="/services"
+              href={item.href}
               className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
             >
               <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">

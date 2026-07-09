@@ -110,10 +110,10 @@ const faqs = [
 ];
 
 const relatedServices = [
-  { title: "SEO copywriting", icon: FiPenTool },
-  { title: "On-page SEO", icon: FiSearch },
-  { title: "Landing pages", icon: FiFileText },
-  { title: "Website design", icon: FiLayers },
+  { title: "SEO copywriting", icon: FiPenTool, href: "/services/seo-copywriting" },
+  { title: "On-page SEO", icon: FiSearch, href: "/services/on-page-seo" },
+  { title: "Landing pages", icon: FiFileText, href: "/services/landing-page-development" },
+  { title: "Website design", icon: FiLayers, href: "/services/web-design-service" },
 ];
 
 const Badge = ({ children }) => (
@@ -384,7 +384,7 @@ const Content = () => {
             {relatedServices.map((item) => (
               <a
                 key={item.title}
-                href="/services"
+                href={item.href}
                 className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-xl text-white">

@@ -120,10 +120,10 @@ const faqs = [
 ];
 
 const relatedServices = [
-  { title: "On-page SEO", icon: FiSearch, href: "/services" },
-  { title: "Off-page SEO", icon: FiGlobe, href: "/services" },
-  { title: "Website development", icon: FiCode, href: "/services" },
-  { title: "Content marketing", icon: FiFileText, href: "/services" },
+  { title: "On-page SEO", icon: FiSearch, href: "/services/on-page-seo" },
+  { title: "Off-page SEO", icon: FiGlobe, href: "/services/off-page-seo" },
+  { title: "Website development", icon: FiCode, href: "/services/website-development" },
+  { title: "Content marketing", icon: FiFileText, href: "/services/content-marketing" },
 ];
 
 const Badge = ({ children }) => (
