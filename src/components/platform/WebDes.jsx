@@ -27,7 +27,7 @@ const GradientText = ({ children }) => (
 );
 
 const Badge = ({ children }) => (
-  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white/75">
+  <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-3 py-1.5 font-mono text-[9px] font-bold uppercase tracking-[0.16em] text-white/75 max-sm:text-[8px]">
     <span className="size-2 rounded-full bg-[#13d6ff]" />
     {children}
   </span>
@@ -35,7 +35,7 @@ const Badge = ({ children }) => (
 
 const SectionShell = ({ id, label, dark = false, children, className = "" }) => (
   <section
-    className={`relative overflow-hidden px-4 py-12 md:px-7 lg:px-8 lg:py-14 ${className} ${
+    className={`relative overflow-hidden px-4 py-12 max-sm:py-10 md:px-7 lg:px-8 lg:py-14 ${className} ${
       dark ? "bg-[#071027] text-white" : "bg-black text-white"
     }`}
   >
@@ -115,29 +115,6 @@ const benefits = [
   },
 ];
 
-const process = [
-  {
-    title: "Discovery and alignment",
-    text: "We discuss your goals, audience, current website, competitors, content, analytics, constraints, and success criteria.",
-  },
-  {
-    title: "Structure and content plan",
-    text: "We map the sitemap, page roles, key messages, sections, user flows, and content priorities before visual design.",
-  },
-  {
-    title: "Wireframes and UI direction",
-    text: "Important pages are shaped into wireframes, then refined into visual layouts with clear hierarchy and brand direction.",
-  },
-  {
-    title: "Design system and handoff",
-    text: "Components, responsive states, interaction notes, and design tokens are prepared so development stays practical.",
-  },
-  {
-    title: "Review and improvement",
-    text: "After launch, we can review analytics, behavior, feedback, and campaign needs to keep improving the website.",
-  },
-];
-
 const faqs = [
   {
     question: "What is included in your web design services?",
@@ -185,25 +162,25 @@ const relatedServices = [
 ];
 
 const HeroVisual = () => (
-  <div className="relative mx-auto max-w-[470px] overflow-hidden rounded-xl border border-white/10 bg-[#111827] p-2.5 shadow-[0_22px_70px_rgba(255,45,135,0.13)]">
+  <div className="relative mx-auto w-full max-w-[470px] overflow-hidden rounded-xl border border-white/10 bg-[#111827] p-2.5 shadow-[0_22px_70px_rgba(255,45,135,0.13)]">
     <img
       src="/imgi_90_web-design-wireframe-to-final-preview-1024x576.jpg.webp"
       alt="Website wireframe and finished page design preview"
-      className="h-[250px] w-full rounded-lg object-cover opacity-90 md:h-[315px]"
+      className="h-[250px] w-full rounded-lg object-cover opacity-90 max-[380px]:h-[220px] md:h-[315px]"
     />
     <div className="absolute inset-3 rounded-lg bg-[linear-gradient(180deg,rgba(5,8,22,0.04),rgba(5,8,22,0.84))]" />
-    <div className="absolute bottom-6 left-6 right-6">
-      <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/58">
+    <div className="absolute bottom-6 left-6 right-6 max-[380px]:bottom-5 max-[380px]:left-5 max-[380px]:right-5">
+      <p className="font-mono text-[10px] font-bold uppercase tracking-[0.22em] text-white/58 max-[380px]:text-[9px]">
         design cockpit
       </p>
       <div className="mt-3 grid grid-cols-3 gap-2">
         {["UX", "UI", "CMS"].map((item) => (
           <div
             key={item}
-            className="rounded-lg border border-white/10 bg-white/[0.08] p-2.5 backdrop-blur"
+            className="rounded-lg border border-white/10 bg-white/[0.08] p-2.5 backdrop-blur max-[380px]:p-2"
           >
-            <span className="block h-2 w-12 rounded-full bg-[#13d6ff]" />
-            <p className="mt-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white/70">
+            <span className="block h-2 w-12 max-w-full rounded-full bg-[#13d6ff]" />
+            <p className="mt-3 font-mono text-[10px] font-bold uppercase tracking-[0.12em] text-white/70 max-[380px]:text-[9px]">
               {item}
             </p>
           </div>
@@ -229,32 +206,32 @@ const WebDes = () => {
 
   return (
     <main className="overflow-hidden bg-black text-white">
-      <section className="relative min-h-[560px] px-4 pt-24 md:px-7 lg:px-8 lg:pt-24">
+      <section className="relative min-h-[560px] px-4 pb-12 pt-24 md:px-7 lg:px-8 lg:pb-0 lg:pt-24">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_17%_30%,rgba(19,214,255,0.25),transparent_32%),radial-gradient(circle_at_82%_20%,rgba(255,45,135,0.22),transparent_31%),linear-gradient(180deg,#050506_0%,#071027_52%,#000_100%)]" />
         <div className="absolute inset-x-0 top-0 h-40 bg-[linear-gradient(180deg,rgba(0,0,0,0.92),transparent)]" />
 
-        <div className="relative mx-auto grid min-h-[450px] max-w-[1100px] items-center gap-8 lg:grid-cols-[1fr_1fr]">
-          <div>
+        <div className="relative mx-auto grid min-h-[450px] max-w-[1100px] items-center gap-8 max-lg:text-center lg:grid-cols-[1fr_1fr]">
+          <div className="max-lg:mx-auto max-lg:max-w-3xl">
             <Badge>Web design</Badge>
-            <h1 className="mt-5 max-w-3xl text-[32px] font-semibold leading-[1.08] tracking-normal md:text-[44px] lg:text-[52px]">
+            <h1 className="mt-5 max-w-3xl text-[32px] font-semibold leading-[1.08] tracking-normal max-[380px]:text-[28px] md:text-[44px] lg:text-[52px]">
               Web design services for websites people understand and trust.
             </h1>
-            <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-white/52 md:text-base">
+            <p className="mt-4 max-w-2xl text-sm font-semibold leading-6 text-white/52 max-lg:mx-auto md:text-base">
               We plan and design business websites, redesigns, landing pages,
               and web interfaces with clear structure, practical UX, and a
               visual system your team can build from.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3 max-sm:flex-col max-sm:items-stretch max-lg:justify-center">
               <a
                 href="/contact"
-                className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-black transition hover:bg-zinc-200"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-full bg-white px-4 text-center font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-black transition hover:bg-zinc-200 max-[380px]:px-3 max-[380px]:text-[10px]"
               >
                 Start a design project
                 <FiArrowDown className="-rotate-90" />
               </a>
               <a
                 href="/services"
-                className="inline-flex h-10 items-center gap-2 rounded-full border border-white/15 px-4 font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-white/82 transition hover:border-white/35 hover:text-white"
+                className="inline-flex h-10 items-center justify-center gap-2 rounded-full border border-white/15 px-4 text-center font-mono text-[11px] font-bold uppercase tracking-[0.1em] text-white/82 transition hover:border-white/35 hover:text-white max-[380px]:px-3 max-[380px]:text-[10px]"
               >
                 Web design
                 <FiArrowUpRight />
@@ -283,16 +260,16 @@ const WebDes = () => {
               <Link
                 key={card.title}
                 to={card.to}
-                className="group rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50"
+                className="group rounded-xl border border-white/10 bg-[#121720] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#ff2d87]/50 max-sm:p-4"
               >
                 <span className="grid size-9 place-items-center rounded-lg border border-white/10 bg-white/[0.06] text-lg text-white">
                   {React.createElement(card.icon)}
                 </span>
-                <h3 className="mt-5 flex items-center justify-between gap-4 text-lg font-semibold">
+                <h3 className="mt-5 flex items-center justify-between gap-4 text-lg font-semibold max-sm:text-base">
                   {card.title}
                   <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                 </h3>
-                <p className="mt-3 text-sm font-semibold leading-6 text-white/45">
+                <p className="mt-3 text-sm font-semibold leading-6 text-white/45 max-sm:leading-6">
                   {card.text}
                 </p>
               </Link>
@@ -316,24 +293,22 @@ const WebDes = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <Link
+              <div
                 key={item.title}
-                to={item.to}
-                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
+                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 max-sm:p-4 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                  <h3 className="text-lg font-semibold leading-tight">
                     {item.title}
-                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -341,11 +316,11 @@ const WebDes = () => {
 
       <SectionShell label="strategy">
         <div className="grid items-center gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="overflow-hidden rounded-xl border border-white/10 bg-[#071027] p-3">
+          <div className="overflow-hidden rounded-xl border border-white/10 bg-[#071027] p-3 max-sm:p-2">
             <img
               src="/imgi_47_web-design-visual-system-hologram-768x1024.jpg.webp"
               alt="Website design system interface"
-              className="h-[320px] w-full rounded-lg object-cover md:h-[420px]"
+              className="h-[320px] w-full rounded-lg object-cover max-[380px]:h-[280px] md:h-[420px]"
             />
           </div>
           <div>
@@ -367,9 +342,9 @@ const WebDes = () => {
               ].map((item) => (
                 <p
                   key={item}
-                  className="flex items-center gap-3 text-sm font-semibold text-white/58"
+                  className="flex items-start gap-3 text-sm font-semibold leading-6 text-white/58"
                 >
-                  <FiCheckCircle className="text-[#13d6ff]" />
+                  <FiCheckCircle className="mt-1 shrink-0 text-[#13d6ff]" />
                   {item}
                 </p>
               ))}
@@ -378,92 +353,7 @@ const WebDes = () => {
         </div>
       </SectionShell>
 
-      <SectionShell label="about us" dark>
-        <div className="grid gap-10 lg:grid-cols-[0.25fr_0.75fr]">
-          <div className="hidden border-r border-white/10 lg:block">
-            <div className="sticky top-28 grid gap-6 pl-5 text-lg font-semibold text-white/35">
-              <span className="text-white">About us</span>
-              <span>Evidence</span>
-              <span>Process</span>
-              <span>Testimonials</span>
-            </div>
-          </div>
-          <div className="grid gap-10">
-            <article className="rounded-xl border border-white/10 bg-white/[0.02] p-5 md:p-7">
-              <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-                <div>
-                  <Badge>How we think</Badge>
-                  <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
-                    Practical design for <GradientText>real websites</GradientText>
-                  </h2>
-                  <p className="mt-4 text-sm font-semibold leading-6 text-white/48 md:text-base">
-                    We design close to UX, content structure, development, and
-                    SEO-aware planning, so approved layouts are prepared for
-                    real implementation instead of staying as pretty mockups.
-                  </p>
-                </div>
-                <img
-                  src="/imgi_48_web-design-before-after-interface-review-768x1024.jpg.webp"
-                  alt="Before and after website redesign interface"
-                  className="h-[320px] w-full rounded-xl object-cover md:h-[380px]"
-                />
-              </div>
-            </article>
-
-            <article>
-              <Badge>Evidence</Badge>
-              <h2 className="mt-4 max-w-3xl text-[28px] font-semibold leading-tight md:text-4xl">
-                Evidence you can <GradientText>trust</GradientText>, not only
-                promises
-              </h2>
-              <p className="mt-4 max-w-3xl text-sm font-semibold leading-6 text-white/48 md:text-base">
-                Public reviews, project history, and repeat collaboration matter
-                because design work is also about communication, structure, and
-                dependable delivery.
-              </p>
-              <div className="mt-8 grid gap-4 md:grid-cols-3">
-                <ProofBadge title="Clutch" rating="4.9" />
-                <ProofBadge
-                  title="Upwork"
-                  rating="4.9"
-                  color="text-[#62e843]"
-                />
-                <ProofBadge
-                  title="Google"
-                  rating="5.0"
-                  color="text-[#facc15]"
-                />
-              </div>
-            </article>
-
-            <article>
-              <Badge>Process</Badge>
-              <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
-                How our <GradientText>web design process</GradientText> works
-              </h2>
-              <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
-                {process.map((item, index) => (
-                  <details
-                    key={item.title}
-                    open={index === 0}
-                    className="group py-5"
-                  >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold md:text-xl">
-                      <span>
-                        {String(index + 1).padStart(2, "0")}. {item.title}
-                      </span>
-                      <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
-                    </summary>
-                    <p className="mt-4 max-w-4xl text-sm font-semibold leading-6 text-white/48 md:text-base">
-                      {item.text}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            </article>
-          </div>
-        </div>
-      </SectionShell>
+      
 
       <SectionShell label="portfolio">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -481,7 +371,7 @@ const WebDes = () => {
             <FiArrowUpRight />
           </a>
         </div>
-        <div className="mt-8 grid gap-5 lg:grid-cols-3">
+        <div className="mt-8 grid gap-5 md:grid-cols-3 lg:grid-cols-3">
           {[
             {
               image: "/imgi_145_Preview-1-e1581578812600-3-768x512.jpg.webp",
@@ -503,7 +393,7 @@ const WebDes = () => {
               key={item.title}
               className="overflow-hidden rounded-xl border border-white/10 bg-[#121720]"
             >
-              <div className="relative h-52 overflow-hidden">
+              <div className="relative h-52 overflow-hidden md:h-44 lg:h-52">
                 <img
                   src={item.image}
                   alt={item.title}
@@ -531,7 +421,7 @@ const WebDes = () => {
           <img
             src="/imgi_90_web-design-wireframe-to-final-preview-1024x576.jpg.webp"
             alt="Website redesign planning and preview screens"
-            className="h-[320px] w-full rounded-xl object-cover md:h-[380px]"
+            className="h-[320px] w-full rounded-xl object-cover max-[380px]:h-[260px] md:h-[380px]"
           />
           <div>
             <Badge>When to choose us</Badge>
@@ -561,9 +451,9 @@ const WebDes = () => {
           <div className="divide-y divide-white/10 border-y border-white/10">
             {faqs.map((item, index) => (
               <details key={item.question} open={index === 0} className="py-6">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold md:text-2xl">
+                <summary className="flex cursor-pointer list-none items-start justify-between gap-4 text-lg font-semibold leading-snug md:items-center md:text-2xl">
                   <span>{item.question}</span>
-                  <FiChevronDown className="shrink-0" />
+                  <FiChevronDown className="mt-1 shrink-0 md:mt-0" />
                 </summary>
                 <p className="mt-5 text-sm font-semibold leading-7 text-white/45 md:text-base">
                   {item.answer}
@@ -590,12 +480,12 @@ const WebDes = () => {
             <FiArrowUpRight />
           </a>
         </div>
-        <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {relatedServices.map((item) => (
             <a
               key={item.title}
               href={item.to}
-              className="group rounded-xl border border-white/10 bg-black/35 p-6 transition hover:-translate-y-1 hover:border-[#13d6ff]/50"
+              className="group rounded-xl border border-white/10 bg-black/35 p-6 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 max-sm:p-5"
             >
               <span className="grid size-10 place-items-center rounded-lg bg-white text-black">
                 {React.createElement(item.icon)}
@@ -609,18 +499,18 @@ const WebDes = () => {
         </div>
       </SectionShell>
 
-      <section className="relative overflow-hidden bg-black px-4 py-18 text-white md:px-8 lg:px-9 lg:py-24">
+      <section className="relative overflow-hidden bg-black px-4 py-16 text-white md:px-8 lg:px-9 lg:py-24">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_42%,rgba(19,214,255,0.2),transparent_30%),radial-gradient(circle_at_75%_35%,rgba(255,45,135,0.2),transparent_30%)]" />
         <div className="relative mx-auto max-w-[980px] text-center">
           <Badge>Contact us</Badge>
-          <h2 className="mt-5 text-[34px] font-semibold leading-[1.08] md:text-5xl lg:text-[64px]">
+          <h2 className="mt-5 text-[34px] font-semibold leading-[1.08] max-[380px]:text-[29px] md:text-5xl lg:text-[64px]">
             Discuss your next <GradientText>website design</GradientText> or
             redesign with our team
           </h2>
           <button
             type="button"
             onClick={openQuoteModal}
-            className="mt-9 inline-flex h-12 items-center gap-2 rounded-full bg-white px-6 font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200"
+            className="mt-9 inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-6 text-center font-mono text-xs font-bold uppercase tracking-[0.12em] text-black transition hover:bg-zinc-200 max-sm:w-full"
           >
             Request a quote
             <FiArrowDown className="-rotate-90" />

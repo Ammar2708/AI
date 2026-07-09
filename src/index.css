@@ -1,1 +1,108 @@
 @import "tailwindcss";
+
+@keyframes site-page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes site-reveal-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 22px, 0) scale(0.99);
+    filter: blur(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.site-page-motion {
+  animation: site-page-enter 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.site-reveal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0) scale(0.99);
+  filter: blur(8px);
+  will-change: opacity, transform, filter;
+}
+
+.site-reveal.is-visible {
+  animation: site-reveal-enter 720ms cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms) both;
+}
+
+a,
+button,
+summary,
+[role="button"] {
+  transition-property: color, background-color, border-color, opacity, box-shadow, transform, filter;
+  transition-duration: 220ms;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+a:focus-visible,
+button:focus-visible,
+summary:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid rgba(19, 214, 255, 0.9);
+  outline-offset: 4px;
+}
+
+main img {
+  backface-visibility: hidden;
+  transform: translateZ(0);
+  transition: transform 520ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 320ms ease;
+}
+
+details[open] > summary svg {
+  transform: rotate(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :where(main a:hover, main button:hover) {
+    transform: translateY(-2px);
+  }
+
+  :where(main article:hover img, main a:hover img) {
+    transform: scale(1.035);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 1ms !important;
+  }
+
+  .site-page-motion,
+  .site-reveal,
+  .site-reveal.is-visible {
+    animation: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

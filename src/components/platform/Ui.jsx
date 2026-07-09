@@ -41,7 +41,7 @@ const SectionShell = ({ id, label, dark = false, children, className = "" }) => 
     <p className="pointer-events-none absolute left-4 top-1/2 hidden -translate-y-1/2 -rotate-90 font-mono text-[11px] font-bold uppercase tracking-[0.26em] text-white/18 lg:block">
       {label}
     </p>
-    <div id={id} className="relative mx-auto max-w-[1120px]">
+    <div id={id} className="relative mx-auto max-w-[1120px] scroll-mt-28">
       {children}
     </div>
   </section>
@@ -91,48 +91,21 @@ const benefits = [
     icon: FiEye,
     title: "Clearer paths to action",
     text: "Users understand what to do next because screens are structured around decisions, not decoration.",
-    to: "/services/conversion-marketing",
   },
   {
     icon: FiTrendingUp,
     title: "Faster product adoption",
     text: "Cleaner onboarding, dashboards, forms, and flows reduce confusion and help people reach value sooner.",
-    to: "/services/web-application-development",
   },
   {
     icon: FiUsers,
     title: "Aligned teams",
     text: "Product, marketing, and engineering get shared flows, design decisions, and reusable UI patterns.",
-    to: "/process",
   },
   {
     icon: FiSmartphone,
     title: "Responsive experience",
     text: "Mobile and desktop states are planned together so the experience stays readable, usable, and consistent.",
-    to: "/services/mobile-app-design",
-  },
-];
-
-const process = [
-  {
-    title: "Discovery and goals",
-    text: "We review your product, audience, analytics, current screens, business goals, and known friction so the design work starts with a shared target.",
-  },
-  {
-    title: "Research and structure",
-    text: "We turn findings into user flows, page structure, feature priorities, content hierarchy, and UX recommendations.",
-  },
-  {
-    title: "Wireframes and prototypes",
-    text: "Important journeys are shaped into wireframes or prototypes so layout, behavior, and interactions can be reviewed early.",
-  },
-  {
-    title: "Visual UI and system",
-    text: "We create polished screens, responsive variants, reusable components, and design tokens that fit your brand.",
-  },
-  {
-    title: "Handoff and iteration",
-    text: "We prepare practical notes for developers, review build details when needed, and refine designs as the product evolves.",
   },
 ];
 
@@ -268,7 +241,7 @@ const Ui = () => {
         </div>
       </SectionShell>
 
-      <SectionShell label="benefits" dark>
+      <SectionShell id="evidence" label="benefits" dark>
         <div className="grid gap-8 lg:grid-cols-[0.82fr_1.18fr]">
           <div className="lg:sticky lg:top-32 lg:self-start">
             <Badge>Benefits</Badge>
@@ -282,30 +255,28 @@ const Ui = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <Link
+              <div
                 key={item.title}
-                to={item.to}
-                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
+                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                  <h3 className="text-lg font-semibold leading-tight">
                     {item.title}
-                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
       </SectionShell>
 
-      <SectionShell label="how we work">
+      <SectionShell id="handoff" label="how we work">
         <div className="grid items-center gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <div>
             <Badge>Product mindset</Badge>
@@ -343,64 +314,7 @@ const Ui = () => {
         </div>
       </SectionShell>
 
-      <SectionShell id="process" label="process" dark>
-        <div className="grid gap-10 lg:grid-cols-[0.25fr_0.75fr]">
-          <div className="hidden border-r border-white/10 lg:block">
-            <div className="sticky top-28 grid gap-6 pl-5 text-lg font-semibold text-white/35">
-              <span className="text-white">About</span>
-              <span>Evidence</span>
-              <span>Our Process</span>
-              <span>Handoff</span>
-            </div>
-          </div>
-          <div className="grid gap-10">
-            <article className="grid items-center gap-8 rounded-xl border border-white/10 bg-white/[0.02] p-5 md:p-7 lg:grid-cols-[1fr_0.9fr]">
-              <div>
-                <Badge>About us</Badge>
-                <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
-                  Calm, senior partners for <GradientText>your product</GradientText>
-                </h2>
-                <p className="mt-4 text-sm font-semibold leading-6 text-white/48 md:text-base">
-                  We join your team as practical design partners, explaining
-                  trade-offs, documenting decisions, and helping product and
-                  engineering stay aligned from first workshop to release.
-                </p>
-              </div>
-              <img
-                src="/imgi_60_web-application-development-architecture-dashboard.jpg.webp"
-                alt="Interface architecture and dashboard planning"
-                className="h-[280px] w-full rounded-xl object-cover md:h-[340px]"
-              />
-            </article>
-
-            <article>
-              <Badge>Our process</Badge>
-              <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
-                How our <GradientText>UI/UX design process</GradientText> works
-              </h2>
-              <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
-                {process.map((item, index) => (
-                  <details
-                    key={item.title}
-                    open={index === 0}
-                    className="group py-5"
-                  >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold md:text-xl">
-                      <span>
-                        {String(index + 1).padStart(2, "0")}. {item.title}
-                      </span>
-                      <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
-                    </summary>
-                    <p className="mt-4 max-w-4xl text-sm font-semibold leading-6 text-white/48 md:text-base">
-                      {item.text}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            </article>
-          </div>
-        </div>
-      </SectionShell>
+      
 
       <SectionShell label="portfolio">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

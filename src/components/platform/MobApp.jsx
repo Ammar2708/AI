@@ -117,29 +117,6 @@ const benefits = [
   },
 ];
 
-const process = [
-  {
-    title: "Product discovery",
-    text: "We start with structured workshops to understand your product vision, audience, constraints, success metrics, and technical realities. The output is a focused problem statement and a realistic first design scope.",
-  },
-  {
-    title: "UX flows and information architecture",
-    text: "We map core journeys, navigation, screen hierarchy, decision points, and content needs so the app can be understood before the UI layer is added.",
-  },
-  {
-    title: "Wireframes and prototypes",
-    text: "Low and mid-fidelity screens help test layout, sequence, and interaction logic. Clickable prototypes make review faster and reduce rework.",
-  },
-  {
-    title: "UI and design system",
-    text: "We create polished mobile screens, components, typography, color rules, responsive states, and visual details that match your brand.",
-  },
-  {
-    title: "Handoff and iteration",
-    text: "Final design files are organized for implementation, with notes for states, edge cases, assets, and future product improvements.",
-  },
-];
-
 const faqs = [
   {
     question: "What do you need before starting a mobile app design project?",
@@ -307,24 +284,22 @@ const MobApp = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <Link
+              <div
                 key={item.title}
-                to={item.to}
-                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
+                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                  <h3 className="text-lg font-semibold leading-tight">
                     {item.title}
-                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>
@@ -368,84 +343,7 @@ const MobApp = () => {
         </div>
       </SectionShell>
 
-      <SectionShell id="process" label="about us" dark>
-        <div className="grid gap-10 lg:grid-cols-[0.25fr_0.75fr]">
-          <div className="hidden border-r border-white/10 lg:block">
-            <div className="sticky top-28 grid gap-6 pl-5 text-lg font-semibold text-white/35">
-              <span className="text-white">About us</span>
-              <span>Evidence</span>
-              <span>Our Process</span>
-              <span>Testimonials</span>
-            </div>
-          </div>
-          <div className="grid gap-10">
-            <article className="grid items-center gap-8 rounded-xl border border-white/10 bg-white/[0.02] p-5 md:p-7 lg:grid-cols-[1fr_0.9fr]">
-              <div>
-                <Badge>Why us</Badge>
-                <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
-                  Design experience shaped by{" "}
-                  <GradientText>real implementation</GradientText>
-                </h2>
-                <p className="mt-4 text-sm font-semibold leading-6 text-white/48 md:text-base">
-                  We design mobile interfaces with development realities in
-                  mind: states, component behavior, edge cases, responsiveness,
-                  and review cycles. That keeps the work useful after approval.
-                </p>
-              </div>
-              <img
-                src="/imgi_98_web-application-development-product-dashboard-review-1536x864.jpg.webp"
-                alt="Product dashboard review workspace"
-                className="h-[280px] w-full rounded-xl object-cover md:h-[340px]"
-              />
-            </article>
-
-            <article>
-              <Badge>Evidence</Badge>
-              <h2 className="mt-4 max-w-3xl text-[28px] font-semibold leading-tight md:text-4xl">
-                Public review references and{" "}
-                <GradientText>project discipline</GradientText>
-              </h2>
-              <p className="mt-4 max-w-3xl text-sm font-semibold leading-6 text-white/48 md:text-base">
-                App projects need steady communication, structured decisions,
-                and clear handoff. We use focused checkpoints so stakeholders
-                and developers stay aligned.
-              </p>
-              <div className="mt-8 grid gap-4 md:grid-cols-3">
-                <ProofBadge title="Clutch" rating="4.9" />
-                <ProofBadge title="Upwork" rating="4.9" color="text-[#62e843]" />
-                <ProofBadge title="Google" rating="5.0" color="text-[#facc15]" />
-              </div>
-            </article>
-
-            <article>
-              <Badge>Our process</Badge>
-              <h2 className="mt-4 text-[28px] font-semibold leading-tight md:text-4xl">
-                How we run a{" "}
-                <GradientText>mobile app design project</GradientText>
-              </h2>
-              <div className="mt-8 divide-y divide-white/10 border-y border-white/10">
-                {process.map((item, index) => (
-                  <details
-                    key={item.title}
-                    open={index === 0}
-                    className="group py-5"
-                  >
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-semibold md:text-xl">
-                      <span>
-                        {String(index + 1).padStart(2, "0")}. {item.title}
-                      </span>
-                      <FiChevronDown className="shrink-0 transition group-open:rotate-180" />
-                    </summary>
-                    <p className="mt-4 max-w-4xl text-sm font-semibold leading-6 text-white/48 md:text-base">
-                      {item.text}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            </article>
-          </div>
-        </div>
-      </SectionShell>
+      
 
       <SectionShell label="portfolio">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">

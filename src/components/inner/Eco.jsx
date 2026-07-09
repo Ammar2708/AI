@@ -394,23 +394,21 @@ const Eco = () => {
           </div>
           <div className="grid gap-5 sm:grid-cols-2">
             {[
-              ["Catalog", "Clear categories, templates, filters, and product content.", "/services/ecommerce-development"],
-              ["Checkout", "Payment, shipping, trust, and cart details planned early.", "/services/ecommerce-development"],
-              ["Tracking", "Events and analytics configured around useful decisions.", "/services/conversion-marketing"],
-              ["Support", "Post-launch improvements and handover built into the plan.", "/process"],
-            ].map(([title, text, to]) => (
-              <Link
+              ["Catalog", "Clear categories, templates, filters, and product content."],
+              ["Checkout", "Payment, shipping, trust, and cart details planned early."],
+              ["Tracking", "Events and analytics configured around useful decisions."],
+              ["Support", "Post-launch improvements and handover built into the plan."],
+            ].map(([title, text]) => (
+              <div
                 key={title}
-                to={to}
-                className="group rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)] transition hover:-translate-y-1 hover:border-[#6654ff]/50"
+                className="rounded-xl border border-white/10 bg-[#121720] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
               >
                 <FiCheckCircle className="text-2xl text-white" />
-                <h3 className="mt-5 flex items-center justify-between gap-4 text-xl font-semibold">
-                  <span>{title}</span>
-                  <FiArrowUpRight className="shrink-0 text-white/35 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
+                <h3 className="mt-5 text-xl font-semibold">
+                  {title}
                 </h3>
                 <p className="mt-3 text-sm font-semibold leading-6 text-white/45">{text}</p>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

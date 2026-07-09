@@ -94,25 +94,21 @@ const benefits = [
     icon: FiEye,
     title: "A logo that works in real places",
     text: "The mark is checked across small icons, website headers, documents, social profiles, and presentation layouts.",
-    to: "/services/web-design-service",
   },
   {
     icon: FiTarget,
     title: "Strategy before style",
     text: "Design decisions are judged against your positioning and audience instead of personal taste alone.",
-    to: "/services/brand-identity",
   },
   {
     icon: FiUsers,
     title: "Clearer team decisions",
     text: "Your team gets a shared direction, practical variants, and enough rules to keep future use consistent.",
-    to: "/process",
   },
   {
     icon: FiAward,
     title: "Professional ownership package",
     text: "Final deliverables are organized for long-term use, with formats and usage notes confirmed before handover.",
-    to: "/services/logo-design-service",
   },
 ];
 
@@ -301,24 +297,22 @@ const Logo = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <Link
+              <div
                 key={item.title}
-                to={item.to}
-                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
+                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                  <h3 className="text-lg font-semibold leading-tight">
                     {item.title}
-                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

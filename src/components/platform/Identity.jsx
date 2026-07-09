@@ -93,25 +93,21 @@ const benefits = [
     icon: FiEye,
     title: "Clarity from day one",
     text: "A defined identity makes naming, messaging, visuals, and campaign decisions easier for everyone involved.",
-    to: "/services/brand-identity",
   },
   {
     icon: FiBox,
     title: "A usable brand toolkit",
     text: "Instead of scattered files, your team gets logo variants, color rules, type direction, and clear usage notes.",
-    to: "/services/logo-design-service",
   },
   {
     icon: FiUsers,
     title: "Shared internal language",
     text: "Sales, marketing, hiring, and product teams can describe the company with the same visual and verbal foundation.",
-    to: "/process",
   },
   {
     icon: FiTrendingUp,
     title: "Confidence across touchpoints",
     text: "Your brand feels consistent in proposals, social content, landing pages, product screens, and presentations.",
-    to: "/services/web-design-service",
   },
 ];
 
@@ -296,24 +292,22 @@ const Identity = () => {
           </div>
           <div className="grid gap-5">
             {benefits.map((item) => (
-              <Link
+              <div
                 key={item.title}
-                to={item.to}
-                className="group grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 transition hover:-translate-y-1 hover:border-[#13d6ff]/50 md:grid-cols-[auto_1fr]"
+                className="grid gap-4 rounded-xl border border-white/10 bg-black/40 p-5 md:grid-cols-[auto_1fr]"
               >
                 <span className="grid size-10 place-items-center rounded-lg border border-white/10 bg-white text-lg text-black">
                   {React.createElement(item.icon)}
                 </span>
                 <div>
-                  <h3 className="flex items-center justify-between gap-4 text-lg font-semibold leading-tight">
+                  <h3 className="text-lg font-semibold leading-tight">
                     {item.title}
-                    <FiArrowUpRight className="shrink-0 text-white/60 transition group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-white" />
                   </h3>
                   <p className="mt-3 max-w-2xl text-sm font-semibold leading-6 text-white/45 md:text-base">
                     {item.text}
                   </p>
                 </div>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

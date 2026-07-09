@@ -187,9 +187,9 @@ const ServiceMenu = () => {
   const activeItem = activeIndex === null ? null : serviceItems[activeIndex];
 
   return (
-    <div className="absolute left-1/2 top-full z-40 hidden -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
-      <div className="flex items-start gap-4" onMouseLeave={() => setActiveIndex(null)}>
-        <div className="w-[315px] rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
+    <div className="absolute left-1/2 top-full z-40 hidden w-[315px] -translate-x-1/2 pt-4 group-hover:block group-focus-within:block">
+      <div className="relative" onMouseLeave={() => setActiveIndex(null)}>
+        <div className="w-full rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
           {serviceItems.map((item, index) => (
             <NavLink
               key={item.label}
@@ -216,7 +216,7 @@ const ServiceMenu = () => {
         </div>
 
         {activeItem?.items && (
-          <div className="w-[340px] rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
+          <div className="absolute left-[calc(100%+1rem)] top-0 w-[340px] rounded-3xl border border-white/10 bg-[#121720] px-5 py-5 shadow-2xl">
             {activeItem.items.map((item) => {
               const label = typeof item === "string" ? item : item.label;
               const to = typeof item === "string" ? "/services" : item.to;
@@ -305,6 +305,8 @@ const Dropdown = ({ type }) => {
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileServiceIndex, setMobileServiceIndex] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
@@ -356,7 +358,11 @@ const Navbar = () => {
           type="button"
           aria-label="Toggle navigation"
           aria-expanded={menuOpen}
-          onClick={() => setMenuOpen((open) => !open)}
+          onClick={() => {
+            setMenuOpen((open) => !open);
+            setMobileServicesOpen(false);
+            setMobileServiceIndex(null);
+          }}
           className="grid size-10 place-items-center rounded-full border border-white/15 text-xl lg:hidden"
         >
           {menuOpen ? <FiX /> : <FiMenu />}
@@ -366,20 +372,117 @@ const Navbar = () => {
       {menuOpen && (
         <div className="border-t border-white/10 bg-[#0b0f15] px-5 py-5 lg:hidden">
           <div className="grid gap-3">
-            {navItems.map((item) => (
-              <NavLink
-                key={item.label}
-                to={item.to}
-                onClick={() => setMenuOpen(false)}
-                className={({ isActive }) =>
-                  `rounded-2xl px-4 py-3 text-lg font-semibold ${
-                    isActive ? "bg-white text-black" : "bg-white/5 text-white"
-                  }`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
+            {navItems.map((item) => {
+              if (item.dropdown === "services") {
+                return (
+                  <div key={item.label} className="rounded-2xl bg-white/5">
+                    <button
+                      type="button"
+                      aria-expanded={mobileServicesOpen}
+                      onClick={() => {
+                        setMobileServicesOpen((open) => !open);
+                        setMobileServiceIndex(null);
+                      }}
+                      className="flex w-full items-center justify-between rounded-2xl px-4 py-3 text-left text-lg font-semibold text-white"
+                    >
+                      {item.label}
+                      <FiChevronDown
+                        className={`text-base transition ${
+                          mobileServicesOpen ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+
+                    {mobileServicesOpen && (
+                      <div className="grid gap-2 px-3 pb-3">
+                        <NavLink
+                          to="/services"
+                          onClick={() => setMenuOpen(false)}
+                          className="rounded-xl px-3 py-2 text-sm font-semibold text-white/60 transition hover:bg-white/5 hover:text-white"
+                        >
+                          All services
+                        </NavLink>
+
+                        {serviceItems.map((service, index) => (
+                          <div key={service.label} className="rounded-xl bg-black/20">
+                            {service.items ? (
+                              <button
+                                type="button"
+                                aria-expanded={mobileServiceIndex === index}
+                                onClick={() =>
+                                  setMobileServiceIndex((active) =>
+                                    active === index ? null : index
+                                  )
+                                }
+                                className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-white"
+                              >
+                                <IconBox icon={service.icon} />
+                                <span className="flex-1 text-base font-bold leading-tight">
+                                  {service.label}
+                                </span>
+                                <FiChevronDown
+                                  className={`text-sm text-white/70 transition ${
+                                    mobileServiceIndex === index ? "rotate-180 text-white" : ""
+                                  }`}
+                                />
+                              </button>
+                            ) : (
+                              <NavLink
+                                to={service.to || "/services"}
+                                onClick={() => setMenuOpen(false)}
+                                className="flex items-center gap-3 rounded-xl px-3 py-3 text-white"
+                              >
+                                <IconBox icon={service.icon} />
+                                <span className="text-base font-bold leading-tight">
+                                  {service.label}
+                                </span>
+                              </NavLink>
+                            )}
+
+                            {service.items && mobileServiceIndex === index && (
+                              <div className="grid gap-1 px-3 pb-3 pl-[60px]">
+                                {service.items.map((subItem) => {
+                                  const label =
+                                    typeof subItem === "string" ? subItem : subItem.label;
+                                  const to =
+                                    typeof subItem === "string" ? "/services" : subItem.to;
+
+                                  return (
+                                    <NavLink
+                                      key={label}
+                                      to={to}
+                                      onClick={() => setMenuOpen(false)}
+                                      className="rounded-lg py-2 text-sm font-semibold text-white/65 transition hover:text-white"
+                                    >
+                                      {label}
+                                    </NavLink>
+                                  );
+                                })}
+                              </div>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              }
+
+              return (
+                <NavLink
+                  key={item.label}
+                  to={item.to}
+                  onClick={() => setMenuOpen(false)}
+                  className={({ isActive }) =>
+                    `rounded-2xl px-4 py-3 text-lg font-semibold ${
+                      isActive ? "bg-white text-black" : "bg-white/5 text-white"
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              );
+            })}
           </div>
           <div className="mt-5">
             <TryButton />
